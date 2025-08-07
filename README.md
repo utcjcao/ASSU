@@ -30,3 +30,5 @@ This project aims to rebuild the ASSU (Arts & Science Students’ Union) website
 - **Frontend:** Static site with `getStaticProps`, Tailwind CSS, and CI via GitHub Actions
 - **Backend:** WordPress provides dynamic content via REST API
 - **Webhooks:** WordPress → GitHub Dispatch → Trigger site rebuild
+
+## Contributors
