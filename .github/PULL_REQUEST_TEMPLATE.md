@@ -36,7 +36,6 @@ Before opening your pull request:
 After opening your pull request:
 
 - [ ] I have updated the project Changelog (this is required for all changes).
-- [ ] I have verified that the pre-commit.ci checks have passed.
 - [ ] I have verified that the CI tests have passed.
 - [ ] I have requested a review.
 
