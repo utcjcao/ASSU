@@ -28,7 +28,6 @@ This document outlines our Git workflow and contribution rules to ensure consist
 - Name the PR descriptively (ex: `feat: add hero text component`)
 - Use the [PR template](../.github/pull_request_template.md).
 - Keep PRs focused and small (1 feature or fix per PR)
-- Tag related issues (e.g. `Closes #12`)
 - Run all pre-commit checks (lint, type check, tests)
 
 ---
