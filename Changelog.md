@@ -6,11 +6,13 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 ---
 
-## [1.0.0 - YY/MM/DD Template]
+## [1.0.0 - 25/08/07]
 
 ### Added
 
-- N/A
+- Initialized Tailwind CSS configuration file
+- Added custom font families
+- Added project color palette
 
 ### Changed
 

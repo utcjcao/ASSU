@@ -20,3 +20,7 @@ Design document [here](https://docs.google.com/document/d/1B0RA_o40j4AhZyEdWzGDM
 - **Frontend:** Static site with `getStaticProps`, Tailwind CSS, and CI via GitHub Actions
 - **Backend:** WordPress provides dynamic content via REST API
 - **Webhooks:** WordPress → GitHub Dispatch → Trigger site rebuild
+
+## Contributors
+
+Jason Li
