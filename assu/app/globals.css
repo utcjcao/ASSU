@@ -1,98 +1,26 @@
-@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
 @import "tailwindcss";
 
-@theme {
-  --color-background: rgb(243, 243, 243);
-  --color-foreground: rgb(11, 0, 20);
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
 
-  --color-white: rgb(255, 255, 255);
-  --color-black: rgb(0, 0, 0);
-  --color-red: rgb(237, 28, 36);
-  --color-blue: rgb(0, 136, 203);
-  --color-yellow: rgb(255, 203, 5);
-  --color-gray: rgb(114, 114, 114);
-  --color-gray-light: rgb(176, 176, 176);
-  --color-gray-lighter: rgb(243, 243, 243);
-  --color-gray-dark: rgb(69, 61, 76);
-  --color-gray-darker: rgb(11, 0, 20);
-  --color-blue-light: rgb(154, 204, 231);
-  --color-pink: rgb(201, 8, 111);
-  --color-pink-light: rgb(254, 234, 250);
-  --color-cyan: rgb(174, 217, 224);
-  --color-blue-dark: rgb(0, 40, 61);
-  --color-pink-lighter: rgb(255, 211, 244);
-  --color-purple: rgb(214, 141, 196);
-  --color-purple-dark: rgb(179, 80, 151);
-  --color-brown: rgb(102, 84, 98);
-  --color-brown-dark: rgb(51, 42, 49);
-  --color-green-light: rgb(235, 247, 198);
-  --color-green-lighter: rgb(239, 247, 246);
-  --color-green: rgb(179, 217, 67);
-  --color-green-dark: rgb(103, 121, 49);
-  --color-green-darker: rgb(51, 60, 24);
-  --color-orange-light: rgb(244, 197, 182);
-  --color-orange-lighter: rgb(233, 165, 144);
-  --color-orange: rgb(222, 93, 53);
-  --color-orange-dark: rgb(148, 62, 35);
-  --color-orange-darker: rgb(74, 31, 18);
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
 
-  --color-button-primary-fill: rgb(254, 234, 250);
-  --color-button-primary-border: rgb(254, 234, 250);
-  --color-button-primary-text: rgb(243, 243, 243);
-  --color-button-primary-fill-hover: rgb(243, 243, 243);
-  --color-button-primary-border-hover: rgb(254, 234, 250);
-  --color-button-primary-text-hover: rgb(254, 234, 250);
-  --color-button-primary-fill-disabled: rgb(127, 122, 132);
-  --color-button-primary-border-disabled: rgb(127, 122, 132);
-  --color-button-primary-text-disabled: rgb(243, 243, 243);
-  --color-button-secondary-fill: rgb(243, 243, 243);
-  --color-button-secondary-border: rgb(254, 234, 250);
-  --color-button-secondary-text: rgb(254, 234, 250);
-  --color-button-secondary-fill-hover: rgb(254, 234, 250);
-  --color-button-secondary-border-hover: rgb(254, 234, 250);
-  --color-button-secondary-text-hover: rgb(243, 243, 243);
-  --color-button-secondary-fill-disabled: rgb(243, 243, 243);
-  --color-button-secondary-border-disabled: rgb(127, 122, 132);
-  --color-button-secondary-text-disabled: rgb(127, 122, 132);
-
-  --color-fill-base-1: rgb(243, 243, 243);
-  --color-fill-base-2: rgb(11, 0, 20);
-  --color-fill-base-shade-1: rgb(185, 182, 187);
-  --color-fill-base-shade-2: rgb(127, 122, 132);
-  --color-fill-base-shade-3: rgb(69, 61, 76);
-  --color-fill-accent-1: rgb(254, 234, 250);
-  --color-fill-accent-2: rgb(239, 247, 246);
-  --color-fill-accent-3: rgb(201, 8, 111);
-  --color-fill-accent-4: rgb(174, 217, 224);
-  --color-fill-background-primary: rgb(243, 243, 243);
-  --color-fill-background-secondary: rgb(185, 182, 187);
-  --color-text-primary: rgb(11, 0, 20);
-  --color-text-secondary: rgb(69, 61, 76);
-  --color-action: rgb(254, 234, 250);
-  --color-disabled: rgb(127, 122, 132);
-  --color-title: rgb(11, 0, 20);
-  --color-subtitle: rgb(11, 0, 20);
-  --color-line: rgb(11, 0, 20);
-
-  --font-sans: questrial, sans-serif;
-  --font-body: din-next-w01-light, sans-serif;
-  --font-h2: normal normal normal 55px / 1.4em questrial, sans-serif;
-  --font-h3: normal normal normal 45px / 1.4em questrial, sans-serif;
-  --font-h4: normal normal normal 35px / 1.4em questrial, sans-serif;
-  --font-h5: normal normal normal 30px / 1.4em questrial, sans-serif;
-  --font-h6: normal normal normal 25px / 1.4em questrial, sans-serif;
-  --font-body-large: normal normal normal 20px / 1.4em questrial, sans-serif;
-  --font-body-medium: normal normal normal 17px / 1.4em questrial, sans-serif;
-  --font-body-small: normal normal normal 14px / 1.4em questrial, sans-serif;
-  --font-body-x-small: normal normal normal 12px / 1.4em din-next-w01-light,
-    sans-serif;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
-  font-family: questrial, sans-serif;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
