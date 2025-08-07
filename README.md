@@ -32,3 +32,5 @@ This project aims to rebuild the ASSU (Arts & Science Students’ Union) website
 - **Webhooks:** WordPress → GitHub Dispatch → Trigger site rebuild
 
 ## Contributors
+
+Jason Li
