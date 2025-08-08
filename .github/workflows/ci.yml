@@ -8,16 +8,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - run: npm install
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: cd assu && npm install
 
       - name: Lint
-        run: npm run lint
+        run: cd assu && npm run lint
 
       - name: Type Check
-        run: npx tsc --noEmit
+        run: cd assu && npx tsc --noEmit
 
       - name: Build
-        run: npm run build
+        run: cd assu && npm run build
 
       - name: Run Tests
-        run: npm test
+        run: cd assu && npm test
