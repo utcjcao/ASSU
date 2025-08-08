@@ -34,3 +34,4 @@ This project aims to rebuild the ASSU (Arts & Science Students’ Union) website
 ## Contributors
 
 Jason Li
+Shirley Zhang
