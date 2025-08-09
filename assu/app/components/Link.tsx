@@ -7,7 +7,7 @@ interface LinkProps {
 
 export default function Link({ children, href }: LinkProps) {
   return (
-    <NextLink href={href} className="font-sans text-pink font-bold underline">
+    <NextLink href={href} className="text-pink font-bold underline">
       {children}
     </NextLink>
   );
