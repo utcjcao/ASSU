@@ -27,3 +27,4 @@ Jason Li
 Shirley Zhang
 Stanley Pang
 Rashu Sharda
+Aryan Aggarwal
