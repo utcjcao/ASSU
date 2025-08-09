@@ -1,13 +1,24 @@
-import Divider from "../components/common/Divider";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/src/components/ui/accordion";
+
+import HeroText from "../src/components/sections/HeroText";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-lighter p-8">
       <div className="max-w-4xl mx-auto">
+        {/* Page Title */}
         <h1 className="text-6xl font-sans text-gray-darker mb-8">
           ASSU Styling Demo
         </h1>
+
+        {/* Colors & Typography Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          {/* Brand Colors */}
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-3xl font-sans text-pink mb-4">
               Primary Brand Color
@@ -33,6 +44,8 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          {/* Typography */}
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-3xl font-sans text-pink mb-4">Typography</h2>
             <div className="space-y-2">
@@ -47,6 +60,8 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Buttons */}
         <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
           <h2 className="text-3xl font-sans text-pink mb-8">
             ASSU Button Styles
@@ -58,24 +73,45 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Accordion Section */}
         <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
-          <h2 className="text-3xl font-sans text-pink mb-4">
-            ASSU Divider Component
-          </h2>
-          <p className="font-body text-gray-dark mb-4">
-            This divider mimics the styling from the ASSU website with 980px
-            width, 3px border, and centered positioning.
-          </p>
-          <Divider />
-          <p className="font-body text-gray-dark mt-4">
-            The divider uses the design system&apos;s{" "}
-            <code className="bg-gray-lighter px-2 py-1 rounded">
-              --color-gray
-            </code>{" "}
-            token and respects container width.
-          </p>
+          <h2 className="text-3xl font-sans text-pink mb-6">FAQ</h2>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger className="text-xl md:text-2xl font-sans text-gray-darker">
+                What is ASSU?
+              </AccordionTrigger>
+              <AccordionContent className="text-lg font-body text-gray-dark">
+                ASSU stands for Arts & Science Students’ Union. We support and
+                represent students in the Faculty of Arts & Science.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2">
+              <AccordionTrigger className="text-xl md:text-2xl font-sans text-gray-darker">
+                Where can I find resources?
+              </AccordionTrigger>
+              <AccordionContent className="text-lg font-body text-gray-dark">
+                You can find academic, wellness, and community resources on our
+                website or by visiting our office.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3">
+              <AccordionTrigger className="text-xl md:text-2xl font-sans text-gray-darker">
+                How can I get involved?
+              </AccordionTrigger>
+              <AccordionContent className="text-lg font-body text-gray-dark">
+                You can join as a volunteer, attend events, or apply for
+                executive positions.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
 
+        <HeroText text="Welcome to ASSU" />
+
+        {/* Color Palette */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-pink p-4 rounded text-center">
             <div className="text-2xl font-sans text-white">Primary Pink</div>
