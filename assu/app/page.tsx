@@ -1,12 +1,3 @@
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/src/components/ui/accordion";
-
-import HeroText from "../src/components/sections/HeroText";
-
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-lighter p-8">
@@ -72,44 +63,6 @@ export default function Home() {
             </button>
           </div>
         </div>
-
-        {/* Accordion Section */}
-        <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
-          <h2 className="text-3xl font-sans text-pink mb-6">FAQ</h2>
-          <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
-              <AccordionTrigger className="text-xl md:text-2xl font-sans text-gray-darker">
-                What is ASSU?
-              </AccordionTrigger>
-              <AccordionContent className="text-lg font-body text-gray-dark">
-                ASSU stands for Arts & Science Students’ Union. We support and
-                represent students in the Faculty of Arts & Science.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-2">
-              <AccordionTrigger className="text-xl md:text-2xl font-sans text-gray-darker">
-                Where can I find resources?
-              </AccordionTrigger>
-              <AccordionContent className="text-lg font-body text-gray-dark">
-                You can find academic, wellness, and community resources on our
-                website or by visiting our office.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-3">
-              <AccordionTrigger className="text-xl md:text-2xl font-sans text-gray-darker">
-                How can I get involved?
-              </AccordionTrigger>
-              <AccordionContent className="text-lg font-body text-gray-dark">
-                You can join as a volunteer, attend events, or apply for
-                executive positions.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-
-        <HeroText text="Welcome to ASSU" />
 
         {/* Color Palette */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
