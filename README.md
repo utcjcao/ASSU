@@ -23,4 +23,6 @@ Design document [here](https://docs.google.com/document/d/1B0RA_o40j4AhZyEdWzGDM
 
 ## Contributors
 
-Jason Li, Aryan Aggarwal
+Jason Li
+Shirley Zhang
+Stanley Pang
