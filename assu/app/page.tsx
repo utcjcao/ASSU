@@ -6,6 +6,8 @@ import ImageCard from "components/common/ImageCard";
 import CardGrid from "components/layout/CardGrid";
 import { ImageCarousel } from "../src/components/composite/ImageCarousel";
 
+import MapSection from "../components/common/MapSection";
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-lighter p-8">
@@ -200,6 +202,21 @@ export default function Home() {
         <main className="min-h-screen bg-gray-100">
           <ImageCarousel />
         </main>
+
+        {/* Map Section */}
+        <MapSection
+          title=""
+          description=""
+          mapConfig={{
+            lat: 37.4419, // Stanford University coordinates
+            lng: -122.1419,
+            zoom: 16,
+            height: "600px",
+            markerTitle: "ASSU Office Location",
+            ariaLabel:
+              "Interactive map showing ASSU office location at Stanford University",
+          }}
+        />
       </div>
     </div>
   );
