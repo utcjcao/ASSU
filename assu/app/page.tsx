@@ -1,6 +1,65 @@
 // import Divider from "components/common/Divider";
 // import HeroImage from "components/sections/HeroImage";
 import AssuImage from "components/common/AssuImage";
+import Tabs, { TabItem } from "../components/common/Tabs";
+
+const tabsData: TabItem[] = [
+  {
+    id: "tab1",
+    label: "Title 1",
+    content: (
+      <div>
+        <h3 className="text-xl font-sans font-bold text-gray-darker mb-3">
+          Title 1
+        </h3>
+        <p className="text-gray-dark mb-4">
+          Description 1. This is some sample text content for the first tab. You
+          can put any content here that you want to display when this tab is
+          active.
+        </p>
+        <p className="text-gray-dark">
+          Additional description text for tab 1 content area.
+        </p>
+      </div>
+    ),
+  },
+  {
+    id: "tab2",
+    label: "Title 2",
+    content: (
+      <div>
+        <h3 className="text-xl font-sans font-bold text-gray-darker mb-3">
+          Title 2
+        </h3>
+        <p className="text-gray-dark mb-4">
+          Description 2. This is some sample text content for the second tab.
+          You can customize this content as needed for your specific use case.
+        </p>
+        <p className="text-gray-dark">
+          Additional description text for tab 2 content area.
+        </p>
+      </div>
+    ),
+  },
+  {
+    id: "tab3",
+    label: "Title 3",
+    content: (
+      <div>
+        <h3 className="text-xl font-sans font-bold text-gray-darker mb-3">
+          Title 3
+        </h3>
+        <p className="text-gray-dark mb-4">
+          Description 3. This is some sample text content for the third tab. The
+          tab component supports as many tabs as you need.
+        </p>
+        <p className="text-gray-dark">
+          Additional description text for tab 3 content area.
+        </p>
+      </div>
+    ),
+  },
+];
 import Button from "components/common/Button";
 import ImageCard from "components/common/ImageCard";
 import CardGrid from "components/layout/CardGrid";
@@ -74,8 +133,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Color Palette */}
-        {/* Color Palette */}
+        <div className="mb-8">
+          <Tabs tabs={tabsData} defaultActiveTab="tab1" />
+        </div>
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-pink p-4 rounded text-center">
             <div className="text-2xl font-sans text-white">Primary Pink</div>
