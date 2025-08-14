@@ -7,7 +7,6 @@ export default function Home() {
         <h1 className="text-6xl font-sans text-gray-darker mb-8">
           ASSU Styling Demo
         </h1>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-3xl font-sans text-pink mb-4">
@@ -34,7 +33,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-3xl font-sans text-pink mb-4">Typography</h2>
             <div className="space-y-2">
@@ -49,7 +47,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
         <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
           <h2 className="text-3xl font-sans text-pink mb-8">
             ASSU Button Styles
