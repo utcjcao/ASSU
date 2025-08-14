@@ -27,4 +27,3 @@ Jason Li
 Shirley Zhang
 Stanley Pang
 Rashu Sharda
-# Trigger CI
