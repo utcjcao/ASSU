@@ -44,6 +44,32 @@ Examples:
 
 ---
 
+### Image Components
+
+- `AssuImage.tsx` (common): Accessible, responsive image with optional text overlay, skeleton while loading, and error fallback. Uses `next/image` with `fill` and supports caption via `<figcaption>`.
+
+  - Props: `src`, `alt`, `caption?`, `ariaLabel?`, `sizes?`, `className?`, `imgClassName?`, `aspectClassName?`, `priority?`, `overlay?`, `overlayPosition?`, `overlayAlign?`, `fallback?`.
+  - Accessibility: requires meaningful `alt`; `figure` has `aria-label` and `aria-busy` during load.
+  - Mobile: container is `max-w-full` and uses `object-cover` within an aspect wrapper to prevent horizontal scrolling.
+
+- `HeroImage.tsx` (sections): Wide banner image constrained to site container (not edge-to-edge) with same overlay/caption features.
+
+  - Props: inherits `AssuImage` props plus `containerClassName?`, `heroAspectClassName?`, `heroSizes?`.
+  - Default container: `max-w-7xl mx-auto` with responsive padding.
+
+- `MultiImageCarousel.tsx` (common): Fully accessible multi-image carousel that displays images in a grid layout with comprehensive keyboard navigation, touch support, and screen reader compatibility.
+  - **Grid Layout**: Displays multiple images per page (default: 2x2 grid, configurable via `imagesPerPage`)
+  - **Accessibility**: Full keyboard navigation (arrow keys, Home/End, Tab, Space, Enter), ARIA compliance, screen reader support
+  - **Responsive**: Mobile-first design with touch gestures, large touch targets (48px minimum), adapts across screen sizes
+  - **Features**: Auto-play slideshow, page indicators, smooth transitions, error handling
+  - Props: `images` (required `CarouselImage[]`), `className?`, `imagesPerPage?` (default: 4), `autoPlay?`, `autoPlayInterval?`, `showControls?`, `showIndicators?`, `ariaLabel?`
+  - **CarouselImage Type**: `{ src: string, alt: string, caption?: string }`
+  - **Keyboard Navigation**: `←/→` (navigate pages), `Home/End` (first/last page), `Tab` (controls), `Space/Enter` (play/pause)
+  - **Touch Support**: Swipe left/right for navigation, tap controls and indicators
+  - **WCAG 2.1 AA Compliant**: Proper ARIA roles, focus management, color contrast, touch target sizes
+
+---
+
 ### 3. Layout Components
 
 Structural wrappers:
@@ -94,7 +120,9 @@ Typically built from micro + layout components.
 
 ---
 
-## 📚 Example: HeroText Component
+## 📚 Component Examples
+
+### HeroText Component
 
 ```tsx
 // assu/components/sections/HeroText.tsx
@@ -112,6 +140,56 @@ export default function HeroText({ title, subtitle }: HeroTextProps) {
     </section>
   );
 }
+```
+
+### MultiImageCarousel Component
+
+```tsx
+// Basic usage
+import MultiImageCarousel, {
+  CarouselImage,
+} from "../components/common/MultiImageCarousel";
+
+const images: CarouselImage[] = [
+  {
+    src: "/image1.jpg",
+    alt: "Description of image 1",
+    caption: "Optional caption",
+  },
+  { src: "/image2.jpg", alt: "Description of image 2" },
+  {
+    src: "/image3.jpg",
+    alt: "Description of image 3",
+    caption: "Another caption",
+  },
+  { src: "/image4.jpg", alt: "Description of image 4" },
+];
+
+export default function MyPage() {
+  return (
+    <MultiImageCarousel
+      images={images}
+      imagesPerPage={4}
+      showControls={true}
+      showIndicators={true}
+      ariaLabel="My photo gallery"
+    />
+  );
+}
+```
+
+```tsx
+// Advanced usage with auto-play
+<MultiImageCarousel
+  images={images}
+  imagesPerPage={4}
+  autoPlay={true}
+  autoPlayInterval={5000}
+  showControls={true}
+  showIndicators={true}
+  ariaLabel="Auto-playing slideshow"
+  className="max-w-4xl mx-auto"
+/>
 ```
 
 ---
