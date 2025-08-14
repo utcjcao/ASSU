@@ -1,50 +1,8 @@
 import { ReactNode, createElement } from "react";
 
-type TextSize =
-  | "xs"
-  | "sm"
-  | "base"
-  | "lg"
-  | "xl"
-  | "2xl"
-  | "3xl"
-  | "4xl"
-  | "5xl"
-  | "6xl"
-  | "7xl"
-  | "8xl"
-  | "9xl";
-
-type TextWeight =
-  | "light"
-  | "normal"
-  | "medium"
-  | "semibold"
-  | "bold"
-  | "extrabold"
-  | "black";
-
 type TextAlign = "left" | "center" | "right" | "justify";
 
 type TextStyle = "normal" | "italic" | "underline" | "line-through";
-
-type MaxWidth =
-  | "sm"
-  | "md"
-  | "lg"
-  | "xl"
-  | "2xl"
-  | "3xl"
-  | "4xl"
-  | "5xl"
-  | "6xl"
-  | "7xl"
-  | "full"
-  | "none";
-
-type LineHeight = "tight" | "snug" | "normal" | "relaxed" | "loose";
-
-type LetterSpacing = "tight" | "normal" | "wide";
 
 type SemanticTag =
   | "h1"
@@ -63,96 +21,87 @@ type SemanticTag =
 
 interface TextProps {
   children: ReactNode;
-  as?: SemanticTag;
-  size?: TextSize;
-  weight?: TextWeight;
+  as: SemanticTag;
   align?: TextAlign;
   style?: TextStyle;
   className?: string;
-  maxWidth?: MaxWidth;
-  lineHeight?: LineHeight;
-  spacing?: LetterSpacing;
+  color?:
+    | "primary"
+    | "secondary"
+    | "pink"
+    | "gray"
+    | "gray-dark"
+    | "gray-darker"
+    | "custom";
+  customColor?: string;
 }
 
 export default function Text({
   children,
-  as = "p",
-  size = "base",
-  weight = "normal",
+  as,
   align = "left",
   style = "normal",
   className = "",
-  maxWidth = "none",
-  lineHeight = "normal",
-  spacing = "normal",
+  color = "primary",
+  customColor,
 }: TextProps) {
-  // Responsive text sizes - smaller on mobile, larger on desktop
-  const responsiveSizes: Record<TextSize, string> = {
-    xs: "text-xs md:text-sm",
-    sm: "text-sm md:text-base",
-    base: "text-base md:text-lg",
-    lg: "text-lg md:text-xl",
-    xl: "text-xl md:text-2xl",
-    "2xl": "text-2xl md:text-3xl",
-    "3xl": "text-3xl md:text-4xl",
-    "4xl": "text-4xl md:text-5xl",
-    "5xl": "text-5xl md:text-6xl",
-    "6xl": "text-6xl md:text-7xl",
-    "7xl": "text-7xl md:text-8xl",
-    "8xl": "text-8xl md:text-9xl",
-    "9xl": "text-9xl",
+  // Font definitions using your CSS variables - complete font properties
+  const fontDefinitions: Record<SemanticTag, string> = {
+    h1: "text-[var(--font-h2)]", // Using h2 size for h1 since h1 isn't defined
+    h2: "text-[var(--font-h2)]",
+    h3: "text-[var(--font-h3)]",
+    h4: "text-[var(--font-h4)]",
+    h5: "text-[var(--font-h5)]",
+    h6: "text-[var(--font-h6)]",
+    p: "text-[var(--font-body-medium)]",
+    span: "text-[var(--font-body-medium)]",
+    div: "text-[var(--font-body-medium)]",
+    label: "text-[var(--font-body-small)]",
+    strong: "text-[var(--font-body-medium)]",
+    em: "text-[var(--font-body-medium)]",
+    small: "text-[var(--font-body-x-small)]",
   };
 
-  // Responsive line heights - tighter on mobile for better readability
-  const responsiveLineHeights: Record<LineHeight, string> = {
-    tight: "leading-tight md:leading-snug",
-    snug: "leading-snug md:leading-normal",
-    normal: "leading-normal md:leading-relaxed",
-    relaxed: "leading-relaxed md:leading-loose",
-    loose: "leading-loose",
+  // Color mapping using your CSS variables
+  const colorClasses: Record<string, string> = {
+    primary: "text-[var(--color-text-primary)]",
+    secondary: "text-[var(--color-text-secondary)]",
+    pink: "text-[var(--color-pink)]",
+    gray: "text-[var(--color-gray)]",
+    "gray-dark": "text-[var(--color-gray-dark)]",
+    "gray-darker": "text-[var(--color-gray-darker)]",
+    custom: customColor
+      ? `text-[${customColor}]`
+      : "text-[var(--color-text-primary)]",
   };
 
-  // Responsive spacing - tighter on mobile, more generous on desktop
-  const responsiveSpacing: Record<LetterSpacing, string> = {
-    tight: "tracking-tight md:tracking-normal",
-    normal: "tracking-normal md:tracking-wide",
-    wide: "tracking-wide md:tracking-wider",
-  };
-
-  // Max width utilities for mobile-safe line lengths
-  const maxWidthClasses: Record<MaxWidth, string> = {
-    sm: "max-w-sm",
-    md: "max-w-md",
-    lg: "max-w-lg",
-    xl: "max-w-xl",
-    "2xl": "max-w-2xl",
-    "3xl": "max-w-3xl",
-    "4xl": "max-w-4xl",
-    "5xl": "max-w-5xl",
-    "6xl": "max-w-6xl",
-    "7xl": "max-w-7xl",
-    full: "max-w-full",
-    none: "",
+  // Font family based on semantic tag
+  const getFontFamily = (tag: SemanticTag) => {
+    if (
+      tag.startsWith("h") ||
+      tag === "p" ||
+      tag === "strong" ||
+      tag === "em"
+    ) {
+      return "font-[var(--font-sans)]"; // Questrial for headings and main text
+    }
+    return "font-[var(--font-body)]"; // DIN Next for labels and small text
   };
 
   // Base classes with responsive design
   const baseClasses = [
-    responsiveSizes[size],
-    `font-${weight}`,
+    fontDefinitions[as],
+    getFontFamily(as),
     `text-${align}`,
-    responsiveLineHeights[lineHeight],
-    responsiveSpacing[spacing],
-    maxWidthClasses[maxWidth],
+    colorClasses[color],
     // Mobile-first responsive margins
     "mb-3 md:mb-4",
-    // Ensure proper contrast and readability
-    "text-gray-darker",
     // Smooth transitions for responsive changes
     "transition-all duration-200",
     className,
   ]
-    .filter(Boolean) // Remove empty strings
-    .join(" "); // Join all classes with a space
+    .filter(Boolean)
+    .join(" ");
 
   // Apply text styles
   const styleClasses: Record<TextStyle, string> = {
