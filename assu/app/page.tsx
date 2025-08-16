@@ -4,6 +4,7 @@ import AssuImage from "components/common/AssuImage";
 import Button from "components/common/Button";
 import ImageCard from "components/common/ImageCard";
 import CardGrid from "components/layout/CardGrid";
+import { ImageCarousel } from "../src/components/composite/ImageCarousel";
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
           ASSU Styling Demo
         </h1>
 
-        <div className="mb-10 max-w-4xl mx-auto">
+        <div className="mb-10 max-w-4xl nmx-auto">
           <HeroImage
             src="/next.svg"
             alt="ASSU hero image placeholder"
@@ -212,6 +213,10 @@ export default function Home() {
             aspectClassName="aspect-[4/3]"
           />
         </div>
+
+        <main className="min-h-screen bg-gray-100">
+          <ImageCarousel />
+        </main>
       </div>
     </div>
   );
