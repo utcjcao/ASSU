@@ -1,10 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    // Allow local public assets; extend this when loading external domains
-    remotePatterns: [],
-  },
+  /* config options here */
 };
 
 export default nextConfig;

@@ -24,5 +24,8 @@ Design document [here](https://docs.google.com/document/d/1B0RA_o40j4AhZyEdWzGDM
 ## Contributors
 
 Jason Li
+<<<<<<< HEAD
 Shirley Zhang
 Stanley Pang
+=======
+>>>>>>> parent of c42b104 (image and hero image components)

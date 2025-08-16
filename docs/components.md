@@ -44,19 +44,6 @@ Examples:
 
 ---
 
-### Image Components
-
-- `AssuImage.tsx` (common): Accessible, responsive image with optional text overlay, skeleton while loading, and error fallback. Uses `next/image` with `fill` and supports caption via `<figcaption>`.
-  - Props: `src`, `alt`, `caption?`, `ariaLabel?`, `sizes?`, `className?`, `imgClassName?`, `aspectClassName?`, `priority?`, `overlay?`, `overlayPosition?`, `overlayAlign?`, `fallback?`.
-  - Accessibility: requires meaningful `alt`; `figure` has `aria-label` and `aria-busy` during load.
-  - Mobile: container is `max-w-full` and uses `object-cover` within an aspect wrapper to prevent horizontal scrolling.
-
-- `HeroImage.tsx` (sections): Wide banner image constrained to site container (not edge-to-edge) with same overlay/caption features.
-  - Props: inherits `AssuImage` props plus `containerClassName?`, `heroAspectClassName?`, `heroSizes?`.
-  - Default container: `max-w-7xl mx-auto` with responsive padding.
-
----
-
 ### 3. Layout Components
 
 Structural wrappers:
