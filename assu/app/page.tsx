@@ -69,8 +69,11 @@ const tabsData: TabItem[] = [
 
 import MapSection from "../components/common/MapSection";
 
+import Footer from "../components/layout/Footer";
+
 export default function Home() {
   return (
+    <>
     <div className="min-h-screen bg-gray-lighter p-8">
       <div className="max-w-4xl mx-auto">
         {/* Page Title */}
@@ -322,5 +325,7 @@ export default function Home() {
         />
       </div>
     </div>
+    <Footer />
+    </>
   );
 }
