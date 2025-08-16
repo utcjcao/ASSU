@@ -54,3 +54,21 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - N/A
 
 ---
+
+## [1.2.0 - 25/09/09]
+
+### Added
+
+- Hero text section on homepage
+- Accordion component for FAQs
+
+### Changed
+
+- N/A
+
+### Fixed
+
+- Merge conflicts in layout
+- Rendering bug in accordion
+
+---
