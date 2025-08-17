@@ -70,3 +70,19 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - N/A
 
 ---
+
+## [1.0.0 - 25/08/17]
+
+### Added
+
+- Divider component testings
+
+### Changed
+
+- N/A
+
+### Fixed
+
+- Divider component
+
+---
