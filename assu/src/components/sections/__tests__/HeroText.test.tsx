@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import HeroText from "./HeroText";
+import HeroText from "../HeroText";
 
 describe("HeroText Component", () => {
   it("renders with default text when no props are provided", () => {
