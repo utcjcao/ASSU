@@ -1,4 +1,4 @@
-// components/accordion.tsx
+import React from "react";
 
 import {
   Accordion,
