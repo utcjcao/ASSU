@@ -1,4 +1,4 @@
-import Divider from "./components/Divider";
+import Divider from "../components/Divider/Divider";
 
 export default function Home() {
   return (
