@@ -1,18 +1,23 @@
 import React from "react";
 
-type KeyValueData = Record<string, number[]>;
+type Item = {
+  key: string;
+  value: string;
+};
 
 interface Props {
-  data: KeyValueData;
+  items: Item[];
 }
 
-export const KeyValueList: React.FC<Props> = ({ data }) => {
+export const KeyValueList: React.FC<Props> = ({ items }) => {
+  if (items.length === 0) return null;
+
   return (
     <div className="grid-wrapper">
-      {Object.entries(data).map(([key, values], index) => (
+      {items.map(({ key, value }, index) => (
         <React.Fragment key={index}>
           <div className="cell key">{key}</div>
-          <div className="cell value">{values.join(", ")}</div>
+          <div className="cell value">{value}</div>
         </React.Fragment>
       ))}
 
@@ -44,7 +49,6 @@ export const KeyValueList: React.FC<Props> = ({ data }) => {
             padding-left: 0rem;
           }
 
-          /* Vertical divider */
           .grid-wrapper::before {
             content: "";
             position: absolute;
