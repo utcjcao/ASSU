@@ -11,38 +11,14 @@ export default function Home() {
     <div className="min-h-screen bg-gray-lighter p-8">
       <div className="max-w-4xl mx-auto">
         {/* Page Title */}
+        {/* Page Title */}
         <h1 className="text-6xl font-sans text-gray-darker mb-8">
           ASSU Styling Demo
         </h1>
 
-        <div className="mb-10 max-w-4xl mx-auto">
-          <HeroImage
-            src="/next.svg"
-            alt="ASSU hero image placeholder"
-            caption="This is a hero image inside site borders"
-            heroAspectClassName="aspect-[16/6]"
-            heroSizes="100vw"
-            priority
-            overlays={[
-              {
-                content: (
-                  <div className="relative z-10 space-y-1">
-                    <h2 className="text-3xl md:text-4xl font-sans font-bold drop-shadow">
-                      Welcome to ASSU
-                    </h2>
-                    <p className="text-sm md:text-base font-body drop-shadow">
-                      Serving Arts & Science students
-                    </p>
-                  </div>
-                ),
-                position: "bottom-left",
-                className: "[text-shadow:_0_1px_2px_rgba(0,0,0,0.7)]",
-              },
-            ]}
-          />
-        </div>
-
+        {/* Colors & Typography Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          {/* Brand Colors */}
           {/* Brand Colors */}
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-3xl font-sans text-pink mb-4">
@@ -71,6 +47,7 @@ export default function Home() {
           </div>
 
           {/* Typography */}
+          {/* Typography */}
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-3xl font-sans text-pink mb-4">Typography</h2>
             <div className="space-y-2">
@@ -87,6 +64,7 @@ export default function Home() {
         </div>
 
         {/* Buttons */}
+        {/* Buttons */}
         <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
           <h2 className="text-3xl font-sans text-pink mb-8">
             ASSU Button Styles
@@ -96,6 +74,7 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Color Palette */}
         {/* Color Palette */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-pink p-4 rounded text-center">
