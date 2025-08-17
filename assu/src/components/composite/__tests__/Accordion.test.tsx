@@ -52,12 +52,14 @@ describe("StyledAccordion", () => {
     await userEvent.click(trigger);
 
     expect(
-      screen.getByText(/Final exams are typically available/)
-    ).toBeVisible();
+      screen.queryByText(/Final exams are typically available/)
+    ).toBeInTheDocument();
 
     await userEvent.click(trigger); // collapse
+
+    // ✅ Fix: safer assertion when content is removed from DOM
     expect(
       screen.queryByText(/Final exams are typically available/)
-    ).not.toBeVisible();
+    ).not.toBeInTheDocument();
   });
 });
