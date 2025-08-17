@@ -1,0 +1,64 @@
+import React, { useEffect, useState } from "react";
+
+interface DividerProps {
+  className?: string;
+  width?: string;
+  height?: string;
+  color?: string;
+  margin?: string;
+}
+
+const Divider: React.FC<DividerProps> = ({
+  className = "",
+  width,
+  height,
+  color = "var(--color-gray)",
+  margin,
+}) => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      setIsTablet(window.innerWidth <= 1024 && window.innerWidth > 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const getMaxWidth = () => {
+    if (isMobile) return "95%";
+    if (isTablet) return "90%";
+    return "980px";
+  };
+
+  const baseStyles: React.CSSProperties = {
+    width: width || "100%",
+    maxWidth: getMaxWidth(),
+    height: height || "7px",
+    position: "relative",
+    margin: margin || "0px 0px 22px auto",
+    left: "0px",
+    justifySelf: "start",
+    alignSelf: "start",
+    transformOrigin: "center 1.5px",
+  };
+
+  const lineStyles: React.CSSProperties = {
+    borderTop: `3px solid ${color}`,
+    boxSizing: "border-box",
+    height: "0",
+    width: "100%",
+  };
+
+  return (
+    <div className={`${className}`} style={baseStyles} data-testid="divider">
+      <div style={lineStyles} />
+    </div>
+  );
+};
+
+export default Divider;
