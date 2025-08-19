@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "class-variance-authority": "^0.7.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.7.0"
   }
 }
