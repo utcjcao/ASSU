@@ -1,5 +1,6 @@
-import HeroImage from "../components/sections/HeroImage";
-import AssuImage from "../components/common/AssuImage";
+import Divider from "components/common/Divider";
+import HeroImage from "components/sections/HeroImage";
+import AssuImage from "components/common/AssuImage";
 
 export default function Home() {
   return (
