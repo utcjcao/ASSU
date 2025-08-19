@@ -3,6 +3,7 @@ import HeroImage from "components/sections/HeroImage";
 import AssuImage from "components/common/AssuImage";
 import Button from "components/common/Button";
 import ImageCard from "components/common/ImageCard";
+import CardGrid from "components/layout/CardGrid";
 
 export default function Home() {
   return (
@@ -124,7 +125,54 @@ export default function Home() {
             Image Card
           </h2>
           <div className="flex flex-wrap gap-4">
-            <ImageCard href="dummylink" size="sm" subtitle="date here" description="description here" imageSrc="/assu/public/images/gallery-1.webp" title="Image Card Example" imageAltText="Image card example"/>
+            <ImageCard href="dummylink" size="sm" subtitle="date here" description="description here" imageSrc="/images/gallery-2.webp" title="Image Card Example" imageAltText="Image card example"/>
+          </div>
+        </div>
+
+        {/* Image Card Grid */}
+        <div className="mt-10 bg-white p-6 rounded-lg shadow-lg mb-8">
+          <h2 className="text-3xl font-sans text-pink mb-8">
+            Image Card Grid
+          </h2>
+          <div className="flex flex-wrap gap-4">
+            <CardGrid
+              columns={4}
+              ariaLabel="Unions grid"
+              items={[
+                {
+                  id: "raffle",
+                  imageSrc: "/images/gallery-1.webp",
+                  imageAltText: "Students holding a raffle sign",
+                  title: "Test Raffle Contest",
+                  subtitle: "Mar 4, 2025",
+                  description: "Enter our test raffle contest!",
+                  href: "/events/test-raffle",
+                },
+                {
+                  id: "asa",
+                  imageSrc: "/images/gallery-2.webp",
+                  imageAltText: "Anthropology club photo",
+                  title: "Anthropology Students' Association (ASA)",
+                  href: "/unions/asa",
+                },
+                {
+                  id: "raffle2",
+                  imageSrc: "/images/gallery-1.webp",
+                  imageAltText: "Students holding a raffle sign",
+                  title: "Test Raffle Contest",
+                  subtitle: "Mar 4, 2025",
+                  description: "Enter our test raffle contest!",
+                  href: "/events/test-raffle",
+                },
+                {
+                  id: "asa2",
+                  imageSrc: "/images/gallery-2.webp",
+                  imageAltText: "Anthropology club photo",
+                  title: "Anthropology Students' Association (ASA)",
+                  href: "/unions/asa",
+                }
+              ]}
+            />
           </div>
         </div>
 

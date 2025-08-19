@@ -81,6 +81,9 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - Image Card component
 - Image Card component tests
 
+- Card Grid component
+- Card Grid component tests
+
 ### Changed
 
 - N/A
