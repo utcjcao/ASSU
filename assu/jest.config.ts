@@ -33,6 +33,13 @@ const customJestConfig: Config = {
 
   // Transform patterns
   transformIgnorePatterns: ["/node_modules/", "\\.pnp\\.[^\\/]+$"],
+  // Whether to use watchman for file crawling
+  // watchman: true,
+
+  preset: "ts-jest",
+  transform: {
+    "^.+\\.tsx?$": "ts-jest",
+  },
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
