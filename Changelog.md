@@ -75,7 +75,8 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 ### Added
 
-- Divider component testings
+- Button component
+- Button component tests
 
 ### Changed
 
@@ -83,6 +84,6 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 ### Fixed
 
-- Divider component
+- N/A
 
 ---
