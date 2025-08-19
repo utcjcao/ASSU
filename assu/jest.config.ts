@@ -35,16 +35,16 @@ const customJestConfig: Config = {
   transformIgnorePatterns: ["/node_modules/", "\\.pnp\\.[^\\/]+$"],
   // Whether to use watchman for file crawling
   // watchman: true,
-  testEnvironment: 'jsdom', // ✅ Fix for DOM errors
+  testEnvironment: "jsdom", // ✅ Fix for DOM errors
   transform: {
-    '^.+\\.(t|j)sx?$': ['@swc/jest', {}],
+    "^.+\\.(t|j)sx?$": ["@swc/jest", {}],
   },
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1', // ✅ Fix for path alias
+    "^@/(.*)$": "<rootDir>/src/$1", // ✅ Fix for path alias
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
-  testMatch: ['**/__tests__/**/*.test.ts?(x)'],
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
+  testMatch: ["**/__tests__/**/*.test.ts?(x)"],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
