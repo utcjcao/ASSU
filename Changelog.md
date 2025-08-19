@@ -93,3 +93,36 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - N/A
 
 ---
+
+## [1.0.0 - 25/08/16]
+
+### Added
+
+- created image carousel component
+
+### Changed
+
+- N/A
+
+### Fixed
+
+- N/A
+
+---
+
+## [1.0.0 - 25/08/19]
+
+### Added
+
+- N/A
+
+### Changed
+
+- N/A
+
+### Fixed
+
+- ImageCarousel.test.tsx runs now.
+- CI tests all pass.
+
+---
