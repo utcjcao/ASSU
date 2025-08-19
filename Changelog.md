@@ -126,3 +126,36 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - CI tests all pass.
 
 ---
+
+## [1.0.0 - 25/08/16]
+
+### Added
+
+- Added key value componenet and the test associated with it.
+
+### Changed
+
+- N/A
+
+### Fixed
+
+- N/A
+
+---
+
+## [1.0.0 - 25/08/17]
+
+### Added
+
+- N/A
+
+### Changed
+
+- N/A
+
+### Fixed
+
+- KeyValueList.test.tsx passes.
+- CI tests passes.
+
+---
