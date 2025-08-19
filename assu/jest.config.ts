@@ -26,6 +26,7 @@ const customJestConfig: Config = {
     "**/__tests__/**/*.(ts|tsx|js|jsx)",
     "**/*.(test|spec).(ts|tsx|js|jsx)",
   ],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 
   // Ignore patterns
   testPathIgnorePatterns: ["/node_modules/"],

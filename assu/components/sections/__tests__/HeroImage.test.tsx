@@ -3,7 +3,7 @@ import HeroImage from "../HeroImage";
 
 jest.mock("next/image", () => ({
   __esModule: true,
-  default: (props: any) => {
+  default: (props: React.ComponentProps<"img">) => {
     // eslint-disable-next-line @next/next/no-img-element
     return <img {...props} alt={props.alt} />;
   },
@@ -15,5 +15,3 @@ describe("HeroImage", () => {
     expect(screen.getByRole("group")).toBeInTheDocument();
   });
 });
-
-
