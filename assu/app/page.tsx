@@ -1,6 +1,8 @@
 // import Divider from "components/common/Divider";
 import HeroImage from "components/sections/HeroImage";
 import AssuImage from "components/common/AssuImage";
+import Button from "components/common/Button";
+import ImageCard from "components/common/ImageCard";
 
 export default function Home() {
   return (
@@ -88,9 +90,7 @@ export default function Home() {
             ASSU Button Styles
           </h2>
           <div className="flex flex-wrap gap-4">
-            <button className="px-6 py-3 bg-pink text-white font-body rounded hover:bg-pink-light transition-colors">
-              Button
-            </button>
+            <Button>Button</Button>
           </div>
         </div>
 
@@ -115,6 +115,16 @@ export default function Home() {
           <div className="bg-blue-dark p-4 rounded text-center">
             <div className="text-2xl font-sans text-white">Dark Blue</div>
             <div className="text-sm font-body text-white">blue-dark</div>
+          </div>
+        </div>
+
+        {/* Image Card */}
+        <div className="mt-10 bg-white p-6 rounded-lg shadow-lg mb-8">
+          <h2 className="text-3xl font-sans text-pink mb-8">
+            Image Card
+          </h2>
+          <div className="flex flex-wrap gap-4">
+            <ImageCard href="dummylink" size="sm" subtitle="date here" description="description here" imageSrc="/assu/public/images/gallery-1.webp" title="Image Card Example" imageAltText="Image card example"/>
           </div>
         </div>
 

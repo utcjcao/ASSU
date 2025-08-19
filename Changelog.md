@@ -71,12 +71,15 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 ---
 
-## [1.0.0 - 25/08/17]
+## [1.0.0 - 25/08/19]
 
 ### Added
 
 - Button component
 - Button component tests
+
+- Image Card component
+- Image Card component tests
 
 ### Changed
 
