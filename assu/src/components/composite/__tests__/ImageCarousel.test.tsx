@@ -4,9 +4,15 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { ImageCarousel } from "../ImageCarousel";
 
 jest.mock("../../../../components/ui/carousel", () => ({
-  Carousel: ({ children }: any) => <div>{children}</div>,
-  CarouselContent: ({ children }: any) => <div>{children}</div>,
-  CarouselItem: ({ children }: any) => <div>{children}</div>,
+  Carousel: ({ children }: React.PropsWithChildren<{}>) => (
+    <div>{children}</div>
+  ),
+  CarouselContent: ({ children }: React.PropsWithChildren<{}>) => (
+    <div>{children}</div>
+  ),
+  CarouselItem: ({ children }: React.PropsWithChildren<{}>) => (
+    <div>{children}</div>
+  ),
 }));
 
 test("ImageCarousel renders and navigates", () => {
