@@ -35,7 +35,7 @@ export default function MobileSidebar({
     >
       {/* Darkened background overlay */}
       <div
-        className="absolute inset-0 bg-black bg-opacity-25 transition-opacity duration-300"
+        className="absolute inset-0 opacity-75 bg-black transition-opacity duration-300"
         onClick={onClose}
         aria-hidden="true"
       />
