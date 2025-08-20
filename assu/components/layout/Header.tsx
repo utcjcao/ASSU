@@ -71,7 +71,6 @@ export default function Header() {
   ];
 
   const courseUnionsItems = [
-    { label: "Course Unions", href: "/course-unions" },
     { label: "Unions", href: "/course-unions/unions" },
     { label: "Resources for Unions", href: "/course-unions/union-resources" },
   ];
