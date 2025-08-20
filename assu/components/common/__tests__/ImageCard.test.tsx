@@ -14,7 +14,9 @@ describe("ImageCard", () => {
   it("renders image, title, and subtitle", () => {
     render(<ImageCard {...baseProps} />);
     expect(screen.getByAltText(/sample image/i)).toBeInTheDocument();
-    expect(screen.getByText(/test raffle contest/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /test raffle contest/i })
+    ).toBeInTheDocument();
     expect(screen.getByText(/mar 4, 2025/i)).toBeInTheDocument();
   });
 
@@ -45,7 +47,7 @@ describe("ImageCard", () => {
     const clickSpy = jest.fn();
     link.addEventListener("click", clickSpy);
 
-    fireEvent.keyDown(link, { key: " " });     // Space
+    fireEvent.keyDown(link, { key: " " }); // Space
     fireEvent.keyDown(link, { key: "Enter" }); // Enter
 
     expect(clickSpy).toHaveBeenCalledTimes(2);
@@ -85,38 +87,40 @@ describe("ImageCard", () => {
   });
 
   it("does not render the overlay when description is absent", () => {
-  render(
-    <ImageCard
-      imageSrc="/images/sample.webp"
-      imageAltText="Sample image"
-      title="Test Raffle Contest"
-      subtitle="Mar 4, 2025"
-      href="/events/raffle"
-      description={undefined} // cover falsy branch
-    />
-  );
-  // Overlay text should NOT be in the DOM at all
-  expect(
-    screen.queryByText(/enter our test raffle contest!/i)
-  ).not.toBeInTheDocument();
-});
+    render(
+      <ImageCard
+        imageSrc="/images/sample.webp"
+        imageAltText="Sample image"
+        title="Test Raffle Contest"
+        subtitle="Mar 4, 2025"
+        href="/events/raffle"
+        description={undefined} // cover falsy branch
+      />
+    );
+    // Overlay text should NOT be in the DOM at all
+    expect(
+      screen.queryByText(/enter our test raffle contest!/i)
+    ).not.toBeInTheDocument();
+  });
 
-it("renders without a subtitle when not provided", () => {
-  render(
-    <ImageCard
-      imageSrc="/images/sample.webp"
-      imageAltText="Sample image"
-      title="Test Raffle Contest"
-      href="/events/raffle"
-      // no subtitle
-      description="Enter our test raffle contest!"
-    />
-  );
-  // The title is present
-  expect(screen.getByRole("link", { name: /test raffle contest/i })).toBeInTheDocument();
-  // Subtitle should not be present
-  expect(screen.queryByText(/mar 4, 2025/i)).not.toBeInTheDocument();
-});
+  it("renders without a subtitle when not provided", () => {
+    render(
+      <ImageCard
+        imageSrc="/images/sample.webp"
+        imageAltText="Sample image"
+        title="Test Raffle Contest"
+        href="/events/raffle"
+        // no subtitle
+        description="Enter our test raffle contest!"
+      />
+    );
+    // The title is present
+    expect(
+      screen.getByRole("link", { name: /test raffle contest/i })
+    ).toBeInTheDocument();
+    // Subtitle should not be present
+    expect(screen.queryByText(/mar 4, 2025/i)).not.toBeInTheDocument();
+  });
 
   it("merges extra className from props", () => {
     render(<ImageCard {...baseProps} className="mx-auto" />);
