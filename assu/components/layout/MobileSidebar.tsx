@@ -42,11 +42,11 @@ export default function MobileSidebar({
 
       {/* Sidebar panel */}
       <aside
-        className="absolute right-0 top-0 h-full w-80 bg-gray-lighter shadow-xl transform transition-transform duration-300 ease-in-out"
+        className="absolute right-0 top-0 h-full w-80 bg-gray-lighter shadow-xl transform transition-transform duration-300 ease-in-out overflow-y-auto"
         role="complementary"
         aria-label="Mobile navigation sidebar"
       >
-        <div className="p-6">
+        <div className="p-6 min-h-full">
           <div className="flex justify-between items-center mb-8">
             <h2
               className="text-xl font-sans text-gray-darker"
@@ -56,7 +56,7 @@ export default function MobileSidebar({
             </h2>
             <button
               onClick={onClose}
-              className="p-2 text-gray-darker hover:text-pink transition-colors"
+              className="p-3 text-gray-darker hover:text-pink transition-colors min-w-11 min-h-11 flex items-center justify-center"
               aria-label="Close mobile navigation menu"
               aria-controls="mobile-navigation"
             >
@@ -95,7 +95,7 @@ export default function MobileSidebar({
                 <Link
                   href="/about"
                   onClick={onClose}
-                  className={`hover:text-pink transition-colors ${
+                  className={`block py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
                     isRouteActive("/about") ? "text-pink font-semibold" : ""
                   }`}
                 >
@@ -108,7 +108,7 @@ export default function MobileSidebar({
                     key={index}
                     href={item.href}
                     onClick={onClose}
-                    className={`block text-sm hover:text-pink transition-colors ${
+                    className={`block text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
                       isSubrouteActive(item.href)
                         ? "text-pink font-semibold"
                         : "text-gray-dark"
@@ -135,7 +135,7 @@ export default function MobileSidebar({
                 <Link
                   href="/course-unions"
                   onClick={onClose}
-                  className={`hover:text-pink transition-colors ${
+                  className={`block py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
                     isRouteActive("/course-unions")
                       ? "text-pink font-semibold"
                       : ""
@@ -150,7 +150,7 @@ export default function MobileSidebar({
                     key={index}
                     href={item.href}
                     onClick={onClose}
-                    className={`block text-sm hover:text-pink transition-colors ${
+                    className={`block text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
                       isSubrouteActive(item.href)
                         ? "text-pink font-semibold"
                         : "text-gray-dark"
@@ -177,7 +177,7 @@ export default function MobileSidebar({
                 <Link
                   href="/get-involved"
                   onClick={onClose}
-                  className={`hover:text-pink transition-colors ${
+                  className={`block py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
                     isRouteActive("/get-involved")
                       ? "text-pink font-semibold"
                       : ""
@@ -192,7 +192,7 @@ export default function MobileSidebar({
                     key={index}
                     href={item.href}
                     onClick={onClose}
-                    className={`block text-sm hover:text-pink transition-colors ${
+                    className={`block text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
                       isSubrouteActive(item.href)
                         ? "text-pink font-semibold"
                         : "text-gray-dark"
@@ -212,7 +212,7 @@ export default function MobileSidebar({
               <Link
                 href="/gallery"
                 onClick={onClose}
-                className={`text-lg font-sans hover:text-pink transition-colors ${
+                className={`text-lg font-sans hover:text-pink transition-colors block py-2 min-h-11 flex items-center ${
                   isRouteActive("/gallery")
                     ? "text-pink font-semibold"
                     : "text-gray-darker"
@@ -235,7 +235,7 @@ export default function MobileSidebar({
                 <Link
                   href="/awards-and-grants"
                   onClick={onClose}
-                  className={`hover:text-pink transition-colors ${
+                  className={`block py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
                     isRouteActive("/awards-and-grants")
                       ? "text-pink font-semibold"
                       : ""
@@ -250,7 +250,7 @@ export default function MobileSidebar({
                     key={index}
                     href={item.href}
                     onClick={onClose}
-                    className={`block text-sm hover:text-pink transition-colors ${
+                    className={`block text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
                       isSubrouteActive(item.href)
                         ? "text-pink font-semibold"
                         : "text-gray-dark"
@@ -277,7 +277,7 @@ export default function MobileSidebar({
                 <Link
                   href="/services-and-resources"
                   onClick={onClose}
-                  className={`hover:text-pink transition-colors ${
+                  className={`block py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
                     isRouteActive("/services-and-resources")
                       ? "text-pink font-semibold"
                       : ""
@@ -292,7 +292,7 @@ export default function MobileSidebar({
                     key={index}
                     href={item.href}
                     onClick={onClose}
-                    className={`block text-sm hover:text-pink transition-colors ${
+                    className={`block text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
                       isSubrouteActive(item.href)
                         ? "text-pink font-semibold"
                         : "text-gray-dark"
@@ -312,7 +312,7 @@ export default function MobileSidebar({
               <Link
                 href="/contact-us"
                 onClick={onClose}
-                className={`text-lg font-sans hover:text-pink transition-colors ${
+                className={`text-lg font-sans hover:text-pink transition-colors block py-2 min-h-11 flex items-center ${
                   isRouteActive("/contact-us")
                     ? "text-pink font-semibold"
                     : "text-gray-darker"
