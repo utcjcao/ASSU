@@ -82,15 +82,17 @@ describe("CardGrid", () => {
     });
   });
 
-  const cell = screen.getByRole("gridcell");
-  const labelledBy = cell.getAttribute("aria-labelledby");
-  expect(labelledBy).toBeTruthy();
+  it("associates each gridcell with an sr-only title span", () => {
+    render(<CardGrid items={items} columns={4} />);
+    const cell = screen.getAllByRole("gridcell")[0]; // grab first cell
+    const labelledBy = cell.getAttribute("aria-labelledby");
+    expect(labelledBy).toBeTruthy();
 
-  // should point to an SR-only span
-  const hidden = document.getElementById(labelledBy!);
-  expect(hidden).toBeTruthy();
-  expect(hidden).toHaveClass("sr-only");
-  expect(hidden).toHaveTextContent("Union Without ID");
+    const hidden = document.getElementById(labelledBy!);
+    expect(hidden).toBeTruthy();
+    expect(hidden).toHaveClass("sr-only");
+    expect(hidden).toHaveTextContent(items[0].title);
+  });
 });
 
 it("clamps columns to at least 1 when columns <= 0", () => {
@@ -105,7 +107,13 @@ it("clamps columns to at least 1 when columns <= 0", () => {
   ];
 
   // columns={0} hits Math.max(1, columns) path
-  render(<CardGrid items={single} columns={0 as unknown as number} ariaLabel="Single grid" />);
+  render(
+    <CardGrid
+      items={single}
+      columns={0 as unknown as number}
+      ariaLabel="Single grid"
+    />
+  );
 
   const grid = screen.getByRole("grid", { name: /single grid/i });
   const rows = screen.getAllByRole("row");
@@ -115,10 +123,10 @@ it("clamps columns to at least 1 when columns <= 0", () => {
 });
 
 it("applies touch-friendly min size to the grid cells (authoring check)", () => {
-render(<CardGrid items={items} columns={4} />);
-const cells = screen.getAllByRole("gridcell");
-cells.forEach((cell) => {
+  render(<CardGrid items={items} columns={4} />);
+  const cells = screen.getAllByRole("gridcell");
+  cells.forEach((cell) => {
     expect(cell.className).toMatch(/min-h-11/);
     expect(cell.className).toMatch(/min-w-11/);
-});
+  });
 });
