@@ -236,17 +236,22 @@ body {
   }
 }
 
-/* Ensure hamburger icon disappears instantly */
-.mobile-menu-button.hidden {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  transition: none !important;
+/* Hamburger icon stays visible behind sidebar */
+.mobile-menu-button {
+  /* Icon will be under sidebar z-index but still clickable when sidebar is closed */
 }
 
-/* Mobile sidebar animations */
+/* Mobile sidebar animations and positioning */
 .mobile-menu {
   animation: fadeIn 0.3s ease-out;
+  /* Ensure sidebar is truly on top and doesn't affect layout */
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  pointer-events: auto !important;
+  z-index: 9999 !important;
 }
 
 .mobile-menu .bg-gray-lighter {
