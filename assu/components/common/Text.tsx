@@ -19,7 +19,7 @@ type SemanticTag =
   | "em"
   | "small";
 
-interface TextProps {
+export interface TextProps {
   children: ReactNode;
   as: SemanticTag;
   align?: TextAlign;
