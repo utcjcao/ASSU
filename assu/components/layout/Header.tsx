@@ -133,7 +133,9 @@ export default function Header() {
         {/* Mobile menu button */}
         <button
           onClick={toggleMobileMenu}
-          className="mobile-menu-button p-2 text-gray-darker hover:text-pink transition-colors"
+          className={`mobile-menu-button p-2 text-gray-darker hover:text-pink ${
+            isMobileMenuOpen ? "hidden" : ""
+          }`}
           aria-label="Toggle mobile navigation menu"
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-navigation"
@@ -146,21 +148,12 @@ export default function Header() {
             viewBox="0 0 24 24"
             aria-hidden="true"
           >
-            {isMobileMenuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
           </svg>
         </button>
 
