@@ -236,6 +236,14 @@ body {
   }
 }
 
+/* Ensure hamburger icon disappears instantly */
+.mobile-menu-button.hidden {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: none !important;
+}
+
 /* Mobile sidebar animations */
 .mobile-menu {
   animation: fadeIn 0.3s ease-out;
