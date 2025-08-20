@@ -92,7 +92,15 @@ export default function MobileSidebar({
                 id="about-section"
                 className="text-lg font-sans text-gray-darker mb-2"
               >
-                About ASSU
+                <Link
+                  href="/about"
+                  onClick={onClose}
+                  className={`hover:text-pink transition-colors ${
+                    isRouteActive("/about") ? "text-pink font-semibold" : ""
+                  }`}
+                >
+                  About ASSU
+                </Link>
               </h3>
               <div className="space-y-2 ml-4">
                 {aboutItems.map((item, index) => (
@@ -124,7 +132,17 @@ export default function MobileSidebar({
                 id="course-unions-section"
                 className="text-lg font-sans text-gray-darker mb-2"
               >
-                Course Unions
+                <Link
+                  href="/course-unions"
+                  onClick={onClose}
+                  className={`hover:text-pink transition-colors ${
+                    isRouteActive("/course-unions")
+                      ? "text-pink font-semibold"
+                      : ""
+                  }`}
+                >
+                  Course Unions
+                </Link>
               </h3>
               <div className="space-y-2 ml-4">
                 {courseUnionsItems.map((item, index) => (
@@ -156,7 +174,17 @@ export default function MobileSidebar({
                 id="get-involved-section"
                 className="text-lg font-sans text-gray-darker mb-2"
               >
-                Get Involved
+                <Link
+                  href="/get-involved"
+                  onClick={onClose}
+                  className={`hover:text-pink transition-colors ${
+                    isRouteActive("/get-involved")
+                      ? "text-pink font-semibold"
+                      : ""
+                  }`}
+                >
+                  Get Involved
+                </Link>
               </h3>
               <div className="space-y-2 ml-4">
                 {getInvolvedItems.map((item, index) => (
@@ -204,7 +232,17 @@ export default function MobileSidebar({
                 id="awards-grants-section"
                 className="text-lg font-sans text-gray-darker mb-2"
               >
-                Awards & Grants
+                <Link
+                  href="/awards-and-grants"
+                  onClick={onClose}
+                  className={`hover:text-pink transition-colors ${
+                    isRouteActive("/awards-and-grants")
+                      ? "text-pink font-semibold"
+                      : ""
+                  }`}
+                >
+                  Awards & Grants
+                </Link>
               </h3>
               <div className="space-y-2 ml-4">
                 {awardsGrantsItems.map((item, index) => (
@@ -236,7 +274,17 @@ export default function MobileSidebar({
                 id="services-resources-section"
                 className="text-lg font-sans text-gray-darker mb-2"
               >
-                Services & Resources
+                <Link
+                  href="/services-and-resources"
+                  onClick={onClose}
+                  className={`hover:text-pink transition-colors ${
+                    isRouteActive("/services-and-resources")
+                      ? "text-pink font-semibold"
+                      : ""
+                  }`}
+                >
+                  Services & Resources
+                </Link>
               </h3>
               <div className="space-y-2 ml-4">
                 {servicesResourcesItems.map((item, index) => (
