@@ -63,8 +63,7 @@ export default function DropdownMenu({
               href={item.href}
               className={`
                 block 
-                py-1 
-                px-3
+                py-1
                 text-gray-darker 
                 hover:text-pink 
                 transition-colors 

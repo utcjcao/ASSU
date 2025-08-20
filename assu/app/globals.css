@@ -235,3 +235,30 @@ body {
     display: flex;
   }
 }
+
+/* Mobile sidebar animations */
+.mobile-menu {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.mobile-menu .bg-gray-lighter {
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
