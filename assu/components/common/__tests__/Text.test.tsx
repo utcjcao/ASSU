@@ -1,5 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import Text from "../Text";
+import Text, { TextProps } from "../Text";
+
+type SemanticTag = TextProps["as"];
+type TextAlign = NonNullable<TextProps["align"]>;
+type TextStyle = NonNullable<TextProps["style"]>;
+type TextColor = Exclude<TextProps["color"], "custom">;
 
 describe("Text Component", () => {
   describe("Basic Rendering", () => {
@@ -20,7 +25,7 @@ describe("Text Component", () => {
   });
 
   describe("Semantic Tags", () => {
-    it.each([
+    const tagCases: [SemanticTag, string][] = [
       ["h1", "H1"],
       ["h2", "H2"],
       ["h3", "H3"],
@@ -34,8 +39,10 @@ describe("Text Component", () => {
       ["strong", "STRONG"],
       ["em", "EM"],
       ["small", "SMALL"],
-    ])("renders %s tag correctly", (tag, expectedTagName) => {
-      render(<Text as={tag as any}>Test {tag}</Text>);
+    ];
+
+    it.each(tagCases)("renders %s tag correctly", (tag, expectedTagName) => {
+      render(<Text as={tag}>Test {tag}</Text>);
       const element = screen.getByText(`Test ${tag}`);
       expect(element.tagName).toBe(expectedTagName);
     });
@@ -72,20 +79,25 @@ describe("Text Component", () => {
   });
 
   describe("Text Alignment", () => {
-    it.each([
+    const alignCases: [TextAlign, string][] = [
       ["left", "text-left"],
       ["center", "text-center"],
       ["right", "text-right"],
       ["justify", "text-justify"],
-    ])("applies %s alignment correctly", (align, expectedClass) => {
-      render(
-        <Text as="p" align={align as any}>
-          Aligned text
-        </Text>
-      );
-      const element = screen.getByText("Aligned text");
-      expect(element).toHaveClass(expectedClass);
-    });
+    ];
+
+    it.each(alignCases)(
+      "applies %s alignment correctly",
+      (align, expectedClass) => {
+        render(
+          <Text as="p" align={align}>
+            Aligned text
+          </Text>
+        );
+        const element = screen.getByText("Aligned text");
+        expect(element).toHaveClass(expectedClass);
+      }
+    );
 
     it("defaults to left alignment", () => {
       render(<Text as="p">Default alignment</Text>);
@@ -95,25 +107,34 @@ describe("Text Component", () => {
   });
 
   describe("Text Styles", () => {
-    it.each([
+    const styleCases: [TextStyle, string][] = [
       ["normal", ""],
       ["italic", "italic"],
       ["underline", "underline"],
       ["line-through", "line-through"],
-    ])("applies %s style correctly", (style, expectedClass) => {
-      render(
-        <Text as="p" style={style as any}>
-          Styled text
-        </Text>
-      );
-      const element = screen.getByText("Styled text");
-      if (expectedClass) {
-        expect(element).toHaveClass(expectedClass);
-      } else {
-        // For normal style, no additional class should be added
-        expect(element).not.toHaveClass("italic", "underline", "line-through");
+    ];
+
+    it.each(styleCases)(
+      "applies %s style correctly",
+      (style, expectedClass) => {
+        render(
+          <Text as="p" style={style}>
+            Styled text
+          </Text>
+        );
+        const element = screen.getByText("Styled text");
+        if (expectedClass) {
+          expect(element).toHaveClass(expectedClass);
+        } else {
+          // For normal style, no additional class should be added
+          expect(element).not.toHaveClass(
+            "italic",
+            "underline",
+            "line-through"
+          );
+        }
       }
-    });
+    );
 
     it("defaults to normal style", () => {
       render(<Text as="p">Default style</Text>);
@@ -123,22 +144,26 @@ describe("Text Component", () => {
   });
 
   describe("Colors", () => {
-    it.each([
+    const colorCases: [TextColor, string][] = [
       ["primary", "text-[var(--color-text-primary)]"],
       ["secondary", "text-[var(--color-text-secondary)]"],
       ["pink", "text-[var(--color-pink)]"],
       ["gray", "text-[var(--color-gray)]"],
       ["gray-dark", "text-[var(--color-gray-dark)]"],
       ["gray-darker", "text-[var(--color-gray-darker)]"],
-    ])("applies %s color correctly", (color, expectedClass) => {
-      render(
-        <Text as="p" color={color as any}>
-          Colored text
-        </Text>
-      );
-      const element = screen.getByText("Colored text");
-      expect(element).toHaveClass(expectedClass);
-    });
+    ];
+    it.each(colorCases)(
+      "applies %s color correctly",
+      (color, expectedClass) => {
+        render(
+          <Text as="p" color={color}>
+            Colored text
+          </Text>
+        );
+        const element = screen.getByText("Colored text");
+        expect(element).toHaveClass(expectedClass);
+      }
+    );
 
     it("defaults to primary color", () => {
       render(<Text as="p">Default color</Text>);
@@ -220,7 +245,7 @@ describe("Text Component", () => {
     });
 
     it("renders with empty children", () => {
-      const { container } = render(<Text as="p" />);
+      const { container } = render(<Text as="p">{""}</Text>);
       const element = container.querySelector("p");
       expect(element).toBeInTheDocument();
       expect(element).toBeEmptyDOMElement();

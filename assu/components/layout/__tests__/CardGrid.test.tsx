@@ -115,7 +115,7 @@ it("clamps columns to at least 1 when columns <= 0", () => {
     />
   );
 
-  const grid = screen.getByRole("grid", { name: /single grid/i });
+  // const grid = screen.getByRole("grid", { name: /single grid/i });
   const rows = screen.getAllByRole("row");
   expect(rows.length).toBe(1);
   const cells = screen.getAllByRole("gridcell");
