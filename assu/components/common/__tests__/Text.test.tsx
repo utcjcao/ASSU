@@ -220,10 +220,10 @@ describe("Text Component", () => {
     });
 
     it("renders with empty children", () => {
-      render(<Text as="p"></Text>);
-      const element = screen.getByText("");
+      const { container } = render(<Text as="p" />);
+      const element = container.querySelector("p");
       expect(element).toBeInTheDocument();
-      expect(element.tagName).toBe("P");
+      expect(element).toBeEmptyDOMElement();
     });
 
     it("handles special characters in children", () => {
