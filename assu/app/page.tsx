@@ -1,5 +1,5 @@
 // import Divider from "components/common/Divider";
-import HeroImage from "components/sections/HeroImage";
+// import HeroImage from "components/sections/HeroImage";
 import AssuImage from "components/common/AssuImage";
 import Button from "components/common/Button";
 import ImageCard from "components/common/ImageCard";
