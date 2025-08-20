@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Questrial } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/layout/Header";
 
 const questrial = Questrial({
   weight: "400",
@@ -20,7 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${questrial.className} antialiased`}>{children}</body>
+      <body className={`${questrial.className} antialiased`}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
