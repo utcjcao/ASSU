@@ -32,7 +32,7 @@ export default function DropdownMenu({
           transition-colors 
           duration-300 
           ${className}
-          ${isActive ? "text-pink font-semibold" : ""}
+          ${isActive ? "text-pink" : ""}
         `}
       >
         {label}
@@ -70,7 +70,7 @@ export default function DropdownMenu({
                 duration-200
                 ${
                   isSubrouteActive(item.href)
-                    ? "text-pink font-semibold bg-pink/10"
+                    ? "text-pink"
                     : ""
                 }
               `}

@@ -96,7 +96,7 @@ export default function MobileSidebar({
                   href="/about"
                   onClick={onClose}
                   className={`py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
-                    isRouteActive("/about") ? "text-pink font-semibold" : ""
+                    isRouteActive("/about") ? "text-pink" : ""
                   }`}
                 >
                   About ASSU
@@ -110,7 +110,7 @@ export default function MobileSidebar({
                     onClick={onClose}
                     className={`text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
                       isSubrouteActive(item.href)
-                        ? "text-pink font-semibold"
+                        ? "text-pink"
                         : "text-gray-dark"
                     }`}
                     aria-current={
@@ -136,9 +136,7 @@ export default function MobileSidebar({
                   href="/course-unions"
                   onClick={onClose}
                   className={`py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
-                    isRouteActive("/course-unions")
-                      ? "text-pink font-semibold"
-                      : ""
+                    isRouteActive("/course-unions") ? "text-pink" : ""
                   }`}
                 >
                   Course Unions
@@ -152,7 +150,7 @@ export default function MobileSidebar({
                     onClick={onClose}
                     className={`text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
                       isSubrouteActive(item.href)
-                        ? "text-pink font-semibold"
+                        ? "text-pink"
                         : "text-gray-dark"
                     }`}
                     aria-current={
@@ -178,9 +176,7 @@ export default function MobileSidebar({
                   href="/get-involved"
                   onClick={onClose}
                   className={`py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
-                    isRouteActive("/get-involved")
-                      ? "text-pink font-semibold"
-                      : ""
+                    isRouteActive("/get-involved") ? "text-pink" : ""
                   }`}
                 >
                   Get Involved
@@ -194,7 +190,7 @@ export default function MobileSidebar({
                     onClick={onClose}
                     className={`text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
                       isSubrouteActive(item.href)
-                        ? "text-pink font-semibold"
+                        ? "text-pink"
                         : "text-gray-dark"
                     }`}
                     aria-current={
@@ -213,9 +209,7 @@ export default function MobileSidebar({
                 href="/gallery"
                 onClick={onClose}
                 className={`text-lg font-sans hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
-                  isRouteActive("/gallery")
-                    ? "text-pink font-semibold"
-                    : "text-gray-darker"
+                  isRouteActive("/gallery") ? "text-pink" : "text-gray-darker"
                 }`}
                 aria-current={isRouteActive("/gallery") ? "page" : undefined}
               >
@@ -236,9 +230,7 @@ export default function MobileSidebar({
                   href="/awards-and-grants"
                   onClick={onClose}
                   className={`py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
-                    isRouteActive("/awards-and-grants")
-                      ? "text-pink font-semibold"
-                      : ""
+                    isRouteActive("/awards-and-grants") ? "text-pink" : ""
                   }`}
                 >
                   Awards & Grants
@@ -252,7 +244,7 @@ export default function MobileSidebar({
                     onClick={onClose}
                     className={`text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
                       isSubrouteActive(item.href)
-                        ? "text-pink font-semibold"
+                        ? "text-pink"
                         : "text-gray-dark"
                     }`}
                     aria-current={
@@ -278,9 +270,7 @@ export default function MobileSidebar({
                   href="/services-and-resources"
                   onClick={onClose}
                   className={`py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
-                    isRouteActive("/services-and-resources")
-                      ? "text-pink font-semibold"
-                      : ""
+                    isRouteActive("/services-and-resources") ? "text-pink" : ""
                   }`}
                 >
                   Services & Resources
@@ -294,7 +284,7 @@ export default function MobileSidebar({
                     onClick={onClose}
                     className={`text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
                       isSubrouteActive(item.href)
-                        ? "text-pink font-semibold"
+                        ? "text-pink"
                         : "text-gray-dark"
                     }`}
                     aria-current={
@@ -314,7 +304,7 @@ export default function MobileSidebar({
                 onClick={onClose}
                 className={`text-lg font-sans hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
                   isRouteActive("/contact-us")
-                    ? "text-pink font-semibold"
+                    ? "text-pink"
                     : "text-gray-darker"
                 }`}
                 aria-current={isRouteActive("/contact-us") ? "page" : undefined}
