@@ -98,14 +98,16 @@ describe("Tabs Component", () => {
     expect(screen.getByText("Content for Tab 3")).toBeInTheDocument();
   });
 
-  it("calls onTabChange callback when tab is changed", () => {
-    const mockOnTabChange = jest.fn();
-    render(<Tabs tabs={mockTabs} onTabChange={mockOnTabChange} />);
+  it("switches active tab when clicked", () => {
+    render(<Tabs tabs={mockTabs} />);
     
     // Click on Tab 2
     fireEvent.click(screen.getByRole("button", { name: /tab 2/i }));
     
-    expect(mockOnTabChange).toHaveBeenCalledWith("tab2");
+    // Verify Tab 2 is now active
+    const secondTab = screen.getByRole("button", { name: /tab 2/i });
+    expect(secondTab).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByText("Content for Tab 2")).toBeInTheDocument();
   });
 
   it("uses defaultActiveTab prop", () => {
