@@ -65,7 +65,7 @@ export default function Header() {
 
   const aboutItems = [
     { label: "About ASSU", href: "/about/assu" },
-    { label: "ASSU Executives", href: "/about/executive" },
+    { label: "ASSU Executives", href: "/about/executives" },
     { label: "ASSU Staff", href: "/about/staff" },
   ];
 
@@ -106,15 +106,26 @@ export default function Header() {
       className={`sticky top-0 z-50 bg-gray-lighter px-3 sm:px-4 md:px-6 lg:px-8 xl:pl-50 xl:pr-8 py-3 sm:py-4 md:py-6 lg:py-8 transition-all duration-300 ${
         isScrolled ? "shadow-lg" : ""
       }`}
+      role="banner"
+      aria-label="Main navigation header"
     >
-      <nav className="flex justify-between items-center max-w-7xl mx-auto">
-        <Link href="/" className="flex-shrink-0">
+      <nav
+        className="flex justify-between items-center max-w-7xl mx-auto"
+        role="navigation"
+        aria-label="Primary navigation"
+      >
+        <Link
+          href="/"
+          className="flex-shrink-0"
+          aria-label="Go to ASSU homepage"
+        >
           <Image
             src="/images/assulogo.webp"
-            alt="ASSU Logo"
+            alt="ASSU - Arts and Science Students' Union logo"
             width={100}
             height={100}
             className="w-14 sm:w-16 md:w-18 lg:w-20 xl:w-24 transition-all duration-300"
+            priority
           />
         </Link>
 
@@ -122,13 +133,17 @@ export default function Header() {
         <button
           onClick={toggleMobileMenu}
           className="mobile-menu-button p-2 text-gray-darker hover:text-pink transition-colors"
-          aria-label="Toggle mobile menu"
+          aria-label="Toggle mobile navigation menu"
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-navigation"
+          aria-haspopup="true"
         >
           <svg
             className="w-6 h-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             {isMobileMenuOpen ? (
               <path
@@ -148,8 +163,12 @@ export default function Header() {
           </svg>
         </button>
 
-        <ul className="desktop-nav items-center space-x-3 lg:space-x-5 xl:space-x-8">
-          <li>
+        <ul
+          className="desktop-nav items-center space-x-3 lg:space-x-5 xl:space-x-8"
+          role="menubar"
+          aria-label="Main navigation menu"
+        >
+          <li role="none">
             <DropdownMenu
               label="About ASSU"
               href="/about"
@@ -161,7 +180,7 @@ export default function Header() {
               isSubrouteActive={isSubrouteActive}
             />
           </li>
-          <li>
+          <li role="none">
             <DropdownMenu
               label="Course Unions"
               href="/course-unions"
@@ -173,7 +192,7 @@ export default function Header() {
               isSubrouteActive={isSubrouteActive}
             />
           </li>
-          <li>
+          <li role="none">
             <DropdownMenu
               label="Get Involved"
               href="/get-involved"
@@ -186,13 +205,20 @@ export default function Header() {
             />
           </li>
           <li
+            role="none"
             className={`${navItemClasses} ${
               isRouteActive("/gallery") ? activeNavItemClasses : ""
             }`}
           >
-            <Link href="/gallery">Gallery</Link>
+            <Link
+              href="/gallery"
+              role="menuitem"
+              aria-current={isRouteActive("/gallery") ? "page" : undefined}
+            >
+              Gallery
+            </Link>
           </li>
-          <li>
+          <li role="none">
             <DropdownMenu
               label="Awards & Grants"
               href="/awards-and-grants"
@@ -204,7 +230,7 @@ export default function Header() {
               isSubrouteActive={isSubrouteActive}
             />
           </li>
-          <li>
+          <li role="none">
             <DropdownMenu
               label="Services & Resources"
               href="/services-and-resources"
@@ -222,11 +248,18 @@ export default function Header() {
             <Link href="/news">News</Link>
           </li> */}
           <li
+            role="none"
             className={`${navItemClasses} ${
               isRouteActive("/contact-us") ? activeNavItemClasses : ""
             }`}
           >
-            <Link href="/contact-us">Contact Us</Link>
+            <Link
+              href="/contact-us"
+              role="menuitem"
+              aria-current={isRouteActive("/contact-us") ? "page" : undefined}
+            >
+              Contact Us
+            </Link>
           </li>
           {/* <li className={navItemClasses}>
             <Link href="/faq">FAQ</Link>
@@ -236,21 +269,46 @@ export default function Header() {
 
       {/* Mobile menu overlay */}
       {isMobileMenuOpen && (
-        <div className="mobile-menu fixed inset-0 z-50 bg-black bg-opacity-50">
-          <div className="fixed right-0 top-0 h-full w-80 bg-gray-lighter shadow-xl transform transition-transform duration-300 ease-in-out">
+        <div
+          className="mobile-menu fixed inset-0 z-50"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation menu"
+          id="mobile-navigation"
+        >
+          {/* Darkened background overlay */}
+          <div
+            className="absolute inset-0 bg-black bg-opacity-25 transition-opacity duration-300"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Sidebar panel */}
+          <aside
+            className="absolute right-0 top-0 h-full w-80 bg-gray-lighter shadow-xl transform transition-transform duration-300 ease-in-out"
+            role="complementary"
+            aria-label="Mobile navigation sidebar"
+          >
             <div className="p-6">
               <div className="flex justify-between items-center mb-8">
-                <h2 className="text-xl font-sans text-gray-darker">Menu</h2>
+                <h2
+                  className="text-xl font-sans text-gray-darker"
+                  id="mobile-menu-title"
+                >
+                  Menu
+                </h2>
                 <button
                   onClick={toggleMobileMenu}
                   className="p-2 text-gray-darker hover:text-pink transition-colors"
-                  aria-label="Close mobile menu"
+                  aria-label="Close mobile navigation menu"
+                  aria-controls="mobile-navigation"
                 >
                   <svg
                     className="w-6 h-6"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
+                    aria-hidden="true"
                   >
                     <path
                       strokeLinecap="round"
@@ -263,10 +321,20 @@ export default function Header() {
               </div>
 
               {/* Mobile navigation items will go here */}
-              <div className="space-y-4">
+              <nav
+                className="space-y-4"
+                role="navigation"
+                aria-labelledby="mobile-menu-title"
+              >
                 {/* About ASSU */}
-                <div className="border-b border-gray-200 pb-4">
-                  <h3 className="text-lg font-sans text-gray-darker mb-2">
+                <section
+                  className="border-b border-gray-200 pb-4"
+                  aria-labelledby="about-section"
+                >
+                  <h3
+                    id="about-section"
+                    className="text-lg font-sans text-gray-darker mb-2"
+                  >
                     About ASSU
                   </h3>
                   <div className="space-y-2 ml-4">
@@ -280,16 +348,25 @@ export default function Header() {
                             ? "text-pink font-semibold"
                             : "text-gray-dark"
                         }`}
+                        aria-current={
+                          isSubrouteActive(item.href) ? "page" : undefined
+                        }
                       >
                         {item.label}
                       </Link>
                     ))}
                   </div>
-                </div>
+                </section>
 
                 {/* Course Unions */}
-                <div className="border-b border-gray-200 pb-4">
-                  <h3 className="text-lg font-sans text-gray-darker mb-2">
+                <section
+                  className="border-b border-gray-200 pb-4"
+                  aria-labelledby="course-unions-section"
+                >
+                  <h3
+                    id="course-unions-section"
+                    className="text-lg font-sans text-gray-darker mb-2"
+                  >
                     Course Unions
                   </h3>
                   <div className="space-y-2 ml-4">
@@ -303,16 +380,25 @@ export default function Header() {
                             ? "text-pink font-semibold"
                             : "text-gray-dark"
                         }`}
+                        aria-current={
+                          isSubrouteActive(item.href) ? "page" : undefined
+                        }
                       >
                         {item.label}
                       </Link>
                     ))}
                   </div>
-                </div>
+                </section>
 
                 {/* Get Involved */}
-                <div className="border-b border-gray-200 pb-4">
-                  <h3 className="text-lg font-sans text-gray-darker mb-2">
+                <section
+                  className="border-b border-gray-200 pb-4"
+                  aria-labelledby="get-involved-section"
+                >
+                  <h3
+                    id="get-involved-section"
+                    className="text-lg font-sans text-gray-darker mb-2"
+                  >
                     Get Involved
                   </h3>
                   <div className="space-y-2 ml-4">
@@ -326,15 +412,18 @@ export default function Header() {
                             ? "text-pink font-semibold"
                             : "text-gray-dark"
                         }`}
+                        aria-current={
+                          isSubrouteActive(item.href) ? "page" : undefined
+                        }
                       >
                         {item.label}
                       </Link>
                     ))}
                   </div>
-                </div>
+                </section>
 
                 {/* Gallery */}
-                <div className="border-b border-gray-200 pb-4">
+                <section className="border-b border-gray-200 pb-4">
                   <Link
                     href="/gallery"
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -343,14 +432,23 @@ export default function Header() {
                         ? "text-pink font-semibold"
                         : "text-gray-darker"
                     }`}
+                    aria-current={
+                      isRouteActive("/gallery") ? "page" : undefined
+                    }
                   >
                     Gallery
                   </Link>
-                </div>
+                </section>
 
                 {/* Awards & Grants */}
-                <div className="border-b border-gray-200 pb-4">
-                  <h3 className="text-lg font-sans text-gray-darker mb-2">
+                <section
+                  className="border-b border-gray-200 pb-4"
+                  aria-labelledby="awards-grants-section"
+                >
+                  <h3
+                    id="awards-grants-section"
+                    className="text-lg font-sans text-gray-darker mb-2"
+                  >
                     Awards & Grants
                   </h3>
                   <div className="space-y-2 ml-4">
@@ -364,16 +462,25 @@ export default function Header() {
                             ? "text-pink font-semibold"
                             : "text-gray-dark"
                         }`}
+                        aria-current={
+                          isSubrouteActive(item.href) ? "page" : undefined
+                        }
                       >
                         {item.label}
                       </Link>
                     ))}
                   </div>
-                </div>
+                </section>
 
                 {/* Services & Resources */}
-                <div className="border-b border-gray-200 pb-4">
-                  <h3 className="text-lg font-sans text-gray-darker mb-2">
+                <section
+                  className="border-b border-gray-200 pb-4"
+                  aria-labelledby="services-resources-section"
+                >
+                  <h3
+                    id="services-resources-section"
+                    className="text-lg font-sans text-gray-darker mb-2"
+                  >
                     Services & Resources
                   </h3>
                   <div className="space-y-2 ml-4">
@@ -387,15 +494,18 @@ export default function Header() {
                             ? "text-pink font-semibold"
                             : "text-gray-dark"
                         }`}
+                        aria-current={
+                          isSubrouteActive(item.href) ? "page" : undefined
+                        }
                       >
                         {item.label}
                       </Link>
                     ))}
                   </div>
-                </div>
+                </section>
 
                 {/* Contact Us */}
-                <div className="pb-4">
+                <section className="pb-4">
                   <Link
                     href="/contact-us"
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -404,13 +514,16 @@ export default function Header() {
                         ? "text-pink font-semibold"
                         : "text-gray-darker"
                     }`}
+                    aria-current={
+                      isRouteActive("/contact-us") ? "page" : undefined
+                    }
                   >
                     Contact Us
                   </Link>
-                </div>
-              </div>
+                </section>
+              </nav>
             </div>
-          </div>
+          </aside>
         </div>
       )}
     </header>
