@@ -214,3 +214,24 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom breakpoint for mobile sidebar at 910px */
+@media (max-width: 909px) {
+  .mobile-menu-button {
+    display: block;
+  }
+  
+  .desktop-nav {
+    display: none;
+  }
+}
+
+@media (min-width: 910px) {
+  .mobile-menu-button {
+    display: none;
+  }
+  
+  .desktop-nav {
+    display: flex;
+  }
+}
