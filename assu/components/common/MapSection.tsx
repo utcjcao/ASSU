@@ -30,10 +30,7 @@ const MapSection: React.FC<MapSectionProps> = ({
   // For production, use environment variables: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
   const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
 
-  // Debug logging (remove in production)
-  console.log('MapSection: API Key available:', !!GOOGLE_MAPS_API_KEY);
-  console.log('MapSection: API Key length:', GOOGLE_MAPS_API_KEY?.length || 0);
-  console.log('MapSection: API Key value:', GOOGLE_MAPS_API_KEY ? `${GOOGLE_MAPS_API_KEY.substring(0, 10)}...` : 'undefined');
+
 
   if (!GOOGLE_MAPS_API_KEY) {
     return (
