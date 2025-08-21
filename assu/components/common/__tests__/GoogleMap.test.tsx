@@ -23,7 +23,32 @@ const mockInfoWindow = {
   open: jest.fn(),
 };
 
-global.google = {
+interface MockGoogleMaps {
+  maps: {
+    Map: jest.Mock;
+    Marker: jest.Mock;
+    InfoWindow: jest.Mock;
+    event: {
+      trigger: jest.Mock;
+      clearInstanceListeners: jest.Mock;
+    };
+    ControlPosition: {
+      TOP_CENTER: number;
+      RIGHT_CENTER: number;
+      RIGHT_TOP: number;
+    };
+    MapTypeControlStyle: {
+      HORIZONTAL_BAR: number;
+    };
+    Animation: {
+      DROP: number;
+    };
+    Size: jest.Mock;
+    Point: jest.Mock;
+  };
+}
+
+(global as unknown as { google: MockGoogleMaps }).google = {
   maps: {
     Map: jest.fn().mockImplementation(() => mockMap),
     Marker: jest.fn().mockImplementation(() => mockMarker),
@@ -46,7 +71,7 @@ global.google = {
     Size: jest.fn(),
     Point: jest.fn(),
   },
-} as any;
+};
 
 describe('GoogleMap Component', () => {
   const defaultProps = {
