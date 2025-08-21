@@ -5,7 +5,11 @@ import ContentGrid, { ContentItem } from "../ContentGrid";
 const items: ContentItem[] = [
   { id: "a", title: "Increasing Accessibility", description: "on campus" },
   { id: "b", title: "Ethics pre-requisite", description: "module" },
-  { id: "c", title: "Syllabus archive", description: "Digital Syllabus archive" },
+  {
+    id: "c",
+    title: "Syllabus archive",
+    description: "Digital Syllabus archive",
+  },
   { id: "d", title: "Room 1068", description: "ASSU Podcast" },
 ];
 
@@ -37,7 +41,7 @@ describe("ContentGrid", () => {
       expect(labelledBy).toBeTruthy();
       const titleEl = document.getElementById(labelledBy!);
       expect(titleEl).toBeTruthy();
-      expect(titleEl).toHaveTextContent(items[idx].title);
+      expect(titleEl).toHaveTextContent(items[idx].title ?? "");
     });
   });
 
@@ -64,7 +68,7 @@ describe("ContentGrid", () => {
     render(<ContentGrid items={items} columns={2} />);
     // Titles
     items.forEach((it) => {
-      expect(screen.getByText(it.title)).toBeInTheDocument();
+      expect(screen.getByText(it.title ?? "")).toBeInTheDocument();
     });
     // A sample description exists
     expect(screen.getByText(/Digital Syllabus archive/i)).toBeInTheDocument();
