@@ -256,6 +256,8 @@ export default function Home() {
                   ariaLabel: "Revitalizing Room 1068 ASSU Podcast"
                 }
               ]}
+              columns={2}
+              ariaLabel="content grid"
             />
           </div>
         </div>

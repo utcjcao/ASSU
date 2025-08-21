@@ -192,3 +192,19 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - CI tests passes.
 
 ---
+
+## [1.0.0 - 25/08/20]
+
+### Added
+
+- Added content grid and tests.
+
+### Changed
+
+- N/A
+
+### Fixed
+
+- N/A
+
+---
