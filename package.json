@@ -1,6 +1,0 @@
-{
-  "devDependencies": {
-    "@swc/jest": "^0.2.39",
-    "@testing-library/jest-dom": "^6.7.0"
-  }
-}
