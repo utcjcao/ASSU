@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 export interface TabItem {
   id: string;
@@ -17,7 +17,6 @@ interface TabsProps {
   tabClassName?: string;
   activeTabClassName?: string;
   tabPanelClassName?: string;
-
 }
 
 export default function Tabs({
@@ -28,7 +27,6 @@ export default function Tabs({
   tabClassName = "",
   activeTabClassName = "",
   tabPanelClassName = "",
-
 }: TabsProps) {
   const [activeTab, setActiveTab] = useState(
     defaultActiveTab || tabs[0]?.id || ""
@@ -39,7 +37,7 @@ export default function Tabs({
   // Handle tab change
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
-    
+
     // Focus the tab panel content for screen readers
     setTimeout(() => {
       tabPanelRef.current?.focus();
@@ -86,7 +84,7 @@ export default function Tabs({
     tabRefs.current[index] = ref;
   };
 
-  const activeTabIndex = tabs.findIndex((tab) => tab.id === activeTab);
+  // const activeTabIndex = tabs.findIndex((tab) => tab.id === activeTab);
   const activeTabData = tabs.find((tab) => tab.id === activeTab);
 
   return (
