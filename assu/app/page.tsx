@@ -7,6 +7,7 @@ import CardGrid from "components/layout/CardGrid";
 import { ImageCarousel } from "src/components/composite/ImageCarousel";
 // import HeroImage from "../components/sections/HeroImage";
 import Tabs, { TabItem } from "components/common/Tabs";
+import ContentGrid from "@/components/layout/ContentGrid";
 
 const tabsData: TabItem[] = [
   {
@@ -219,6 +220,41 @@ export default function Home() {
                   title: "Anthropology Students' Association (ASA)",
                   href: "/unions/asa",
                 },
+              ]}
+            />
+          </div>
+        </div>
+
+        {/* Content Grid */}
+        <div className="mt-10 bg-white p-6 rounded-lg shadow-lg mb-8">
+          <h2 className="text-3xl font-sans text-pink mb-8">Image Card Grid</h2>
+          <div className="flex flex-wrap gap-4">
+            <ContentGrid
+              items={[
+                {
+                  id: "current1",
+                  title: "Increasing Accessibility",
+                  description: "Increasing Accessibility on campus",
+                  ariaLabel: "Increasing Accessibility on campus"
+                },
+                {
+                  id: "current2",
+                  title: "Ethics pre-requisite",
+                  description: "Ethics pre-requisite module",
+                  ariaLabel: "Ethics pre-requisite module"
+                },
+                {
+                  id: "current3",
+                  title: "Syllabus archive",
+                  description: "Digital Syllabus archive",
+                  ariaLabel: "Digital Syllabus archive"
+                },
+                {
+                  id: "current4",
+                  title: "Room 1068",
+                  description: "Revitalizing Room 1068 ASSU Podcast",
+                  ariaLabel: "Revitalizing Room 1068 ASSU Podcast"
+                }
               ]}
             />
           </div>
