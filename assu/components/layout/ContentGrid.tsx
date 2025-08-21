@@ -7,7 +7,7 @@ export type ContentItem = {
   node?: React.ReactNode;
   title?: string;
   description?: string;
-  ariaLabel?: string; 
+  ariaLabel?: string;
 };
 
 interface ContentGridProps {
@@ -39,10 +39,9 @@ export default function ContentGrid({
       aria-label={ariaLabel}
       aria-rowcount={rows.length}
       aria-colcount={colCount}
-      className={[
-        `grid gap-0 grid-cols-${columns} mx-auto`,
-        className,
-      ].filter(Boolean).join(" ")}
+      className={[`grid gap-0 grid-cols-${columns} mx-auto`, className]
+        .filter(Boolean)
+        .join(" ")}
     >
       {rows.map((row, rIndex) => (
         <div
@@ -66,17 +65,14 @@ export default function ContentGrid({
 
             const cellBase =
               "relative p-5 md:p-6 min-h-11 min-w-11 focus-within:outline-none";
-            const partialTop =
-              !isFirstRow
-                ? "before:absolute before:top-0 before:left-4 before:right-4 before:h-px before:bg-gray-500"
-                : "";
-            const partialLeft =
-              !isFirstCol
-                ? "after:absolute after:top-4 after:bottom-4 after:left-0 after:w-px after:bg-gray-500"
-                : "";
+            const partialTop = !isFirstRow
+              ? "before:absolute before:top-0 before:left-4 before:right-4 before:h-px before:bg-gray-500"
+              : "";
+            const partialLeft = !isFirstCol
+              ? "after:absolute after:top-4 after:bottom-4 after:left-0 after:w-px after:bg-gray-500"
+              : "";
 
-            const cellChrome =
-              "rounded-none"; 
+            const cellChrome = "rounded-none";
 
             const cellClass = [cellBase, partialTop, partialLeft, cellChrome]
               .filter(Boolean)
@@ -92,21 +88,25 @@ export default function ContentGrid({
                 role="gridcell"
                 tabIndex={0}
                 aria-colindex={cIndex + 1}
-                aria-labelledby={titleId}
+                // only set aria-labelledby if title exists
+                {...(item.title ? { "aria-labelledby": titleId } : {})}
                 className={[
                   cellClass,
-                  // keyboard ring when focusing the cell itself
                   "focus-visible:ring-2 focus-visible:ring-pink focus-visible:ring-offset-2",
                   "cursor-default",
                 ].join(" ")}
               >
                 {item.title ? (
-                  <p className={titleCls}>{item.title}</p>
+                  <p id={titleId} className={titleCls}>
+                    {item.title}
+                  </p>
                 ) : null}
+
                 {item.description ? (
                   <p className={descCls}>{item.description}</p>
                 ) : null}
-                {item.node ? (<div className="pt-5">{item.node}</div>) : null}
+
+                {item.node ? <div className="pt-5">{item.node}</div> : null}
               </div>
             );
           })}
