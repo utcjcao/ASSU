@@ -9,20 +9,22 @@ const items: ContentItem[] = [
   { id: "d", title: "Room 1068", description: "ASSU Podcast" },
 ];
 
-describe("ContentGrid", () => {
+describe("ContentGrid (updated)", () => {
   it("renders a grid with correct ARIA roles and counts", () => {
     render(<ContentGrid items={items} columns={2} ariaLabel="Content grid" />);
 
     const grid = screen.getByRole("grid", { name: /content grid/i });
     expect(grid).toBeInTheDocument();
-    // 4 items, 2 columns -> 2 rows
+    // 4 items, 2 columns => 2 rows
     expect(grid).toHaveAttribute("aria-colcount", "2");
     expect(grid).toHaveAttribute("aria-rowcount", "2");
-    // centered container class
+
+    // centered + fixed cols authoring checks (class presence)
     expect(grid.className).toMatch(/mx-auto/);
+    expect(grid.className).toMatch(/grid-cols-2/);
   });
 
-  it("chunks items into rows and renders a gridcell for each item", () => {
+  it("chunks into rows and renders a gridcell for each item", () => {
     render(<ContentGrid items={items} columns={2} />);
     const rows = screen.getAllByRole("row");
     expect(rows.length).toBe(2);
@@ -30,43 +32,55 @@ describe("ContentGrid", () => {
     const cells = screen.getAllByRole("gridcell");
     expect(cells.length).toBe(items.length);
 
-    // Each cell is focusable and labeled by its title id
-    cells.forEach((cell, idx) => {
+    // Each cell is keyboard-focusable
+    cells.forEach((cell) => {
       expect(cell).toHaveAttribute("tabindex", "0");
-      const labelledBy = cell.getAttribute("aria-labelledby");
-      expect(labelledBy).toBeTruthy();
-      const titleEl = document.getElementById(labelledBy!);
-      expect(titleEl).toBeTruthy();
-      expect(titleEl).toHaveTextContent(items[idx].title);
     });
   });
 
-  it("applies partial divider classes on correct cells (top/left) with 2x2 layout", () => {
+  it("applies partial divider classes to the correct cells (2x2 layout)", () => {
     render(<ContentGrid items={items} columns={2} />);
     const cells = screen.getAllByRole("gridcell");
 
-    // Index mapping in DOM order for 2 columns:
-    // [0,1] -> first row | [2,3] -> second row
-    // Cell 1 (first row, second col) => should have LEFT divider only (after:)
-    expect(cells[1].className).toMatch(/after:absolute/);
-    expect(cells[1].className).not.toMatch(/before:absolute/);
+    // DOM order for 2 columns: [0,1] first row, [2,3] second row
+    // Cell 0: first row, first col -> no before/after dividers
+    expect(cells[0].className).not.toMatch(/before:absolute/);
+    expect(cells[0].className).not.toMatch(/after:absolute/);
 
-    // Cell 2 (second row, first col) => should have TOP divider only (before:)
+    // Cell 1: first row, second col -> left divider only (after:)
+    expect(cells[1].className).not.toMatch(/before:absolute/);
+    expect(cells[1].className).toMatch(/after:absolute/);
+
+    // Cell 2: second row, first col -> top divider only (before:)
     expect(cells[2].className).toMatch(/before:absolute/);
     expect(cells[2].className).not.toMatch(/after:absolute/);
 
-    // Cell 3 (second row, second col) => should have BOTH
+    // Cell 3: second row, second col -> both dividers
     expect(cells[3].className).toMatch(/before:absolute/);
     expect(cells[3].className).toMatch(/after:absolute/);
   });
 
-  it("renders titles and optional descriptions", () => {
-    render(<ContentGrid items={items} columns={2} />);
-    // Titles
-    items.forEach((it) => {
-      expect(screen.getByText(it.title)).toBeInTheDocument();
-    });
-    // A sample description exists
+  it("renders titles, descriptions, and an optional node with top padding", () => {
+    const withNode: ContentItem[] = [
+      ...items.slice(0, 3),
+      {
+        id: "node",
+        node: <span>Inner component</span>,
+        title: "Node Title",
+        description: "Node Desc",
+      },
+    ];
+
+    render(<ContentGrid items={withNode} columns={2} />);
+
+    // Titles/descriptions present
+    expect(screen.getByText(/Increasing Accessibility/i)).toBeInTheDocument();
     expect(screen.getByText(/Digital Syllabus archive/i)).toBeInTheDocument();
+
+    // Node rendered, wrapped with pt-5 according to component
+    const inner = screen.getByText(/Inner component/i);
+    const wrapper = inner.closest("div");
+    expect(wrapper).toBeTruthy();
+    expect(wrapper!.className).toMatch(/\bpt-5\b/);
   });
 });

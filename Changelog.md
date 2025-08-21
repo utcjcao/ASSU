@@ -222,5 +222,6 @@ This project adheres to [Semantic Versioning](https://semver.org).
 ### Fixed
 
 - Fixed content grid to allow component prop
+- Fixed corresponding tests
 
 ---
