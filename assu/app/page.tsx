@@ -2,9 +2,9 @@
 // import HeroImage from "components/sections/HeroImage";
 import AssuImage from "components/common/AssuImage";
 import AssuImage from "../components/common/AssuImage";
-import Button from "components/common/Button";
-import ImageCard from "components/common/ImageCard";
-import CardGrid from "components/layout/CardGrid";
+import Button from "../components/common/Button";
+import ImageCard from "../components/common/ImageCard";
+import CardGrid from "../components/layout/CardGrid";
 import { ImageCarousel } from "../src/components/composite/ImageCarousel";
 import HeroImage from "../components/sections/HeroImage";
 import Tabs, { TabItem } from "../components/common/Tabs";

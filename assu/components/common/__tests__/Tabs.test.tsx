@@ -24,9 +24,9 @@ describe("Tabs Component", () => {
     render(<Tabs tabs={mockTabs} />);
     
     // Check that all tab buttons are rendered
-    expect(screen.getByRole("button", { name: /tab 1/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /tab 2/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /tab 3/i })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /tab 1 tab/i })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /tab 2 tab/i })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /tab 3 tab/i })).toBeInTheDocument();
     
     // Check that the first tab's content is displayed by default
     expect(screen.getByText("Content for Tab 1")).toBeInTheDocument();
@@ -37,7 +37,7 @@ describe("Tabs Component", () => {
     render(<Tabs tabs={mockTabs} />);
     
     // Click on Tab 2
-    fireEvent.click(screen.getByRole("button", { name: /tab 2/i }));
+    fireEvent.click(screen.getByRole("tab", { name: /tab 2 tab/i }));
     
     // Check that Tab 2 content is now displayed
     expect(screen.getByText("Content for Tab 2")).toBeInTheDocument();
@@ -48,7 +48,7 @@ describe("Tabs Component", () => {
     render(<Tabs tabs={mockTabs} />);
     
     const tabList = screen.getByRole("tablist");
-    const firstTab = screen.getByRole("button", { name: /tab 1/i });
+    const firstTab = screen.getByRole("tab", { name: /tab 1 tab/i });
     const tabPanel = screen.getByRole("tabpanel");
     
     expect(tabList).toHaveAttribute("aria-label", "Tabs navigation");
@@ -60,8 +60,7 @@ describe("Tabs Component", () => {
   it("handles keyboard navigation", () => {
     render(<Tabs tabs={mockTabs} />);
     
-    const firstTab = screen.getByRole("button", { name: /tab 1/i });
-    const secondTab = screen.getByRole("button", { name: /tab 2/i });
+    const firstTab = screen.getByRole("tab", { name: /tab 1 tab/i });
     
     // Focus first tab and press ArrowRight
     firstTab.focus();
@@ -74,8 +73,7 @@ describe("Tabs Component", () => {
   it("activates tab with Enter key", () => {
     render(<Tabs tabs={mockTabs} />);
     
-    const firstTab = screen.getByRole("button", { name: /tab 1/i });
-    const secondTab = screen.getByRole("button", { name: /tab 2/i });
+    const secondTab = screen.getByRole("tab", { name: /tab 2 tab/i });
     
     // Focus second tab and press Enter
     secondTab.focus();
@@ -88,7 +86,7 @@ describe("Tabs Component", () => {
   it("activates tab with Space key", () => {
     render(<Tabs tabs={mockTabs} />);
     
-    const thirdTab = screen.getByRole("button", { name: /tab 3/i });
+    const thirdTab = screen.getByRole("tab", { name: /tab 3 tab/i });
     
     // Focus third tab and press Space
     thirdTab.focus();
@@ -102,10 +100,10 @@ describe("Tabs Component", () => {
     render(<Tabs tabs={mockTabs} />);
     
     // Click on Tab 2
-    fireEvent.click(screen.getByRole("button", { name: /tab 2/i }));
+    fireEvent.click(screen.getByRole("tab", { name: /tab 2 tab/i }));
     
     // Verify Tab 2 is now active
-    const secondTab = screen.getByRole("button", { name: /tab 2/i });
+    const secondTab = screen.getByRole("tab", { name: /tab 2 tab/i });
     expect(secondTab).toHaveAttribute("aria-selected", "true");
     expect(screen.getByText("Content for Tab 2")).toBeInTheDocument();
   });
@@ -118,14 +116,14 @@ describe("Tabs Component", () => {
     expect(screen.queryByText("Content for Tab 1")).not.toBeInTheDocument();
     
     // Tab 2 button should be marked as selected
-    const secondTab = screen.getByRole("button", { name: /tab 2/i });
+    const secondTab = screen.getByRole("tab", { name: /tab 2 tab/i });
     expect(secondTab).toHaveAttribute("aria-selected", "true");
   });
 
   it("handles Home and End keys for navigation", () => {
     render(<Tabs tabs={mockTabs} />);
     
-    const secondTab = screen.getByRole("button", { name: /tab 2/i });
+    const secondTab = screen.getByRole("tab", { name: /tab 2 tab/i });
     
     // Focus second tab and press End key
     secondTab.focus();
@@ -135,7 +133,7 @@ describe("Tabs Component", () => {
     expect(screen.getByText("Content for Tab 3")).toBeInTheDocument();
     
     // Focus current tab and press Home key
-    const thirdTab = screen.getByRole("button", { name: /tab 3/i });
+    const thirdTab = screen.getByRole("tab", { name: /tab 3 tab/i });
     fireEvent.keyDown(thirdTab, { key: "Home" });
     
     // First tab content should be displayed
@@ -145,8 +143,7 @@ describe("Tabs Component", () => {
   it("wraps around when using arrow keys", () => {
     render(<Tabs tabs={mockTabs} />);
     
-    const firstTab = screen.getByRole("button", { name: /tab 1/i });
-    const thirdTab = screen.getByRole("button", { name: /tab 3/i });
+    const firstTab = screen.getByRole("tab", { name: /tab 1 tab/i });
     
     // From first tab, press ArrowLeft should go to last tab
     firstTab.focus();
@@ -154,6 +151,7 @@ describe("Tabs Component", () => {
     expect(screen.getByText("Content for Tab 3")).toBeInTheDocument();
     
     // From last tab, press ArrowRight should go to first tab
+    const thirdTab = screen.getByRole("tab", { name: /tab 3 tab/i });
     fireEvent.keyDown(thirdTab, { key: "ArrowRight" });
     expect(screen.getByText("Content for Tab 1")).toBeInTheDocument();
   });
