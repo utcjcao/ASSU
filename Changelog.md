@@ -55,6 +55,39 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 ---
 
+## [1.0.0 - 25/08/16]
+
+### Added
+
+- Added blog list element and test associated with it.
+
+### Changed
+
+- N/A
+
+### Fixed
+
+- N/A
+
+---
+
+## [1.0.0 - 25/08/17]
+
+### Added
+
+- N/A
+
+### Changed
+
+- N/A
+
+### Fixed
+
+- BlogList.test.tsx passes.
+- CI test passes.
+
+---
+
 ## [1.0.0 - 25/08/11]
 
 ### Added
