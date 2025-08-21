@@ -40,9 +40,7 @@ export default function ContentGrid({
       aria-rowcount={rows.length}
       aria-colcount={colCount}
       className={[
-        // visual grid (responsive)
-        "grid gap-0", // we draw our own separators; use padding inside cells
-        "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
+        `grid gap-0 grid-cols-${columns} mx-auto`,
         className,
       ].filter(Boolean).join(" ")}
     >
@@ -51,25 +49,20 @@ export default function ContentGrid({
           key={`row-${rIndex}`}
           role="row"
           aria-rowindex={rIndex + 1}
-          className="contents" // keep CSS grid layout; children are grid items
+          className="contents"
         >
           {row.map((item, cIndex) => {
             const cellKey = item.id ?? `${rIndex}-${cIndex}`;
             const titleId = `content-title-${cellKey}`;
 
-            // Shared classes for a cell:
-            // - padding and min touch target
-            // - partial separators using before: (top) and after: (left) drawn *inside* the cell
-            //   We skip top separator on the first row and left separator on the first column.
+            // skip top separator on the first row and left separator on the first column.
             const isFirstRow = rIndex === 0;
             const isFirstCol = cIndex === 0;
 
             const borders = [
               !isFirstRow ? "border-t border-gray-500" : "",
               !isFirstCol ? "border-l border-gray-500" : "",
-            ]
-              .filter(Boolean)
-              .join(" ");
+            ].filter(Boolean).join(" ");
 
             const cellBase =
               "relative p-5 md:p-6 min-h-11 min-w-11 focus-within:outline-none";
@@ -90,7 +83,7 @@ export default function ContentGrid({
               .join(" ");
 
             // Inner content styles
-            const titleCls = "text-base md:text-lg font-semibold text-gray-dark";
+            const titleCls = "text-base md:text-lg font-semibold text-pink";
             const descCls = "mt-2 text-sm md:text-base text-gray-700";
 
             return (
