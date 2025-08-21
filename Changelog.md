@@ -208,3 +208,19 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - N/A
 
 ---
+
+## [1.0.0 - 25/08/21]
+
+### Added
+
+- N/A
+
+### Changed
+
+- N/A
+
+### Fixed
+
+- Fixed content grid to allow component prop
+
+---

@@ -127,7 +127,6 @@ export default function Home() {
         </div>
 
         {/* Buttons */}
-        {/* Buttons */}
         <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
           <h2 className="text-3xl font-sans text-pink mb-8">
             ASSU Button Styles
@@ -235,25 +234,29 @@ export default function Home() {
                   id: "current1",
                   title: "Increasing Accessibility",
                   description: "Increasing Accessibility on campus",
-                  ariaLabel: "Increasing Accessibility on campus"
+                  ariaLabel: "Increasing Accessibility on campus",
+                  node: <Button>Button</Button>
                 },
                 {
                   id: "current2",
                   title: "Ethics pre-requisite",
                   description: "Ethics pre-requisite module",
-                  ariaLabel: "Ethics pre-requisite module"
+                  ariaLabel: "Ethics pre-requisite module",
+                  node: <Button>Button</Button>
                 },
                 {
                   id: "current3",
                   title: "Syllabus archive",
                   description: "Digital Syllabus archive",
-                  ariaLabel: "Digital Syllabus archive"
+                  ariaLabel: "Digital Syllabus archive",
+                  node: <Button>Button</Button>
                 },
                 {
                   id: "current4",
                   title: "Room 1068",
                   description: "Revitalizing Room 1068 ASSU Podcast",
-                  ariaLabel: "Revitalizing Room 1068 ASSU Podcast"
+                  ariaLabel: "Revitalizing Room 1068 ASSU Podcast",
+                  node: <Button>Button</Button>
                 }
               ]}
               columns={2}

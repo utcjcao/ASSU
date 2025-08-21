@@ -4,15 +4,15 @@ import React from "react";
 
 export type ContentItem = {
   id: string | number;
-  title: string;
+  node?: React.ReactNode;
+  title?: string;
   description?: string;
-//   href?: string;
-  ariaLabel?: string; // overrides the accessible name if needed
+  ariaLabel?: string; 
 };
 
 interface ContentGridProps {
   items: ContentItem[];
-  columns?: number; // default 3
+  columns?: number; // default 2
   // grid label for screen readers
   ariaLabel?: string;
   className?: string;
@@ -26,7 +26,7 @@ function chunk<T>(arr: T[], size: number): T[][] {
 
 export default function ContentGrid({
   items,
-  columns = 3,
+  columns = 2,
   ariaLabel = "Content grid",
   className = "",
 }: ContentGridProps) {
@@ -59,24 +59,24 @@ export default function ContentGrid({
             const isFirstRow = rIndex === 0;
             const isFirstCol = cIndex === 0;
 
-            const borders = [
-              !isFirstRow ? "border-t border-gray-500" : "",
-              !isFirstCol ? "border-l border-gray-500" : "",
-            ].filter(Boolean).join(" ");
+            // const borders = [
+            //   !isFirstRow ? "border-t border-gray-500" : "",
+            //   !isFirstCol ? "border-l border-gray-500" : "",
+            // ].filter(Boolean).join(" ");
 
             const cellBase =
               "relative p-5 md:p-6 min-h-11 min-w-11 focus-within:outline-none";
             const partialTop =
               !isFirstRow
-                ? "before:absolute before:top-0 before:left-4 before:right-4 before:h-px before:bg-gray-dark"
+                ? "before:absolute before:top-0 before:left-4 before:right-4 before:h-px before:bg-gray-500"
                 : "";
             const partialLeft =
               !isFirstCol
-                ? "after:absolute after:top-4 after:bottom-4 after:left-0 after:w-px after:bg-gray-dark"
+                ? "after:absolute after:top-4 after:bottom-4 after:left-0 after:w-px after:bg-gray-500"
                 : "";
 
             const cellChrome =
-              "hover:bg-gray-50 transition-colors rounded-none"; 
+              "rounded-none"; 
 
             const cellClass = [cellBase, partialTop, partialLeft, cellChrome]
               .filter(Boolean)
@@ -100,12 +100,13 @@ export default function ContentGrid({
                   "cursor-default",
                 ].join(" ")}
               >
-                <h3 id={titleId} className={titleCls}>
-                  {item.title}
-                </h3>
+                {item.title ? (
+                  <p className={titleCls}>{item.title}</p>
+                ) : null}
                 {item.description ? (
                   <p className={descCls}>{item.description}</p>
                 ) : null}
+                {item.node ? (<div className="pt-5">{item.node}</div>) : null}
               </div>
             );
           })}
