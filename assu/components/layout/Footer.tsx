@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="hidden md:flex md:flex-row justify-between items-start gap-8 lg:gap-12 px-30">
           {/* Left side - Let's Connect */}
           <section>
-            <h2 className="font-sans text-2xl lg:text-3xl">
+            <h2 className="font-bitter text-7xl">
               Let's <br /> Connect.
             </h2>
           </section>
@@ -93,7 +93,7 @@ export default function Footer() {
         <div className="md:hidden text-center space-y-8">
           {/* Let's Connect - centered */}
           <section>
-            <h2 className="font-sans text-3xl sm:text-4xl mb-6">
+            <h2 className="font-bitter mb-6" style={{ fontSize: '73px' }}>
               Let's Connect.
             </h2>
           </section>
