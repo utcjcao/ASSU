@@ -11,6 +11,7 @@ const config: Config = {
       fontFamily: {
         sans: ["questrial", "sans-serif"],
         body: ["din-next-w01-light", "sans-serif"],
+        bitter: ["var(--font-bitter)", "serif"],
       },
     },
   },
