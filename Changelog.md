@@ -224,3 +224,19 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - Fixed content grid to allow component prop
 
 ---
+
+## [1.0.0 - 25/08/23]
+
+### Added
+
+- made executives page
+
+### Changed
+
+- N/A
+
+### Fixed
+
+- updated Divider component
+
+---
