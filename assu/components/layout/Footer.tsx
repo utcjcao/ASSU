@@ -1,4 +1,3 @@
-import Text from "../common/Text";
 import Image from "next/image";
 
 export default function Footer() {
@@ -9,9 +8,7 @@ export default function Footer() {
         <div className="hidden md:flex md:flex-row justify-between items-start gap-8 lg:gap-12 px-30">
           {/* Left side - Let's Connect */}
           <section>
-            <h2 className="font-bitter text-7xl">
-              Let's <br /> Connect.
-            </h2>
+            <h2 className="font-bitter text-7xl">{"Let's Connect."}</h2>
           </section>
 
           {/* Right side - Contact Information */}
@@ -93,8 +90,8 @@ export default function Footer() {
         <div className="md:hidden text-center space-y-8">
           {/* Let's Connect - centered */}
           <section>
-            <h2 className="font-bitter mb-6" style={{ fontSize: '73px' }}>
-              Let's Connect.
+            <h2 className="font-bitter mb-6" style={{ fontSize: "73px" }}>
+              {"Let's Connect."}
             </h2>
           </section>
 
