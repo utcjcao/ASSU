@@ -8,6 +8,7 @@ interface DividerProps {
   height?: string;
   color?: string;
   margin?: string;
+  maxWidth?: string;
 }
 
 const Divider: React.FC<DividerProps> = ({
@@ -16,6 +17,7 @@ const Divider: React.FC<DividerProps> = ({
   height,
   color = "var(--color-gray)",
   margin,
+  maxWidth,
 }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
@@ -39,7 +41,7 @@ const Divider: React.FC<DividerProps> = ({
 
   const baseStyles: React.CSSProperties = {
     width: width || "100%",
-    maxWidth: getMaxWidth(),
+    maxWidth: maxWidth || getMaxWidth(),
     height: height || "7px",
     position: "relative",
     margin: margin || "0px 0px 22px auto",
