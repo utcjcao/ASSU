@@ -4,7 +4,6 @@ import React from "react";
 import Text from "@/components/common/Text";
 import AssuImage from "@/components/common/AssuImage";
 import Divider from "@/components/common/Divider";
-import Image from "next/image";
 import Link from "@/components/common/Link";
 
 interface Executive {
@@ -101,14 +100,11 @@ export default function Executives() {
                       }`}
                     >
                       <div className="relative w-full rounded-lg overflow-hidden shadow-lg flex items-end">
-                        <Image
+                        <AssuImage
                           src={executive.image}
                           alt={`${executive.name} - ${executive.title}`}
-                          width={0}
-                          height={0}
                           sizes="100vw"
                           className="w-full h-auto"
-                          unoptimized
                         />
                       </div>
                     </div>

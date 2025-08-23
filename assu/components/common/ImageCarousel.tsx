@@ -4,11 +4,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "../../../components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 
 const slides = [
   {

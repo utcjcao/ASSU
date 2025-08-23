@@ -8,7 +8,7 @@ This guide explains how components are organized, named, and developed across th
 
 ```
 
-/src/components
+assu/components
 /common         → Micro components (buttons, links, tags)
 /layout         → Macro layout (header, footer, grid wrappers)
 /sections       → Page-specific sections (hero, about, CTA)
@@ -97,7 +97,7 @@ Typically built from micro + layout components.
 ## 📚 Example: HeroText Component
 
 ```tsx
-// src/components/sections/HeroText.tsx
+// assu/components/sections/HeroText.tsx
 
 type HeroTextProps = {
   title: string;
@@ -123,10 +123,3 @@ export default function HeroText({ title, subtitle }: HeroTextProps) {
 3. Add a test file in the same directory
 4. Follow accessibility best practices
 5. Link it in the storybook/docs if applicable
-
-```
-
----
-
-Let me know if you'd like this adapted to an atomic design model (`atoms/`, `molecules/`, `organisms/`) or added to a `README.md` structure.
-```
