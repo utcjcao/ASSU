@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { ImageCarousel } from "../ImageCarousel";
 
-jest.mock("../../../../components/ui/carousel", () => ({
+jest.mock("../../ui/carousel", () => ({
   Carousel: ({ children }: React.PropsWithChildren<object>) => (
     <div>{children}</div>
   ),
