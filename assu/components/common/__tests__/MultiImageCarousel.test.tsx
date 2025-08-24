@@ -1,13 +1,24 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import MultiImageCarousel, { CarouselImage } from "../MultiImageCarousel";
 
 // Mock Next.js Image component
-vi.mock("next/image", () => ({
+jest.mock("next/image", () => ({
   default: ({ src, alt, ...props }: any) => (
     <img src={src} alt={alt} {...props} />
   ),
 }));
+
+// Mock AssuImage component
+jest.mock("../AssuImage", () => {
+  return function MockAssuImage({ src, alt, caption, ...props }: any) {
+    return (
+      <div data-testid="assu-image" {...props}>
+        <img src={src} alt={alt} />
+        {caption && <figcaption>{caption}</figcaption>}
+      </div>
+    );
+  };
+});
 
 const mockImages: CarouselImage[] = [
   { src: "/test1.jpg", alt: "Test image 1", caption: "Caption 1" },
@@ -20,20 +31,20 @@ const mockImages: CarouselImage[] = [
 
 describe("MultiImageCarousel", () => {
   beforeEach(() => {
-    vi.useFakeTimers();
+    jest.useFakeTimers();
   });
 
   afterEach(() => {
-    vi.runOnlyPendingTimers();
-    vi.useRealTimers();
+    jest.runOnlyPendingTimers();
+    jest.useRealTimers();
   });
 
   it("renders carousel with images", () => {
     render(<MultiImageCarousel images={mockImages.slice(0, 4)} />);
     
     expect(screen.getByRole("region", { name: "Image carousel" })).toBeInTheDocument();
-    expect(screen.getByText("Test image 1")).toBeInTheDocument();
-    expect(screen.getByText("Test image 4")).toBeInTheDocument();
+    expect(screen.getByLabelText("Test image 1")).toBeInTheDocument();
+    expect(screen.getByLabelText("Test image 4")).toBeInTheDocument();
   });
 
   it("shows navigation controls when there are multiple pages", () => {
@@ -57,7 +68,7 @@ describe("MultiImageCarousel", () => {
     fireEvent.click(nextButton);
     
     await waitFor(() => {
-      expect(screen.getByText("Page 2 of 2")).toBeInTheDocument();
+      expect(screen.getByText(/Page 2 of 2/)).toBeInTheDocument();
     });
   });
 
@@ -69,7 +80,7 @@ describe("MultiImageCarousel", () => {
     fireEvent.click(nextButton);
     
     await waitFor(() => {
-      expect(screen.getByText("Page 2 of 2")).toBeInTheDocument();
+      expect(screen.getByText(/Page 2 of 2/)).toBeInTheDocument();
     });
     
     // Then go back to previous page
@@ -77,7 +88,7 @@ describe("MultiImageCarousel", () => {
     fireEvent.click(prevButton);
     
     await waitFor(() => {
-      expect(screen.getByText("Page 1 of 2")).toBeInTheDocument();
+      expect(screen.getByText(/Page 1 of 2/)).toBeInTheDocument();
     });
   });
 
@@ -89,23 +100,23 @@ describe("MultiImageCarousel", () => {
     // Navigate with arrow keys
     fireEvent.keyDown(carousel, { key: "ArrowRight" });
     await waitFor(() => {
-      expect(screen.getByText("Page 2 of 2")).toBeInTheDocument();
+      expect(screen.getByText(/Page 2 of 2/)).toBeInTheDocument();
     });
     
     fireEvent.keyDown(carousel, { key: "ArrowLeft" });
     await waitFor(() => {
-      expect(screen.getByText("Page 1 of 2")).toBeInTheDocument();
+      expect(screen.getByText(/Page 1 of 2/)).toBeInTheDocument();
     });
     
     // Navigate with Home/End keys
     fireEvent.keyDown(carousel, { key: "End" });
     await waitFor(() => {
-      expect(screen.getByText("Page 2 of 2")).toBeInTheDocument();
+      expect(screen.getByText(/Page 2 of 2/)).toBeInTheDocument();
     });
     
     fireEvent.keyDown(carousel, { key: "Home" });
     await waitFor(() => {
-      expect(screen.getByText("Page 1 of 2")).toBeInTheDocument();
+      expect(screen.getByText(/Page 1 of 2/)).toBeInTheDocument();
     });
   });
 
@@ -141,13 +152,13 @@ describe("MultiImageCarousel", () => {
       />
     );
     
-    expect(screen.getByText("Page 1 of 2")).toBeInTheDocument();
+    expect(screen.getByText(/Page 1 of 2/)).toBeInTheDocument();
     
     // Fast-forward time
-    vi.advanceTimersByTime(1000);
+    jest.advanceTimersByTime(1000);
     
     await waitFor(() => {
-      expect(screen.getByText("Page 2 of 2")).toBeInTheDocument();
+      expect(screen.getByText(/Page 2 of 2/)).toBeInTheDocument();
     });
   });
 
