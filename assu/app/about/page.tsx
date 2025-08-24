@@ -1,6 +1,11 @@
 import AssuImage, { OverlayBlock } from "@/components/common/AssuImage";
 import Divider from "@/components/common/Divider";
 import Text from "@/components/common/Text";
+import VerticalTimeline, {
+  assuTimelineData,
+} from "@/components/common/VerticalTimeline";
+import MapSection from "@/components/common/MapSection";
+import ContentGrid from "@/components/layout/ContentGrid";
 
 export default function About() {
   const overlays: OverlayBlock[] = [
@@ -31,11 +36,11 @@ export default function About() {
           sizes="(max-width: 640px) 100vw, (max-width: 980px) 100vw, 980px"
           className="mb-8"
         />
-        <Divider />
+        <Divider borderTopWidth="3px" />
         <Text as="h2" className="text-5xl font-sans font-bold">
           About the ASSU
         </Text>
-        <Divider />
+        <Divider borderTopWidth="3px" />
         <Text as="p" className="text-lg">
           The Arts and Science Students’ Union (ASSU) is the academic student
           union for over 27,000 full-time undergraduate students in the Faculty
@@ -54,7 +59,13 @@ export default function About() {
           upon immigration status. We work to ensure that the academic needs and
           concerns of all students are fulfilled.
         </Text>
-        <Divider/>
+        <Divider />
+        <VerticalTimeline timelinePoints={assuTimelineData} header="Our History" />
+        <Divider />
+        Some stuff here
+        <Divider borderTopWidth="3px" />
+        <MapSection title="" description="" />
+        <Divider borderTopWidth="3px" />
       </div>
     </div>
   );
