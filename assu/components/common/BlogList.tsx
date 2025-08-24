@@ -14,10 +14,12 @@ type BlogListProps = {
 
 const BlogList: React.FC<BlogListProps> = ({ posts }) => {
   return (
-    <div>
-      {posts.map((post, index) => (
-        <BlogCard key={index} {...post} />
-      ))}
+    <div className="flex flex-col items-center my-8">
+      <div className="w-full max-w-3xl space-y-6">
+        {posts.map((post, index) => (
+          <BlogCard key={index} {...post} />
+        ))}
+      </div>
     </div>
   );
 };
