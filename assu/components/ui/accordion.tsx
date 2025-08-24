@@ -11,7 +11,7 @@ function Accordion({
     <AccordionPrimitive.Root
       data-slot="accordion"
       className={cn(
-        "w-full max-w-2xl mx-auto rounded-[var(--radius-xl)] border border-[var(--color-line)] bg-[var(--color-fill-base-1)] shadow-sm",
+        "w-full max-w-3xl mx-auto border-t border-[var(--color-line)] divide-y divide-[var(--color-line)]",
         className
       )}
       {...props}
@@ -26,10 +26,7 @@ function AccordionItem({
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      className={cn(
-        "border-b border-[var(--color-line)] px-6 hover:bg-[var(--color-fill-base-1)] transition-colors last:border-b-0",
-        className
-      )}
+      className={cn("py-4", className)}
       {...props}
     />
   );
@@ -45,13 +42,13 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "text-[var(--color-title)] font-[var(--font-body-medium)] py-5 focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md text-left text-sm transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180",
+          "text-[var(--color-title)] font-[var(--font-body-medium)] text-base py-2 flex flex-1 items-center justify-between text-left transition-colors outline-none hover:underline focus-visible:ring-[2px] focus-visible:ring-ring/50 [&[data-state=open]>svg]:rotate-180",
           className
         )}
         {...props}
       >
         {children}
-        <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" />
+        <ChevronDownIcon className="text-muted-foreground size-4 shrink-0 transition-transform duration-200" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
@@ -68,7 +65,7 @@ function AccordionContent({
       className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-[var(--color-subtitle)] font-[var(--font-body-small)] text-sm"
       {...props}
     >
-      <div className={cn("pt-0 pb-5", className)}>{children}</div>
+      <div className={cn("pt-2 pb-4", className)}>{children}</div>
     </AccordionPrimitive.Content>
   );
 }
