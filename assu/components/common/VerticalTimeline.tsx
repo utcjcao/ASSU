@@ -9,7 +9,45 @@ export interface TimelinePoint {
 export interface VerticalTimelineProps {
   timelinePoints: TimelinePoint[];
   className?: string;
+  header?: string;
 }
+
+// Default ASSU timeline data
+export const assuTimelineData: TimelinePoint[] = [
+  {
+    date: "1827",
+    description: "**University of Toronto** was founded",
+  },
+  {
+    date: "1967",
+    description:
+      "The first Course Union, the **History Students' Union**, was established, marking the beginning of increased student participation in academic decision-making.",
+  },
+  {
+    date: "Late 1960s",
+    description:
+      "More **Course Unions** formed across various disciplines to create better communication between students and faculty.",
+  },
+  {
+    date: "1972",
+    description:
+      "The **Arts and Science Students' Union** (ASSU) was officially founded to unify and support undergraduate students in the Faculty of Arts and Science.",
+  },
+  {
+    date: "1990s",
+    description:
+      "ASSU expanded its reach, supporting student advocacy, academic policies, and funding for student-run initiatives.",
+  },
+  {
+    date: "2000s",
+    description: "The number of Course Unions under ASSU grew to **over 60**.",
+  },
+  {
+    date: "Present",
+    description:
+      "ASSU continues to advocate for students, organize academic and social events, offer grants and scholarships, and enhance the student experience at U of T.",
+  },
+];
 
 /**
  * Renders text with bold formatting support
@@ -35,6 +73,7 @@ function renderFormattedText(text: string) {
 export default function VerticalTimeline({
   timelinePoints,
   className = "",
+  header,
 }: VerticalTimelineProps) {
   const timelineRef = useRef<HTMLDivElement>(null);
 
@@ -85,10 +124,19 @@ export default function VerticalTimeline({
       className={`relative max-w-6xl mx-auto ${className}`}
       ref={timelineRef}
     >
+      {/* Header */}
+      {header && (
+        <div className="absolute top-0 left-0 z-10">
+          <h2 className="text-4xl font-bold text-[var(--color-text-primary)] text-left">
+            {header}
+          </h2>
+        </div>
+      )}
+
       {/* Continuous timeline line behind all points */}
       <div
-        className="absolute left-1/2 top-2 w-0 border-l-2 border-dotted border-gray-300 z-0 transform -translate-x-0.5"
-        style={{ height: `calc(100% - 1rem)` }}
+        className="absolute left-1/2 w-0 border-l-2 border-dotted border-gray-300 z-0 transform -translate-x-0.5"
+        style={{ top: "0.5rem", height: `calc(100% - 1rem)` }}
       />
 
       {/* Timeline container */}
