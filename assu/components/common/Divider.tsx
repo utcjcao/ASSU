@@ -9,6 +9,7 @@ interface DividerProps {
   color?: string;
   margin?: string;
   maxWidth?: string;
+  borderTopWidth?: string;
 }
 
 const Divider: React.FC<DividerProps> = ({
@@ -18,6 +19,7 @@ const Divider: React.FC<DividerProps> = ({
   color = "var(--color-gray)",
   margin,
   maxWidth,
+  borderTopWidth = "1px",
 }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
@@ -52,7 +54,7 @@ const Divider: React.FC<DividerProps> = ({
   };
 
   const lineStyles: React.CSSProperties = {
-    borderTop: `1px solid ${color}`,
+    borderTop: `${borderTopWidth} solid ${color}`,
     boxSizing: "border-box",
     height: "0",
     width: "100%",
