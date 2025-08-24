@@ -3,17 +3,29 @@ import MultiImageCarousel, { CarouselImage } from "../MultiImageCarousel";
 
 // Mock Next.js Image component
 jest.mock("next/image", () => ({
-  default: ({ src, alt, ...props }: any) => (
-    <img src={src} alt={alt} {...props} />
+  default: ({ src, alt, ...props }: { src: string; alt: string; [key: string]: unknown }) => (
+    <div data-testid="next-image" data-src={src} aria-label={alt} {...props}>
+      Mock Image: {alt}
+    </div>
   ),
 }));
 
 // Mock AssuImage component
 jest.mock("../AssuImage", () => {
-  return function MockAssuImage({ src, alt, caption, ...props }: any) {
+  return function MockAssuImage({ 
+    src, 
+    alt, 
+    caption, 
+    ...props 
+  }: { 
+    src: string; 
+    alt: string; 
+    caption?: string; 
+    [key: string]: unknown 
+  }) {
     return (
-      <div data-testid="assu-image" {...props}>
-        <img src={src} alt={alt} />
+      <div data-testid="assu-image" data-src={src} {...props}>
+        <div>Mock Image: {alt}</div>
         {caption && <figcaption>{caption}</figcaption>}
       </div>
     );
@@ -43,8 +55,8 @@ describe("MultiImageCarousel", () => {
     render(<MultiImageCarousel images={mockImages.slice(0, 4)} />);
     
     expect(screen.getByRole("region", { name: "Image carousel" })).toBeInTheDocument();
-    expect(screen.getByLabelText("Test image 1")).toBeInTheDocument();
-    expect(screen.getByLabelText("Test image 4")).toBeInTheDocument();
+    expect(screen.getByText("Mock Image: Test image 1")).toBeInTheDocument();
+    expect(screen.getByText("Mock Image: Test image 4")).toBeInTheDocument();
   });
 
   it("shows navigation controls when there are multiple pages", () => {
