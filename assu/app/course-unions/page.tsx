@@ -127,7 +127,7 @@ export default function CourseUnionsPage() {
           
           <Divider className="mb-8" width="100%"/>
 
-          <div>
+          <div className="mx-auto px-4" style={{ maxWidth: `${CONTENT_MAX}px` }}>
             <ContentGrid
               items={[{
                 id: "unionsCarousel",
@@ -154,7 +154,7 @@ export default function CourseUnionsPage() {
           
           <Divider className="mb-6" width="100%" />
 
-          <div>
+          <div className="mx-auto px-4" style={{ maxWidth: `${CONTENT_MAX}px` }}>
             <div className="w-full h-px bg-black/20" />
 
             <section aria-label="Course unions grid" className="mt-10">
@@ -163,8 +163,6 @@ export default function CourseUnionsPage() {
               </div>
             </section>
           </div>
-
-          
       </div>
     
       <div className="max-w-6xl mx-auto px-4 -mt-6">
