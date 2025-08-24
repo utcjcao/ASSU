@@ -1,6 +1,6 @@
 import Divider from "components/common/Divider";
 import Text from "components/common/Text";
-import Link from "components/common/Link";
+// import Link from "components/common/Link";
 import LinkSection, { LinkItem } from "components/common/LinkSection";
 
 export default function Misc() {
