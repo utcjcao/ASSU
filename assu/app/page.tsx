@@ -9,6 +9,7 @@ import { ImageCarousel } from "@/components/common/ImageCarousel";
 import Tabs, { TabItem } from "components/common/Tabs";
 import ContentGrid from "@/components/layout/ContentGrid";
 import MapSection from "../components/common/MapSection";
+import VerticalTimelineExample from "../components/common/VerticalTimeline.example";
 
 const tabsData: TabItem[] = [
   {
@@ -72,6 +73,7 @@ export default function Home() {
   return (
     <>
       <div className="min-h-screen bg-gray-lighter p-8">
+        <VerticalTimelineExample />
         <div className="max-w-4xl mx-auto">
           {/* Page Title */}
           {/* Page Title */}
