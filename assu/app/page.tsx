@@ -15,8 +15,10 @@ export default function Home() {
 
       {/* <HeroText>ASSU News</HeroText> */}
 
+      <Divider />
       <CardGrid
         ariaLabel="news grid"
+        gapPx={40}
         items={[
           {
             id: "raffle",
