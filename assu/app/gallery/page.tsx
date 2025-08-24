@@ -1,129 +1,298 @@
-import MultiImageCarousel, { CarouselImage } from "../../components/common/MultiImageCarousel";
+"use client";
 
-// Sample images for demonstration
-const sampleImages: CarouselImage[] = [
+import { useState } from "react";
+import Image from "next/image";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "../../components/ui/carousel";
+
+interface SingleWithTextRow {
+  type: "single-with-text";
+  image: string;
+  date: string;
+  title: string;
+}
+
+interface MultiImageRow {
+  type: "triple" | "double";
+  images: string[];
+}
+
+type GalleryRow = SingleWithTextRow | MultiImageRow;
+
+interface GalleryPage {
+  rows: GalleryRow[];
+}
+
+const galleryData: GalleryPage[] = [
+  // Page 1
   {
-    src: "/images/gallery-1.webp",
-    alt: "ASSU Event - Student Orientation",
-    caption: "Welcome Week 2024 - New student orientation in the main hall"
+    rows: [
+      // Row 1: 1 image + text
+      {
+        type: "single-with-text",
+        image: "/images/gallery-1.webp",
+        date: "Mar 28",
+        title: "ASSU Social 2024",
+      },
+      // Row 2: 3 images
+      {
+        type: "triple",
+        images: [
+          "/images/gallery-2.webp",
+          "/images/involved-upcoming-1.webp",
+          "/images/involved-upcoming-2.webp",
+        ],
+      },
+      // Row 3: 2 images
+      {
+        type: "double",
+        images: [
+          "/images/involved-upcoming-3.webp",
+          "/images/involved-upcoming-4.webp",
+        ],
+      },
+      // Row 4: 2 images
+      {
+        type: "double",
+        images: [
+          "/images/involved-upcoming-5.webp",
+          "/images/involved-upcoming-6.webp",
+        ],
+      },
+    ],
   },
+  // Page 2
   {
-    src: "/images/gallery-2.webp", 
-    alt: "ASSU Meeting - Council Session",
-    caption: "Monthly council meeting discussing student initiatives"
+    rows: [
+      // Row 1: 1 image + text
+      {
+        type: "single-with-text",
+        image: "/images/involved-upcoming-7.webp",
+        date: "Apr 15",
+        title: "ASSU Event 2024",
+      },
+      // Row 2: 3 images
+      {
+        type: "triple",
+        images: [
+          "/images/involved-upcoming-8.webp",
+          "/images/involved-upcoming-9.webp",
+          "/images/involved-upcoming-10.webp",
+        ],
+      },
+      // Row 3: 2 images
+      {
+        type: "double",
+        images: [
+          "/images/home-carousel-1.webp",
+          "/images/home-carousel-2.webp",
+        ],
+      },
+      // Row 4: 2 images
+      {
+        type: "double",
+        images: [
+          "/images/home-carousel-3.webp",
+          "/images/about-assu-hero.webp",
+        ],
+      },
+    ],
   },
-  {
-    src: "/images/involved-upcoming-1.webp",
-    alt: "ASSU Workshop - Academic Support",
-    caption: "Study skills workshop for first-year students"
-  },
-  {
-    src: "/images/involved-upcoming-2.webp",
-    alt: "ASSU Social - Campus Community",
-    caption: "Community building event at the student center"
-  },
-  {
-    src: "/images/involved-upcoming-3.webp",
-    alt: "ASSU Volunteer - Community Service",
-    caption: "Students volunteering at local community center"
-  },
-  {
-    src: "/images/involved-upcoming-4.webp",
-    alt: "ASSU Awards - Recognition Ceremony",
-    caption: "Annual student achievement awards ceremony"
-  },
-  {
-    src: "/images/involved-upcoming-5.webp",
-    alt: "ASSU Sports - Intramural Games",
-    caption: "Inter-faculty sports competition finals"
-  },
-  {
-    src: "/images/involved-upcoming-6.webp",
-    alt: "ASSU Culture - Arts Festival",
-    caption: "Annual arts and culture festival showcase"
-  }
 ];
 
 export default function Gallery() {
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const handlePrev = () => {
+    setCurrentPage((prev) => (prev === 0 ? galleryData.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentPage((prev) => (prev === galleryData.length - 1 ? 0 : prev + 1));
+  };
+
   return (
-    <div className="min-h-screen bg-gray-lighter p-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-sans text-gray-darker mb-4">
-            ASSU Gallery
+    <div className="min-h-screen py-12">
+      <div className="max-w-[95vw] mx-auto px-2 sm:px-4 lg:px-6">
+        {/* Title Section with Lines */}
+        <div className="mb-8">
+          {/* Top horizontal line */}
+          <div className="w-full h-1 bg-gray-600 mb-6"></div>
+
+          {/* Gallery title - left aligned */}
+          <h1 className="text-4xl font-bold text-gray-900 mb-6 text-left">
+            Gallery
           </h1>
-          <p className="text-lg text-gray-dark max-w-2xl mx-auto">
-            Explore moments from ASSU events, meetings, and community activities. 
-            Use keyboard navigation (arrow keys) or touch gestures to browse through our photo collection.
+
+          {/* Middle horizontal line */}
+          <div className="w-full h-1 bg-gray-600 mb-6"></div>
+
+          {/* Subtitle - left aligned */}
+          <p className="text-xl text-gray-600 mb-6 text-left">
+            See us in action!
           </p>
+
+          {/* Bottom line */}
+          <div className="w-full h-0.5 bg-gray-600"></div>
         </div>
 
-        {/* Multi-Image Carousel Demo */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-sans text-gray-darker mb-6 text-center">
-            Recent Events & Activities
-          </h2>
-          <MultiImageCarousel
-            images={sampleImages}
-            imagesPerPage={4}
-            autoPlay={true}
-            autoPlayInterval={6000}
-            showControls={true}
-            showIndicators={true}
-            ariaLabel="ASSU events and activities photo gallery"
-            className="mb-8"
-          />
-        </div>
+        {/* Multi-Image Carousel */}
+        <div className="flex items-center gap-6 w-full mx-auto">
+          {/* Left Arrow */}
+          <button
+            onClick={handlePrev}
+            className="flex-shrink-0 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all duration-200"
+            aria-label="Previous page"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
 
-        {/* Additional carousel with different configuration */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-sans text-gray-darker mb-6 text-center">
-            Featured Highlights
-          </h2>
-          <MultiImageCarousel
-            images={sampleImages.slice(0, 6)}
-            imagesPerPage={2}
-            autoPlay={false}
-            showControls={true}
-            showIndicators={true}
-            ariaLabel="Featured ASSU highlights"
-            className="mb-8"
-          />
-        </div>
-
-        {/* Accessibility and Usage Information */}
-        <div className="bg-white rounded-lg p-8 shadow-sm border border-gray-light">
-          <h3 className="text-2xl font-sans text-gray-darker mb-4">
-            How to Navigate
-          </h3>
-          <div className="grid md:grid-cols-2 gap-6 text-gray-dark">
-            <div>
-              <h4 className="font-semibold mb-2">Keyboard Navigation:</h4>
-              <ul className="space-y-1 text-sm">
-                <li>• <kbd className="px-2 py-1 bg-gray-lighter rounded text-xs">←</kbd> <kbd className="px-2 py-1 bg-gray-lighter rounded text-xs">→</kbd> Navigate between pages</li>
-                <li>• <kbd className="px-2 py-1 bg-gray-lighter rounded text-xs">Home</kbd> Go to first page</li>
-                <li>• <kbd className="px-2 py-1 bg-gray-lighter rounded text-xs">End</kbd> Go to last page</li>
-                <li>• <kbd className="px-2 py-1 bg-gray-lighter rounded text-xs">Space</kbd> <kbd className="px-2 py-1 bg-gray-lighter rounded text-xs">Enter</kbd> Play/pause slideshow</li>
-                <li>• <kbd className="px-2 py-1 bg-gray-lighter rounded text-xs">Tab</kbd> Navigate to controls</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2">Touch & Mouse:</h4>
-              <ul className="space-y-1 text-sm">
-                <li>• Swipe left/right on mobile devices</li>
-                <li>• Click navigation arrows</li>
-                <li>• Click page indicators</li>
-                <li>• Click play/pause button</li>
-                <li>• Hover over images for subtle zoom effect</li>
-              </ul>
-            </div>
+          {/* Carousel Content */}
+          <div className="flex-1">
+            <Carousel>
+              <CarouselContent className="-ml-4">
+                {galleryData.map((page, pageIndex) => (
+                  <CarouselItem
+                    key={pageIndex}
+                    className={`pl-4 ${
+                      pageIndex === currentPage ? "block" : "hidden"
+                    }`}
+                  >
+                    <div className="space-y-6">
+                      {page.rows.map((row, rowIndex) => {
+                        if (row.type === "single-with-text") {
+                          const singleRow = row as SingleWithTextRow;
+                          return (
+                            <div
+                              key={rowIndex}
+                              className="flex flex-col lg:flex-row gap-6 items-center"
+                            >
+                              <div className="flex-1">
+                                <div className="relative h-[400px] w-full rounded-lg overflow-hidden">
+                                  <Image
+                                    src={singleRow.image}
+                                    alt={`${singleRow.title} event photo`}
+                                    fill
+                                    className="object-cover"
+                                    priority={pageIndex === 0 && rowIndex === 0}
+                                  />
+                                </div>
+                              </div>
+                              <div className="flex-1 text-center lg:text-left">
+                                <div className="text-2xl font-semibold text-pink-600 mb-2">
+                                  {singleRow.date}
+                                </div>
+                                <h2 className="text-3xl font-bold text-gray-900">
+                                  {singleRow.title}
+                                </h2>
+                              </div>
+                            </div>
+                          );
+                        } else if (row.type === "triple") {
+                          const multiRow = row as MultiImageRow;
+                          return (
+                            <div
+                              key={rowIndex}
+                              className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                            >
+                              {multiRow.images.map((image, imageIndex) => (
+                                <div
+                                  key={imageIndex}
+                                  className="relative h-[300px] rounded-lg overflow-hidden"
+                                >
+                                  <Image
+                                    src={image}
+                                    alt={`Gallery image ${imageIndex + 1}`}
+                                    fill
+                                    className="object-cover"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                          );
+                        } else if (row.type === "double") {
+                          const multiRow = row as MultiImageRow;
+                          return (
+                            <div
+                              key={rowIndex}
+                              className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                            >
+                              {multiRow.images.map((image, imageIndex) => (
+                                <div
+                                  key={imageIndex}
+                                  className="relative h-[350px] rounded-lg overflow-hidden"
+                                >
+                                  <Image
+                                    src={image}
+                                    alt={`Gallery image ${imageIndex + 1}`}
+                                    fill
+                                    className="object-cover"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                          );
+                        }
+                        return null;
+                      })}
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           </div>
-          <div className="mt-6 p-4 bg-pink-light rounded-lg">
-            <p className="text-sm text-gray-darker">
-              <strong>Accessibility:</strong> This carousel is fully accessible with screen reader support, 
-              keyboard navigation, proper ARIA labels, and descriptive alt text for all images.
-            </p>
-          </div>
+
+          {/* Right Arrow */}
+          <button
+            onClick={handleNext}
+            className="flex-shrink-0 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all duration-200"
+            aria-label="Next page"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Page Indicators */}
+        <div className="flex justify-center mt-8 gap-2">
+          {galleryData.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(index)}
+              className={`w-4 h-4 rounded-full transition-all duration-200 ${
+                index === currentPage
+                  ? "bg-pink-600 shadow-lg"
+                  : "bg-gray-300 hover:bg-gray-400"
+              }`}
+              aria-label={`Go to page ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </div>
