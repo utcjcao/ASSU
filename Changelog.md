@@ -257,3 +257,12 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - N/A
 
 ---
+
+## [1.0.0 - 25/08/24]
+
+### Added
+
+- Made the awards page with the tab component for criteria and past recipients of each award
+
+
+---
