@@ -1,130 +1,104 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import React from "react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import ImageCard from "../ImageCard";
 
-const baseProps = {
-  imageSrc: "/images/sample.webp",
-  imageAltText: "Sample image",
-  title: "Test Raffle Contest",
-  subtitle: "Mar 4, 2025",
-  description: "Enter our test raffle contest!",
-};
+// Adjust path if your alias differs
+import ImageCard from "@/components/common/ImageCard";
+
+// --- Mock AssuImage so we don't depend on its implementation ---
+const AssuImageMock = jest.fn((props: any) => (
+  <div
+    data-testid="assu-image"
+    data-src={String(props.src)}
+    data-alt={String(props.alt)}
+  />
+));
+jest.mock("@/components/common/AssuImage", () => ({
+  __esModule: true,
+  default: (props: any) => AssuImageMock(props),
+}));
 
 describe("ImageCard", () => {
-  it("renders image, title, and subtitle", () => {
+  const baseProps = {
+    imageSrc: "/images/example.webp",
+    imageAltText: "Example alt",
+    title: "Card Title",
+  };
+
+  test("renders with role=group and aria-label set to title", () => {
     render(<ImageCard {...baseProps} />);
-    expect(screen.getByAltText(/sample image/i)).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: /test raffle contest/i })
-    ).toBeInTheDocument();
-    expect(screen.getByText(/mar 4, 2025/i)).toBeInTheDocument();
+    const root = screen.getByRole("group", { name: "Card Title" });
+    expect(root).toBeInTheDocument();
   });
 
-  it("is focusable and has an accessible name via aria-label", () => {
+  test("renders title always and subtitle when provided", () => {
+    render(<ImageCard {...baseProps} subtitle="The subtitle" />);
+    expect(screen.getByText("Card Title")).toBeInTheDocument();
+    expect(screen.getByText("The subtitle")).toBeInTheDocument();
+  });
+
+  test("does not render overlay when description is absent", () => {
     render(<ImageCard {...baseProps} />);
-    const card = screen.getByLabelText(/test raffle contest/i);
-    expect(card).toBeInTheDocument();
-    //tabIndex should be set so it's keyboard focusable
-    expect(card).toHaveAttribute("tabindex", "0");
+    // Overlay content is the description; ensure none is present
+    expect(screen.queryByTestId("overlay-content")).not.toBeInTheDocument();
+    // But we should still have the media element (AssuImage mock)
+    expect(screen.getByTestId("assu-image")).toBeInTheDocument();
   });
 
-  it("renders as a real link when href is provided", () => {
-    render(<ImageCard {...baseProps} href="/events/raffle" />);
-    const link = screen.getByRole("link", { name: /test raffle contest/i });
-    expect(link).toHaveAttribute("href", "/events/raffle");
-  });
-
-  it("does not have an href when none is provided", () => {
-    render(<ImageCard {...baseProps} />);
-    const card = screen.getByLabelText(/test raffle contest/i);
-    expect(card).not.toHaveAttribute("href");
-  });
-
-  it("invokes click on Space and Enter (keyboard activation)", () => {
-    render(<ImageCard {...baseProps} href="/events/raffle" />);
-    const link = screen.getByRole("link", { name: /test raffle contest/i });
-
-    const clickSpy = jest.fn();
-    link.addEventListener("click", clickSpy);
-
-    fireEvent.keyDown(link, { key: " " }); // Space
-    fireEvent.keyDown(link, { key: "Enter" }); // Enter
-
-    expect(clickSpy).toHaveBeenCalledTimes(2);
-  });
-
-  it("shows overlay content in the DOM when description is provided", () => {
-    render(<ImageCard {...baseProps} />);
-    //Overlay exists in DOM (even if visually hidden until hover)
-    expect(
-      screen.getByText(/enter our test raffle contest!/i)
-    ).toBeInTheDocument();
-  });
-
-  it("has a fixed size for each preset (authoring checks on Tailwind classes)", () => {
-    const { rerender } = render(<ImageCard {...baseProps} size="sm" />);
-    let card = screen.getByLabelText(/test raffle contest/i);
-    expect(card.className).toMatch(/w-\[280px\]/);
-    expect(card.className).toMatch(/h-\[260px\]/);
-
-    rerender(<ImageCard {...baseProps} size="md" />);
-    card = screen.getByLabelText(/test raffle contest/i);
-    expect(card.className).toMatch(/w-\[300px\]/);
-    expect(card.className).toMatch(/h-\[340px\]/);
-
-    rerender(<ImageCard {...baseProps} size="lg" />);
-    card = screen.getByLabelText(/test raffle contest/i);
-    expect(card.className).toMatch(/w-\[320px\]/);
-    expect(card.className).toMatch(/h-\[360px\]/);
-  });
-
-  it("includes focus-visible ring classes (keyboard focus indicator)", () => {
-    render(<ImageCard {...baseProps} />);
-    const card = screen.getByLabelText(/test raffle contest/i);
-    expect(card.className).toMatch(/focus-visible:ring-2/);
-    expect(card.className).toMatch(/focus-visible:ring-pink/);
-    expect(card.className).toMatch(/focus-visible:ring-offset-2/);
-  });
-
-  it("does not render the overlay when description is absent", () => {
+  test("renders overlay with description (links allowed)", () => {
     render(
       <ImageCard
-        imageSrc="/images/sample.webp"
-        imageAltText="Sample image"
-        title="Test Raffle Contest"
-        subtitle="Mar 4, 2025"
-        href="/events/raffle"
-        description={undefined} // cover falsy branch
+        {...baseProps}
+        description={
+          <div data-testid="overlay-content">
+            <a href="https://example.com/a" target="_blank" rel="noreferrer">
+              Link A
+            </a>
+            <br />
+            <a href="mailto:hello@example.com">Email</a>
+          </div>
+        }
       />
     );
-    // Overlay text should NOT be in the DOM at all
-    expect(
-      screen.queryByText(/enter our test raffle contest!/i)
-    ).not.toBeInTheDocument();
+
+    // Overlay container/content appears in DOM (opacity is CSS-driven; we only check presence)
+    expect(screen.getByTestId("overlay-content")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /link a/i })).toHaveAttribute(
+      "href",
+      "https://example.com/a"
+    );
+    expect(screen.getByRole("link", { name: /email/i })).toHaveAttribute(
+      "href",
+      "mailto:hello@example.com"
+    );
   });
 
-  it("renders without a subtitle when not provided", () => {
+  test("passes src and alt to AssuImage", () => {
+    render(<ImageCard {...baseProps} />);
+    const img = screen.getByTestId("assu-image");
+    expect(img).toHaveAttribute("data-src", "/images/example.webp");
+    expect(img).toHaveAttribute("data-alt", "Example alt");
+  });
+
+  test("applies size classes for md and merges custom className", () => {
     render(
       <ImageCard
-        imageSrc="/images/sample.webp"
-        imageAltText="Sample image"
-        title="Test Raffle Contest"
-        href="/events/raffle"
-        // no subtitle
-        description="Enter our test raffle contest!"
+        {...baseProps}
+        size="md"
+        className="custom-class"
+        subtitle="Sub"
       />
     );
-    // The title is present
-    expect(
-      screen.getByRole("link", { name: /test raffle contest/i })
-    ).toBeInTheDocument();
-    // Subtitle should not be present
-    expect(screen.queryByText(/mar 4, 2025/i)).not.toBeInTheDocument();
-  });
 
-  it("merges extra className from props", () => {
-    render(<ImageCard {...baseProps} className="mx-auto" />);
-    const card = screen.getByLabelText(/test raffle contest/i);
-    expect(card).toHaveClass("mx-auto");
+    const root = screen.getByRole("group", { name: "Card Title" });
+    // Spot-check a couple of the size utility classes
+    expect(root).toHaveClass(
+      "w-[320px]",
+      "h-[300px]",
+      "min-w-[320px]",
+      "min-h-[300px]"
+    );
+    // Merged className
+    expect(root).toHaveClass("custom-class");
   });
 });

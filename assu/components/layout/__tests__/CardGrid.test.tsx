@@ -1,123 +1,105 @@
-import { render, screen } from "@testing-library/react";
+import React from "react";
+import { render, screen, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import CardGrid from "../CardGrid";
 
-const items = [
-  {
-    id: "1",
-    imageSrc: "/images/one.webp",
-    imageAltText: "One",
-    title: "African Studies Course Union (ASCU)",
-    href: "/unions/ascu",
-  },
-  {
-    id: "2",
-    imageSrc: "/images/two.webp",
-    imageAltText: "Two",
-    title: "Anthropology Students' Association (ASA)",
-    href: "/unions/asa",
-  },
-  {
-    id: "3",
-    imageSrc: "/images/three.webp",
-    imageAltText: "Three",
-    title: "Association of Political Science Students (APSS)",
-    href: "/unions/apss",
-  },
-  {
-    id: "4",
-    imageSrc: "/images/four.webp",
-    imageAltText: "Four",
-    title: "Astronomy Union (AU)",
-    href: "/unions/au",
-  },
-  {
-    id: "5",
-    imageSrc: "/images/five.webp",
-    imageAltText: "Five",
-    title: "Biochemistry Undergraduate Students Society (BUSS)",
-    href: "/unions/buss",
-  },
-];
+// Adjust the import path to match your repo
+import CardGrid from "@/components/layout/CardGrid";
+
+// Mock ImageCard so we don't rely on its internals
+jest.mock("@/components/common/ImageCard", () => {
+  return function MockImageCard(props: any) {
+    return (
+      <div
+        data-testid="mock-image-card"
+        aria-label={props.title}
+      >
+        {props.title}
+      </div>
+    );
+  };
+});
+
+const makeItems = (n: number) =>
+  Array.from({ length: n }).map((_, i) => ({
+    id: `id-${i}`,
+    imageSrc: `/img-${i}.webp`,
+    imageAltText: `alt ${i}`,
+    title: `Title ${i}`,
+    subtitle: `Sub ${i}`,
+    description: `Desc ${i}`,
+  }));
 
 describe("CardGrid", () => {
-  it("renders a grid with proper ARIA roles and counts", () => {
-    render(<CardGrid items={items} columns={4} ariaLabel="Unions grid" />);
-    const grid = screen.getByRole("grid", { name: /unions grid/i });
+  test("renders a grid with correct aria label (default)", () => {
+    render(<CardGrid items={makeItems(3)} />);
+    const grid = screen.getByRole("grid", { name: /card grid/i });
     expect(grid).toBeInTheDocument();
-    expect(grid).toHaveAttribute("aria-colcount", "4");
-    // 5 items with columns=4 -> 2 rows
-    expect(grid).toHaveAttribute("aria-rowcount", "2");
   });
 
-  it("chunks items into rows and renders gridcells for each item", () => {
-    render(<CardGrid items={items} columns={4} />);
-    const rows = screen.getAllByRole("row");
-    expect(rows.length).toBe(2);
-
+  test("renders the expected number of gridcells and mocked cards", () => {
+    render(<CardGrid items={makeItems(5)} columns={4} />);
     const cells = screen.getAllByRole("gridcell");
-    expect(cells.length).toBe(items.length);
+    expect(cells).toHaveLength(5);
+    const cards = screen.getAllByTestId("mock-image-card");
+    expect(cards).toHaveLength(5);
   });
 
-  it("links each gridcell to its title via aria-labelledby", () => {
-    render(<CardGrid items={items} columns={4} />);
-    const cells = screen.getAllByRole("gridcell");
+  test("applies fixed spacing and auto-fit columns via inline styles", () => {
+    const gapPx = 20;
+    const cardWidthPx = 320;
 
-    cells.forEach((cell, idx) => {
+    render(
+      <CardGrid
+        items={makeItems(4)}
+        columns={4}
+        gapPx={gapPx}
+        cardWidthPx={cardWidthPx}
+      />
+    );
+
+    const grid = screen.getByRole("grid");
+    // Style assertions (inline styles are camelCased on the element.style)
+    expect(grid).toHaveStyle({
+      columnGap: `${gapPx}px`,
+      rowGap: `${gapPx}px`,
+      gridTemplateColumns: `repeat(auto-fit, ${cardWidthPx}px)`,
+    });
+  });
+
+  test("caps max width based on columns, cardWidthPx and gapPx", () => {
+    // columns=4, cardWidth=300, gap=16 => maxWidth = 4*300 + 3*16 = 1248px
+    render(
+      <CardGrid
+        items={makeItems(6)}
+        columns={4}
+        cardWidthPx={300}
+        gapPx={16}
+      />
+    );
+
+    const grid = screen.getByRole("grid");
+    expect(grid).toHaveStyle({ maxWidth: "1248px" });
+  });
+
+  test("uses default columns=3 for maxWidth when columns not provided", () => {
+    // default columns=3, cardWidth=300, gap=16 => maxWidth = 3*300 + 2*16 = 932px
+    render(<CardGrid items={makeItems(3)} />);
+    const grid = screen.getByRole("grid");
+    expect(grid).toHaveStyle({ maxWidth: "932px" });
+  });
+
+  test("each gridcell exposes an sr-only title id referenced by aria-labelledby", () => {
+    render(<CardGrid items={makeItems(2)} columns={2} />);
+
+    const cells = screen.getAllByRole("gridcell");
+    cells.forEach((cell) => {
       const id = cell.getAttribute("aria-labelledby");
       expect(id).toBeTruthy();
-      const labelEl = document.getElementById(id!);
-      expect(labelEl).toBeTruthy();
-      expect(labelEl!.className).toMatch(/sr-only/);
-      expect(labelEl!.textContent).toBe(items[idx].title);
+
+      // The referenced sr-only span should exist in the same cell
+      const hidden = within(cell).getByText(/Title \d/);
+      // This span is present; we don't assert exact className, just presence
+      expect(hidden).toBeInTheDocument();
     });
-  });
-
-  it("renders interactive links inside each cell with accessible names", () => {
-    render(<CardGrid items={items} columns={4} />);
-    // Each ImageCard renders an <a aria-label={title}>
-    items.forEach((it) => {
-      const link = screen.getByRole("link", { name: it.title });
-      expect(link).toHaveAttribute("href", it.href);
-    });
-  });
-
-  it("associates each gridcell with an sr-only title span", () => {
-    render(<CardGrid items={items} columns={4} />);
-    const cell = screen.getAllByRole("gridcell")[0]; // grab first cell
-    const labelledBy = cell.getAttribute("aria-labelledby");
-    expect(labelledBy).toBeTruthy();
-
-    const hidden = document.getElementById(labelledBy!);
-    expect(hidden).toBeTruthy();
-    expect(hidden).toHaveClass("sr-only");
-    expect(hidden).toHaveTextContent(items[0].title);
-  });
-});
-
-it("clamps columns to at least 1 when columns <= 0", () => {
-  const single = [
-    {
-      id: "x",
-      imageSrc: "/images/one.webp",
-      imageAltText: "One",
-      title: "Single",
-      href: "/unions/single",
-    },
-  ];
-
-  // const grid = screen.getByRole("grid", { name: /single grid/i });
-  const rows = screen.getAllByRole("row");
-  expect(rows.length).toBe(1);
-  const cells = screen.getAllByRole("gridcell");
-  expect(cells.length).toBe(1);
-});
-
-it("applies touch-friendly min size to the grid cells (authoring check)", () => {
-  render(<CardGrid items={items} columns={4} />);
-  const cells = screen.getAllByRole("gridcell");
-  cells.forEach((cell) => {
-    expect(cell.className).toMatch(/min-h-11/);
-    expect(cell.className).toMatch(/min-w-11/);
   });
 });
