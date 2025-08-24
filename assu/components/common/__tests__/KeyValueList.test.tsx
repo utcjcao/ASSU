@@ -18,12 +18,12 @@ describe("KeyValueList", () => {
         expect(screen.getByText(value)).toBeInTheDocument();
       });
     });
+  });
 
-    it("renders nothing if items list is empty", () => {
-      render(<KeyValueList items={[]} />);
-      expect(
-        screen.queryByText(/Course|Exam Type|Year/)
-      ).not.toBeInTheDocument();
-    });
+  it("renders nothing if items list is empty", () => {
+    render(<KeyValueList items={[]} />);
+    expect(screen.queryByText("Course")).not.toBeInTheDocument();
+    expect(screen.queryByText("Exam Type")).not.toBeInTheDocument();
+    expect(screen.queryByText("Year")).not.toBeInTheDocument();
   });
 });
