@@ -246,6 +246,7 @@ This project adheres to [Semantic Versioning](https://semver.org).
 ### Added
 
 - made get-involved/current page
+- added contact us page
 
 ### Changed
 
