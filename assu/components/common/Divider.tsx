@@ -52,7 +52,7 @@ const Divider: React.FC<DividerProps> = ({
   };
 
   const lineStyles: React.CSSProperties = {
-    borderTop: `3px solid ${color}`,
+    borderTop: `1px solid ${color}`,
     boxSizing: "border-box",
     height: "0",
     width: "100%",
