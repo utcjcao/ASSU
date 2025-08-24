@@ -44,7 +44,7 @@ const Divider: React.FC<DividerProps> = ({
     maxWidth: maxWidth || getMaxWidth(),
     height: height || "7px",
     position: "relative",
-    margin: margin || "0px 0px 22px auto",
+    margin: margin || "0 auto 22px auto",
     left: "0px",
     justifySelf: "start",
     alignSelf: "start",
