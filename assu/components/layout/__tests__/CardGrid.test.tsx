@@ -4,15 +4,15 @@ import "@testing-library/jest-dom";
 
 // Adjust the import path to match your repo
 import CardGrid from "@/components/layout/CardGrid";
+import ImageCard from "@/components/common/ImageCard";
+
+type ImageCardProps = React.ComponentProps<typeof ImageCard>;
 
 // Mock ImageCard so we don't rely on its internals
 jest.mock("@/components/common/ImageCard", () => {
-  return function MockImageCard(props: any) {
+  return function MockImageCard(props: ImageCardProps) {
     return (
-      <div
-        data-testid="mock-image-card"
-        aria-label={props.title}
-      >
+      <div data-testid="mock-image-card" aria-label={props.title}>
         {props.title}
       </div>
     );
@@ -69,12 +69,7 @@ describe("CardGrid", () => {
   test("caps max width based on columns, cardWidthPx and gapPx", () => {
     // columns=4, cardWidth=300, gap=16 => maxWidth = 4*300 + 3*16 = 1248px
     render(
-      <CardGrid
-        items={makeItems(6)}
-        columns={4}
-        cardWidthPx={300}
-        gapPx={16}
-      />
+      <CardGrid items={makeItems(6)} columns={4} cardWidthPx={300} gapPx={16} />
     );
 
     const grid = screen.getByRole("grid");
@@ -97,8 +92,7 @@ describe("CardGrid", () => {
       expect(id).toBeTruthy();
 
       // The referenced sr-only span should exist in the same cell
-      const hidden = within(cell).getByText(/Title \d/);
-      // This span is present; we don't assert exact className, just presence
+      const hidden = within(cell).getByText(/Title \d/, { selector: "span" });
       expect(hidden).toBeInTheDocument();
     });
   });
