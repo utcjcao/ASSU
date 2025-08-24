@@ -30,9 +30,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${questrial.variable} ${bitter.variable} antialiased`}>
+      <body
+        className={`${questrial.variable} ${bitter.variable} antialiased flex flex-col min-h-screen `}
+      >
         <Header />
-        {children}
+
+        <main className="flex-1 flex justify-center px-4 bg-gray-lighter">
+          <div className="w-full max-w-screen-md flex flex-col p-4">
+            {children}
+          </div>
+        </main>
+
         <Footer />
       </body>
     </html>
