@@ -71,8 +71,8 @@ const galleryData: GalleryPage[] = [
       {
         type: "single-with-text",
         image: "/images/involved-upcoming-7.webp",
-        date: "Apr 15",
-        title: "ASSU Event 2024",
+        date: "Mar 7, 2023",
+        title: "ASSU 50 Years Reunion",
       },
       // Row 2: 3 images
       {

@@ -264,5 +264,12 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 - Made the awards page with the tab component for criteria and past recipients of each award
 
+---
+
+## [1.0.0 - 25/01/29]
+
+### Added
+
+- Implemented complete gallery page with multi-image carousel layout
 
 ---
