@@ -23,7 +23,9 @@ export default function CustomAccordion({
       {items.map((item) => (
         <AccordionItem key={item.value} value={item.value}>
           <AccordionTrigger>{item.question}</AccordionTrigger>
-          <AccordionContent>{item.answer}</AccordionContent>
+          <AccordionContent className="whitespace-pre-line pt-2 text-sm text-[var(--color-subtitle)]">
+            {item.answer}
+          </AccordionContent>
         </AccordionItem>
       ))}
     </Accordion>
