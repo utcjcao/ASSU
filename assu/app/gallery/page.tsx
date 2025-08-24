@@ -3,42 +3,42 @@ import MultiImageCarousel, { CarouselImage } from "../../components/common/Multi
 // Sample images for demonstration
 const sampleImages: CarouselImage[] = [
   {
-    src: "/next.svg",
+    src: "/images/gallery-1.webp",
     alt: "ASSU Event - Student Orientation",
     caption: "Welcome Week 2024 - New student orientation in the main hall"
   },
   {
-    src: "/vercel.svg", 
+    src: "/images/gallery-2.webp", 
     alt: "ASSU Meeting - Council Session",
     caption: "Monthly council meeting discussing student initiatives"
   },
   {
-    src: "/next.svg",
+    src: "/images/involved-upcoming-1.webp",
     alt: "ASSU Workshop - Academic Support",
     caption: "Study skills workshop for first-year students"
   },
   {
-    src: "/vercel.svg",
+    src: "/images/involved-upcoming-2.webp",
     alt: "ASSU Social - Campus Community",
     caption: "Community building event at the student center"
   },
   {
-    src: "/next.svg",
+    src: "/images/involved-upcoming-3.webp",
     alt: "ASSU Volunteer - Community Service",
     caption: "Students volunteering at local community center"
   },
   {
-    src: "/vercel.svg",
+    src: "/images/involved-upcoming-4.webp",
     alt: "ASSU Awards - Recognition Ceremony",
     caption: "Annual student achievement awards ceremony"
   },
   {
-    src: "/next.svg",
+    src: "/images/involved-upcoming-5.webp",
     alt: "ASSU Sports - Intramural Games",
     caption: "Inter-faculty sports competition finals"
   },
   {
-    src: "/vercel.svg",
+    src: "/images/involved-upcoming-6.webp",
     alt: "ASSU Culture - Arts Festival",
     caption: "Annual arts and culture festival showcase"
   }
