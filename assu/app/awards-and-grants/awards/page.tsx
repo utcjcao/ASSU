@@ -415,23 +415,23 @@ export default function Awards() {
       ariaLabel: "Course Union Award Past Recipients",
       content: (
         <div className="space-y-2 text-gray-dark">
-          <p>HUMAN BIOLOGY STUDENTS' UNION (HBSU) - (2023-2024)</p>
+          <p>HUMAN BIOLOGY STUDENTS&apos; UNION (HBSU) - (2023-2024)</p>
           <p>PHYSICS STUDENT UNION (PHYSU) - (2022-2023)</p>
-          <p>HISTORY STUDENTS' ASSOCIATION (HSA) - (2021-2022)</p>
+          <p>HISTORY STUDENTS&apos; ASSOCIATION (HSA) - (2021-2022)</p>
           <p>INTERNATIONAL RELATIONS SOCIETY (IRS) - (2020-2021)</p>
           <p>DIASPORA & TRANSNATIONAL STUDIES UNION (DTSU) - (2019-2020)</p>
           <p>NEUROSCIENCE ASSOCIATION OF UNDERGRADUATE STUDENTS (NAUS) - (2018-2019)</p>
-          <p>ENVIRONMENTAL STUDENTS' UNION (ENSU) - (2017-2018)</p>
-          <p>INDIGENOUS STUDIES STUDENTS' UNION (ISSU) - (2016-2017)</p>
-          <p>COGNITIVE SCIENCE & ARTIFICIAL INTELLIGENCE STUDENTS' ASSOCIATION (CASA) - (2015-2016)</p>
-          <p>CLASSICS STUDENTS' UNION (CLASSU) - (2014-2015)</p>
+          <p>ENVIRONMENTAL STUDENTS&apos; UNION (ENSU) - (2017-2018)</p>
+          <p>INDIGENOUS STUDIES STUDENTS&apos; UNION (ISSU) - (2016-2017)</p>
+          <p>COGNITIVE SCIENCE & ARTIFICIAL INTELLIGENCE STUDENTS&apos; ASSOCIATION (CASA) - (2015-2016)</p>
+          <p>CLASSICS STUDENTS&apos; UNION (CLASSU) - (2014-2015)</p>
           <p>ASSOCIATION OF POLITICAL SCIENCE STUDENTS (APSS) - (2013-2014)</p>
           <p>ANTHROPOLOGY STUDENTS ASSOCIATION (ASA) - (2012-2013)</p>
           <p>AFRICAN STUDIES COURSE UNION (ASCU) - (2011-2012)</p>
           <p>MATHEMATICS UNION (MU) - (2010-2011)</p>
           <p>PHILOSOPHY COURSE UNION (PCU) - (2009-2010)</p>
-          <p>HISTORY STUDENTS' ASSOCIATION (HSA) - (2008-2009)</p>
-          <p>EAST ASIAN STUDIES STUDENTS' UNION (EASSU) - (2006-2007)</p>
+          <p>HISTORY STUDENTS&apos; ASSOCIATION (HSA) - (2008-2009)</p>
+          <p>EAST ASIAN STUDIES STUDENTS&apos; UNION (EASSU) - (2006-2007)</p>
         </div>
       ),
     },
@@ -472,7 +472,7 @@ export default function Awards() {
           <p>TRANSITIONAL YEAR PROGRAM - (2012-2013)</p>
           <p>KAYLA CARTER - (2011-2012)</p>
           <p>ROD MICHALKO - (2010-2011)</p>
-          <p>EQUITY STUDIES STUDENTS' UNION - (2009-2010)</p>
+          <p>EQUITY STUDIES STUDENTS&apos; UNION - (2009-2010)</p>
           <p>DAVID RAYSIDE - (2008-2009)</p>
           <p>GURU FATA SINGH and OPIRG - (2007-2008)</p>
           <p>CHRIS RAMSAROOP - (2006-2007)</p>
@@ -490,7 +490,7 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            Annually, ASSU awards a member of the university community for their service, above and beyond their regular duties, to students in the Faculty of Arts and Science. The award is named after Uma Sarkar, a two-term ASSU President, who continued to assist ASSU long after she graduated. The ASSU Executive decides the winner. A sum of $500 is donated to a charity organization in the winner's name.
+            Annually, ASSU awards a member of the university community for their service, above and beyond their regular duties, to students in the Faculty of Arts and Science. The award is named after Uma Sarkar, a two-term ASSU President, who continued to assist ASSU long after she graduated. The ASSU Executive decides the winner. A sum of $500 is donated to a charity organization in the winner&apos;s name.
           </p>
         </div>
       ),
@@ -508,14 +508,14 @@ export default function Awards() {
           <p>JOSHUA BOWMAN - (2019-2020)</p>
           <p>JOSHUA GRONDIN - (2018-2019)</p>
           <p>NADIA KANANI - (2017-2018)</p>
-          <p>THE REV'D ANDREA BUDGEY - (2016-2017)</p>
+          <p>THE REV&apos;D ANDREA BUDGEY - (2016-2017)</p>
           <p>RICHARD CHAMBERS - (2015-2016)</p>
           <p>CUPE 3902 - (2014-2015)</p>
           <p>SALLY WALKER - (2013-2014)</p>
           <p>HEALTH AND WELLNESS - (2012-2013)</p>
           <p>DR.ANDREA WILLIAMS - (2011-2012)</p>
-          <p>EAST ASIAN STUDENTS' UNION - (2010-2011)</p>
-          <p>UC REGISTRAR'S OFFICE - (2009-2010)</p>
+          <p>EAST ASIAN STUDENTS&apos; UNION - (2010-2011)</p>
+          <p>UC REGISTRAR&apos;S OFFICE - (2009-2010)</p>
           <p>SASWATI DEB - (2008-2009)</p>
           <p>KEN DERRY - (2007-2008)</p>
           <p>GEORGE DAFOS - (2006-2007)</p>
