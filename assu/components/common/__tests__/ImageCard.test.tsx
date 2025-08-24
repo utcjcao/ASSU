@@ -4,9 +4,12 @@ import "@testing-library/jest-dom";
 
 // Adjust path if your alias differs
 import ImageCard from "@/components/common/ImageCard";
+import AssuImage from "../AssuImage";
+
+type AssuImageProps = React.ComponentProps<typeof AssuImage>;
 
 // --- Mock AssuImage so we don't depend on its implementation ---
-const AssuImageMock = jest.fn((props: any) => (
+const AssuImageMock = jest.fn((props: AssuImageProps) => (
   <div
     data-testid="assu-image"
     data-src={String(props.src)}
@@ -15,7 +18,7 @@ const AssuImageMock = jest.fn((props: any) => (
 ));
 jest.mock("@/components/common/AssuImage", () => ({
   __esModule: true,
-  default: (props: any) => AssuImageMock(props),
+  default: (props: AssuImageProps) => AssuImageMock(props),
 }));
 
 describe("ImageCard", () => {

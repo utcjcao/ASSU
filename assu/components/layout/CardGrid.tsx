@@ -15,10 +15,10 @@ type CardItem = {
 
 interface CardGridProps {
   items: CardItem[];
-  columns?: 1 | 2 | 3 | 4 ;
+  columns?: 1 | 2 | 3 | 4;
   ariaLabel?: string;
   className?: string;
-  cardWidthPx?: number;              
+  cardWidthPx?: number;
   gapPx?: number;
 }
 
@@ -28,23 +28,23 @@ function chunk<T>(arr: T[], size: number): T[][] {
   return out;
 }
 
-function colsClass(n: number): string {
-  switch (n) {
-    case 1: return "grid-cols-1";
-    case 2: return "grid-cols-2";
-    case 3: return "grid-cols-3";
-    case 4: return "grid-cols-4";
-    default: return "grid-cols-3";
-  }
-}
+// function colsClass(n: number): string {
+//   switch (n) {
+//     case 1: return "grid-cols-1";
+//     case 2: return "grid-cols-2";
+//     case 3: return "grid-cols-3";
+//     case 4: return "grid-cols-4";
+//     default: return "grid-cols-3";
+//   }
+// }
 
 export default function CardGrid({
   items,
   columns = 3,
   ariaLabel = "Card grid",
   className = "",
-  cardWidthPx = 300,  
-  gapPx = 16,          
+  cardWidthPx = 300,
+  gapPx = 16,
 }: CardGridProps) {
   const colCount = Math.max(1, Math.min(6, columns));
   const rows = chunk(items, colCount);
@@ -57,11 +57,7 @@ export default function CardGrid({
       <div
         role="grid"
         aria-label={ariaLabel}
-        className={[
-          "grid",
-          "justify-center",
-          className,
-        ].join(" ")}
+        className={["grid", "justify-center", className].join(" ")}
         style={{
           columnGap: `${gapPx}px`,
           rowGap: `${gapPx}px`,

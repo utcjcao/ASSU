@@ -23,7 +23,6 @@ export default function ImageCard({
   className,
   size = "sm",
 }: ImageCardProps) {
-
   const hasOverlay = Boolean(description);
 
   //Scaled to size
@@ -38,7 +37,9 @@ export default function ImageCard({
     "outline-none focus-visible:ring-2 focus-visible:ring-pink focus-visible:ring-offset-2",
     "flex flex-col",
     hasOverlay ? "hover:shadow-md transition-shadow" : "",
-  ].filter(Boolean).join(" ");
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   const media = "absolute inset-0";
   const imgCls = "h-full w-full object-cover";
@@ -50,7 +51,9 @@ export default function ImageCard({
     hasOverlay
       ? "transition-opacity duration-200 opacity-100 group-hover:opacity-0 group-focus-within:opacity-0"
       : "",
-  ].filter(Boolean).join(" ")
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   //Overlay (black bg + description) — appears on hover/focus
   const overlay = [
@@ -61,19 +64,19 @@ export default function ImageCard({
     "break-words whitespace-normal overflow-hidden", // 👈 added for wrapping
   ].join(" ");
 
-  const Title = (
-    <h3 className="text-xl font-semibold drop-shadow-sm">{title}</h3>
-  );
+  // const Title = (
+  //   <h3 className="text-xl font-semibold drop-shadow-sm">{title}</h3>
+  // );
 
-  const Subtitle = subtitle ? (
-    <p className="mt-1 text-sm text-white/90">{subtitle}</p>
-  ) : null;
+  // const Subtitle = subtitle ? (
+  //   <p className="mt-1 text-sm text-white/90">{subtitle}</p>
+  // ) : null;
 
-  const OverlayContent = description ? (
-    <div className="max-w-[90%]">
-      <p className="mt-2 text-sm leading-relaxed">{description}</p>
-    </div>
-  ) : null;
+  // const OverlayContent = description ? (
+  //   <div className="max-w-[90%]">
+  //     <p className="mt-2 text-sm leading-relaxed">{description}</p>
+  //   </div>
+  // ) : null;
 
   return (
     <div
@@ -86,10 +89,10 @@ export default function ImageCard({
         <AssuImage
           src={imageSrc}
           alt={imageAltText}
-          className="h-full w-full"                
-          aspectClassName="!aspect-auto h-full"    
+          className="h-full w-full"
+          aspectClassName="!aspect-auto h-full"
           radiusClassName="rounded-2xl"
-          imgClassName={imgCls}                    
+          imgClassName={imgCls}
         />
       </div>
 
@@ -101,7 +104,9 @@ export default function ImageCard({
       {hasOverlay && (
         <div className={overlay}>
           <div className="max-w-[90%] text-left">
-            <div className="space-y-2 text-sm leading-relaxed">{description}</div>
+            <div className="space-y-2 text-sm leading-relaxed">
+              {description}
+            </div>
           </div>
         </div>
       )}
