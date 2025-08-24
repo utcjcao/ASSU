@@ -22,16 +22,13 @@ const customJestConfig: Config = {
   testEnvironment: "jsdom",
   // Ignore patterns
   testPathIgnorePatterns: ["/node_modules/"],
-
   // Transform patterns
   transformIgnorePatterns: ["/node_modules/", "\\.pnp\\.[^\\/]+$"],
-  // Whether to use watchman for file crawling
-  // watchman: true,
-  transform: {
-    "^.+\\.(t|j)sx?$": ["@swc/jest", {}],
-  },
+  // transform: {
+  //   "^.+\\.(t|j)sx?$": ["@swc/jest", {}],
+  // },
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1",
+    "^@/(.*)$": "<rootDir>/$1",
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
 };
