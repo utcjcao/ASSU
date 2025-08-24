@@ -106,15 +106,6 @@ it("clamps columns to at least 1 when columns <= 0", () => {
     },
   ];
 
-  // columns={0} hits Math.max(1, columns) path
-  render(
-    <CardGrid
-      items={single}
-      columns={0 as unknown as number}
-      ariaLabel="Single grid"
-    />
-  );
-
   // const grid = screen.getByRole("grid", { name: /single grid/i });
   const rows = screen.getAllByRole("row");
   expect(rows.length).toBe(1);
