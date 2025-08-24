@@ -46,7 +46,7 @@ export default function VerticalTimeline({
         "[data-timeline-item]"
       );
 
-      timelineItems.forEach((item, index) => {
+      timelineItems.forEach((item) => {
         const descriptionEl = item.querySelector(
           "[data-description]"
         ) as HTMLElement;
@@ -55,22 +55,21 @@ export default function VerticalTimeline({
 
         if (!descriptionEl || !dotEl || !dateEl) return;
 
-        // Get the description's height and calculate its center
         const descriptionRect = descriptionEl.getBoundingClientRect();
         const descriptionCenter = descriptionRect.height / 2;
 
-        // Position dot and date at the vertical center of the description
-        dotEl.style.transform = `translateY(${descriptionCenter - 8}px)`; // -8px to center the 16px dot
-        dateEl.style.transform = `translateY(${descriptionCenter - 12}px)`; // -12px to center the text roughly
+        dotEl.style.transform = `translateY(${descriptionCenter - 8}px)`;
+        dateEl.style.transform = `translateY(${descriptionCenter - 12}px)`;
       });
     };
 
-    // Position elements after initial render and on window resize
+    // Initial + resize
     positionElements();
     window.addEventListener("resize", positionElements);
 
-    // Also position after fonts load
-    document.fonts.ready.then(positionElements);
+    if (typeof document !== "undefined" && document.fonts?.ready) {
+      document.fonts.ready.then(positionElements);
+    }
 
     return () => {
       window.removeEventListener("resize", positionElements);
