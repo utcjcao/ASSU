@@ -18,7 +18,7 @@ export default function Home() {
       <Divider />
       <CardGrid
         ariaLabel="news grid"
-        gapPx={40}
+        // gapPx={40}
         items={[
           {
             id: "raffle",
