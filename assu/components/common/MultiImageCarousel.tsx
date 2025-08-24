@@ -138,7 +138,7 @@ export default function MultiImageCarousel({
   };
 
   // Focus management
-  const handleControlFocus = (event: React.FocusEvent) => {
+  const handleControlFocus = () => {
     // Ensure carousel is visible when controls are focused
     carouselRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   };
