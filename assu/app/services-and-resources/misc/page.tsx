@@ -41,8 +41,7 @@ export default function Misc() {
     {
       title: "Exams and Course Collections",
       href: "https://login.library.utoronto.ca/cgi-bin/go_log.pl?url=http://exams.library.utoronto.ca",
-      description:
-        "The U of T Library's exam and course collection.",
+      description: "The U of T Library's exam and course collection.",
     },
     {
       title: "Faculty of Arts & Science",
@@ -59,8 +58,7 @@ export default function Misc() {
     {
       title: "University of Toronto",
       href: "http://www.utoronto.ca/",
-      description:
-        "The official University of Toronto website",
+      description: "The official University of Toronto website",
     },
   ];
 
