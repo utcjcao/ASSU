@@ -5,6 +5,7 @@ import Text from "@/components/common/Text";
 import AssuImage from "@/components/common/AssuImage";
 import Divider from "@/components/common/Divider";
 import Link from "@/components/common/Link";
+import Image from "next/image";
 
 interface Executive {
   name: string;
@@ -100,7 +101,7 @@ export default function Executives() {
                       }`}
                     >
                       <div className="relative w-full rounded-lg overflow-hidden shadow-lg flex items-end">
-                        <AssuImage
+                        <Image
                           src={executive.image}
                           alt={`${executive.name} - ${executive.title}`}
                           sizes="100vw"
