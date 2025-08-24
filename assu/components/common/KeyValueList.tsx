@@ -2,22 +2,22 @@ import React from "react";
 
 type Item = {
   key: string;
-  value: string;
+  values: string[];
 };
 
 interface Props {
   items: Item[];
 }
 
-export const KeyValueList: React.FC<Props> = ({ items }) => {
+export const KeyValueList: React.FC<Props> = ({ items = [] }) => {
   if (items.length === 0) return null;
 
   return (
     <div className="grid-wrapper">
-      {items.map(({ key, value }, index) => (
+      {items.map(({ key, values }, index) => (
         <React.Fragment key={index}>
           <div className="cell key">{key}</div>
-          <div className="cell value">{value}</div>
+          <div className="cell value">{values.join(", ")}</div>
         </React.Fragment>
       ))}
 
@@ -25,9 +25,8 @@ export const KeyValueList: React.FC<Props> = ({ items }) => {
         {`
           .grid-wrapper {
             display: grid;
-            grid-template-columns: 150px 1fr;
+            grid-template-columns: 100px 1fr;
             position: relative;
-            background: #f9f9f9;
             border-radius: 8px;
             padding: 1rem;
           }
