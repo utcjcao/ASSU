@@ -11,9 +11,10 @@ interface ImageCardProps {
   description?: React.ReactNode;
   className?: string;
   size?: "sm" | "md" | "lg";
+  href?: string;
 }
 
-export default function Button({
+export default function ImageCard({
   imageSrc,
   imageAltText,
   title,

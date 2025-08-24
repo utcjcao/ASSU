@@ -170,7 +170,6 @@ export default function Home() {
             <h2 className="text-3xl font-sans text-pink mb-8">Image Card</h2>
             <div className="flex flex-wrap gap-4">
               <ImageCard
-                href="dummylink"
                 size="sm"
                 subtitle="date here"
                 description="description here"
