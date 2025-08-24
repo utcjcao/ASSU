@@ -179,7 +179,7 @@ const GoogleMap: React.FC<GoogleMapProps> = ({
         google.maps.event.clearInstanceListeners(map);
       }
     };
-  }, [apiKey, lat, lng, zoom, markerTitle, mapContainer]);
+  }, [apiKey, lat, lng, zoom, markerTitle, mapContainer, map, marker]);
 
   // Handle window resize for responsive behavior
   useEffect(() => {
