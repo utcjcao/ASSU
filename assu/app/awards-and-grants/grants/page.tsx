@@ -4,7 +4,7 @@ import React from "react";
 import ContentGrid, { ContentItem } from "@/components/layout/ContentGrid";
 import Divider from "@/components/common/Divider";
 import Link from "@/components/common/Link";
-import AssuImage from "@/components/common/AssuImage";
+// import AssuImage from "@/components/common/AssuImage";
 
 // Grid items for the Grants page
 const items: ContentItem[] = [
@@ -87,7 +87,11 @@ export default function GrantsPage() {
         <p className="mt-6 mb-8 text-base md:text-lg text-gray-700">
           All forms should be submitted to{" "}
           <Link href="/contact-us">ASSU office (Sid Smith Room 1068)</Link>, or
-          email <Link href="mailto:students.assu@utoronto.ca">students.assu@utoronto.ca</Link>.
+          email{" "}
+          <Link href="mailto:students.assu@utoronto.ca">
+            students.assu@utoronto.ca
+          </Link>
+          .
         </p>
 
         <Divider />
