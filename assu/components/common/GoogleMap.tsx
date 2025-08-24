@@ -35,7 +35,6 @@ const GoogleMap: React.FC<GoogleMapProps> = ({
   const [mapContainer, setMapContainer] = useState<HTMLDivElement | null>(null);
   
   const mapContainerRef = (element: HTMLDivElement | null) => {
-    console.log('GoogleMap: Callback ref called with element:', element);
     setMapContainer(element);
   };
   const [map, setMap] = useState<google.maps.Map | null>(null);
@@ -43,11 +42,9 @@ const GoogleMap: React.FC<GoogleMapProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [marker, setMarker] = useState<google.maps.Marker | null>(null);
 
-  console.log('GoogleMap: Component rendered, mapContainer:', mapContainer);
-  console.log('GoogleMap: About to render JSX, loading:', loading, 'error:', error);
+
 
   useEffect(() => {
-    console.log('GoogleMap: useEffect called, mapContainer:', mapContainer);
     if (!apiKey) {
       console.error('GoogleMap: API key not provided');
       setError('Google Maps API key not provided');
@@ -56,15 +53,15 @@ const GoogleMap: React.FC<GoogleMapProps> = ({
     }
 
     if (!mapContainer) {
-      console.log('GoogleMap: Map container not available yet, waiting...');
+      return;
+    }
+
+    // Don't reinitialize if map already exists
+    if (map) {
       return;
     }
 
     const initializeMap = async () => {
-      console.log('GoogleMap: Initializing map...');
-      console.log('GoogleMap: mapContainer exists:', !!mapContainer);
-      console.log('GoogleMap: apiKey exists:', !!apiKey);
-      console.log('GoogleMap: apiKey length:', apiKey?.length || 0);
 
       try {
         // Initialize Google Maps loader
@@ -182,7 +179,7 @@ const GoogleMap: React.FC<GoogleMapProps> = ({
         google.maps.event.clearInstanceListeners(map);
       }
     };
-  }, [apiKey, lat, lng, zoom, markerTitle, mapContainer, map, marker]);
+  }, [apiKey, lat, lng, zoom, markerTitle, mapContainer]);
 
   // Handle window resize for responsive behavior
   useEffect(() => {
