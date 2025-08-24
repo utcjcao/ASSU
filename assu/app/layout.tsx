@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Questrial, Bitter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 const questrial = Questrial({
   weight: "400",
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body className={`${questrial.variable} ${bitter.variable} antialiased`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

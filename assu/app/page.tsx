@@ -8,6 +8,7 @@ import { ImageCarousel } from "@/components/common/ImageCarousel";
 // import HeroImage from "../components/sections/HeroImage";
 import Tabs, { TabItem } from "components/common/Tabs";
 import ContentGrid from "@/components/layout/ContentGrid";
+import MapSection from "../components/common/MapSection";
 
 const tabsData: TabItem[] = [
   {
@@ -66,10 +67,6 @@ const tabsData: TabItem[] = [
     ),
   },
 ];
-
-import MapSection from "../components/common/MapSection";
-
-import Footer from "../components/layout/Footer";
 
 export default function Home() {
   return (
@@ -331,7 +328,6 @@ export default function Home() {
           />
         </div>
       </div>
-      <Footer />
     </>
   );
 }
