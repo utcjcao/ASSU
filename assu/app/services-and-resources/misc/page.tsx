@@ -7,13 +7,13 @@ export default function Misc() {
   const studentSocieties: LinkItem[] = [
     {
       title: "Association of Part-time Undergraduate Students (APUS)",
-      href: "https://assu.utoronto.ca",
+      href: "https://apus.ca/",
       description:
         "APUS Represents all part-time undergraduate students. Here is where you can find out more information about APUS.",
     },
     {
       title: "Graduate Students' Union (GSU)",
-      href: "https://gsu.utoronto.ca",
+      href: "https://utgsu.ca/",
       description:
         "The GSU represents all graduate students at the University of Toronto. Here is where you can find out more information about the GSU.",
     },
@@ -28,37 +28,37 @@ export default function Misc() {
   const uoftLinks: LinkItem[] = [
     {
       title: "Sidney Smith Commons",
-      href: "#",
+      href: "https://sidneysmithcommons.artsci.utoronto.ca/",
       description:
         "The Sidney Smith Commons is a student study space and help-hub located in the East side of the Sid Smith Building.",
     },
     {
       title: "Sidney Smith Lobby Table Booking",
-      href: "#",
+      href: "https://sidneysmithcommons.artsci.utoronto.ca/welcome/sidney-smith-lobby/",
       description:
         "Use this link to book a table in the Sid Smith Lobby for your course union or student group.",
     },
     {
       title: "Exams and Course Collections",
-      href: "#",
+      href: "https://login.library.utoronto.ca/cgi-bin/go_log.pl?url=http://exams.library.utoronto.ca",
       description:
         "The U of T Library's exam and course collection.",
     },
     {
       title: "Faculty of Arts & Science",
-      href: "#",
+      href: "http://www.artsci.utoronto.ca/",
       description:
         "The official website of the Faculty of Arts and Science at the University of Toronto.",
     },
     {
       title: "Faculty Registrar's Office",
-      href: "#",
+      href: "https://www.artsci.utoronto.ca/current/faculty-registrar",
       description:
         "Useful link for undergraduate students. Here is where you will find the link to the online calendar and timetable, as well other useful links.",
     },
     {
       title: "University of Toronto",
-      href: "#",
+      href: "http://www.utoronto.ca/",
       description:
         "The official University of Toronto website",
     },
