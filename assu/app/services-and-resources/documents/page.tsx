@@ -6,8 +6,27 @@ const documentItems = [
   {
     value: "doc-1",
     question: "Budgets and Financial Statements",
-    answer:
-      "You can submit documents via the student portal or in person at the registrar’s office.",
+    answer: (
+      <>
+        <p>
+          <strong>Current Fiscal Year Financial Documents</strong>
+          <br />
+          <a href="#" className="text-pink underline hover:text-pink-dark">
+            Summer Budget 2024
+          </a>
+        </p>
+        <br />
+        <p>
+          <strong>
+            Previous Years Financial Statements, Budgets, and other documents
+          </strong>
+          <br />
+          <a href="#" className="text-pink underline hover:text-pink-dark">
+            Financial Statement March 2024
+          </a>
+        </p>
+      </>
+    ),
   },
   {
     value: "doc-2",
@@ -17,7 +36,7 @@ const documentItems = [
   },
   {
     value: "doc-3",
-    question: "Council Meeting Miniutes",
+    question: "Council Meeting Minutes",
     answer:
       "PDF, DOCX, and JPG formats are accepted. Make sure your file is under 10MB.",
   },

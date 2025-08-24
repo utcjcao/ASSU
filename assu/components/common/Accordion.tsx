@@ -10,7 +10,7 @@ import {
 export interface AccordionItemData {
   value: string;
   question: string;
-  answer: string;
+  answer: React.ReactNode;
 }
 
 export default function CustomAccordion({
