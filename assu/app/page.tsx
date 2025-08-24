@@ -1,11 +1,11 @@
 import Divider from "components/common/Divider";
-import AssuImage from "components/common/AssuImage";
-import Button from "components/common/Button";
-import ImageCard from "components/common/ImageCard";
+// import AssuImage from "components/common/AssuImage";
+// import Button from "components/common/Button";
+// import ImageCard from "components/common/ImageCard";
 import CardGrid from "components/layout/CardGrid";
 import { ImageCarousel } from "@/components/common/ImageCarousel";
-import ContentGrid from "@/components/layout/ContentGrid";
-import HeroText from "@/components/sections/HeroText";
+// import ContentGrid from "@/components/layout/ContentGrid";
+// import HeroText from "@/components/sections/HeroText";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
       <Divider />
       <ImageCarousel></ImageCarousel>
 
-      <HeroText>ASSU News</HeroText>
+      {/* <HeroText>ASSU News</HeroText> */}
 
       <CardGrid
         ariaLabel="news grid"
