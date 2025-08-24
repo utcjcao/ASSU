@@ -240,3 +240,19 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - updated Divider component
 
 ---
+
+## [1.0.0 - 25/08/24]
+
+### Added
+
+- made get-involved/current page
+
+### Changed
+
+- N/A
+
+### Fixed
+
+- N/A
+
+---
