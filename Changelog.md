@@ -245,6 +245,22 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 ### Added
 
+- made services-and-resources page
+
+### Changed
+
+- N/A
+
+### Fixed
+
+- N/A
+
+---
+
+## [1.0.0 - 25/08/24]
+
+### Added
+
 - made get-involved/current page
 - added contact us page
 
