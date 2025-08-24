@@ -35,7 +35,6 @@ const Tests = () => {
 
       <Divider
         height="0"
-        width="1"
         color="var(--color-line)"
         className="w-full"
         margin="0 0 0.5rem 0"
@@ -45,7 +44,6 @@ const Tests = () => {
       <KeyValueList items={testData} />
       <Divider
         height="0"
-        width="1"
         color="var(--color-line)"
         className="w-full"
         margin="0 0 0.5rem 0"
