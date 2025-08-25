@@ -1,0 +1,182 @@
+"use client";
+import React, { useEffect, useRef } from "react";
+
+export interface TimelinePoint {
+  date: string;
+  description: string;
+}
+
+export interface VerticalTimelineProps {
+  timelinePoints: TimelinePoint[];
+  className?: string;
+  header?: string;
+}
+
+// Default ASSU timeline data
+export const assuTimelineData: TimelinePoint[] = [
+  {
+    date: "1827",
+    description: "**University of Toronto** was founded",
+  },
+  {
+    date: "1967",
+    description:
+      "The first Course Union, the **History Students' Union**, was established, marking the beginning of increased student participation in academic decision-making.",
+  },
+  {
+    date: "Late 1960s",
+    description:
+      "More **Course Unions** formed across various disciplines to create better communication between students and faculty.",
+  },
+  {
+    date: "1972",
+    description:
+      "The **Arts and Science Students' Union** (ASSU) was officially founded to unify and support undergraduate students in the Faculty of Arts and Science.",
+  },
+  {
+    date: "1990s",
+    description:
+      "ASSU expanded its reach, supporting student advocacy, academic policies, and funding for student-run initiatives.",
+  },
+  {
+    date: "2000s",
+    description: "The number of Course Unions under ASSU grew to **over 60**.",
+  },
+  {
+    date: "Present",
+    description:
+      "ASSU continues to advocate for students, organize academic and social events, offer grants and scholarships, and enhance the student experience at U of T.",
+  },
+];
+
+/**
+ * Renders text with bold formatting support
+ * Supports **bold text** syntax within the description
+ */
+function renderFormattedText(text: string) {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      // Remove the ** markers and render as bold
+      const boldText = part.slice(2, -2);
+      return (
+        <strong key={index} className="font-bold">
+          {boldText}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
+
+export default function VerticalTimeline({
+  timelinePoints,
+  className = "",
+  header,
+}: VerticalTimelineProps) {
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const positionElements = () => {
+      if (!timelineRef.current) return;
+
+      const timelineItems = timelineRef.current.querySelectorAll(
+        "[data-timeline-item]"
+      );
+
+      timelineItems.forEach((item) => {
+        const descriptionEl = item.querySelector(
+          "[data-description]"
+        ) as HTMLElement;
+        const dotEl = item.querySelector("[data-dot]") as HTMLElement;
+        const dateEl = item.querySelector("[data-date]") as HTMLElement;
+
+        if (!descriptionEl || !dotEl || !dateEl) return;
+
+        const descriptionRect = descriptionEl.getBoundingClientRect();
+        const descriptionCenter = descriptionRect.height / 2;
+
+        dotEl.style.transform = `translateY(${descriptionCenter - 8}px)`;
+        dateEl.style.transform = `translateY(${descriptionCenter - 12}px)`;
+      });
+    };
+
+    // Initial + resize
+    positionElements();
+    window.addEventListener("resize", positionElements);
+
+    if (typeof document !== "undefined" && document.fonts?.ready) {
+      document.fonts.ready.then(positionElements);
+    }
+
+    return () => {
+      window.removeEventListener("resize", positionElements);
+    };
+  }, [timelinePoints]);
+
+  if (!timelinePoints || timelinePoints.length === 0) {
+    return null;
+  }
+
+  return (
+    <div
+      className={`relative max-w-6xl mx-auto ${className}`}
+      ref={timelineRef}
+    >
+      {/* Header */}
+      {header && (
+        <div className="absolute top-0 left-0 z-10">
+          <h2 className="text-4xl font-bold text-[var(--color-text-primary)] text-left">
+            {header}
+          </h2>
+        </div>
+      )}
+
+      {/* Continuous timeline line behind all points */}
+      <div
+        className="absolute left-1/2 w-0 border-l-2 border-dotted border-gray-300 z-0 transform -translate-x-0.5"
+        style={{ top: "0.5rem", height: `calc(100% - 1rem)` }}
+      />
+
+      {/* Timeline container */}
+      <div className="flex flex-col">
+        {timelinePoints.map((point, index) => (
+          <div
+            key={index}
+            className="relative flex items-start group"
+            data-timeline-item
+          >
+            {/* Date section - left side */}
+            <div className="flex-1 pr-8 text-right">
+              <span
+                className="font-bold text-xl text-[var(--color-text-primary)] inline-block transition-transform duration-200"
+                data-date
+              >
+                {point.date}
+              </span>
+            </div>
+
+            {/* Timeline dot - center */}
+            <div className="flex-shrink-0 relative z-10 flex justify-center">
+              <div
+                className="w-4 h-4 bg-pink rounded-full transition-transform duration-200"
+                data-dot
+              />
+            </div>
+
+            {/* Description section - right side */}
+            <div className="flex-1 pl-8.5 pb-8">
+              <div
+                className="text-[var(--color-text-primary)] text-base leading-relaxed"
+                data-description
+              >
+                {renderFormattedText(point.description)}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

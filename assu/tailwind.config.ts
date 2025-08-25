@@ -6,6 +6,15 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ["questrial", "sans-serif"],
+        body: ["din-next-w01-light", "sans-serif"],
+        bitter: ["var(--font-bitter)", "serif"],
+      },
+    },
+  },
 };
 
 export default config;
