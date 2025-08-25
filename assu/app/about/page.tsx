@@ -5,7 +5,7 @@ import VerticalTimeline, {
   assuTimelineData,
 } from "@/components/common/VerticalTimeline";
 import MapSection from "@/components/common/MapSection";
-import ContentGrid from "@/components/layout/ContentGrid";
+import ContactInfoGrid from "@/components/layout/ContactInfoGrid";
 
 export default function About() {
   const overlays: OverlayBlock[] = [
@@ -60,11 +60,15 @@ export default function About() {
           concerns of all students are fulfilled.
         </Text>
         <Divider />
-        <VerticalTimeline timelinePoints={assuTimelineData} header="Our History" />
-        <Divider />
-        Some stuff here
-        <Divider borderTopWidth="3px" />
-        <MapSection title="" description="" />
+        <VerticalTimeline
+          timelinePoints={assuTimelineData}
+          header="Our History"
+          className="mb-8"
+        />
+        <Divider margin="0" />
+        <ContactInfoGrid />
+        <Divider borderTopWidth="3px" margin="0" />
+        <MapSection title="" description="" className="py-0! mb-10" />
         <Divider borderTopWidth="3px" />
       </div>
     </div>
