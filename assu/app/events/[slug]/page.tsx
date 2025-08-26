@@ -7,9 +7,10 @@ import HeroText from "../../../components/sections/HeroText";
 export default async function EventPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const post = await getEventBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getEventBySlug(slug);
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 font-sans">
