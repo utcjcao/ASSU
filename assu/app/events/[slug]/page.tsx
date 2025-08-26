@@ -1,4 +1,6 @@
 import { getEventBySlug } from "@/lib/posts";
+import fs from "fs";
+import path from "path";
 import Image from "next/image";
 import HeroText from "../../../components/sections/HeroText";
 
