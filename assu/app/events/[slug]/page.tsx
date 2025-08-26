@@ -4,13 +4,11 @@ import path from "path";
 import Image from "next/image";
 import HeroText from "../../../components/sections/HeroText";
 
-type PageProps = {
-  params: {
-    slug: string;
-  };
-};
-
-export default async function EventPage({ params }: PageProps) {
+export default async function EventPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const post = await getEventBySlug(params.slug);
 
   return (
@@ -39,6 +37,7 @@ export default async function EventPage({ params }: PageProps) {
   );
 }
 
+// ✅ Static generation for dynamic slugs
 export async function generateStaticParams() {
   const eventsDirectory = path.join(process.cwd(), "events", "upcoming");
   const filenames = fs.readdirSync(eventsDirectory);
