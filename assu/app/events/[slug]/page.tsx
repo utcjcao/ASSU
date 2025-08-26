@@ -4,11 +4,13 @@ import path from "path";
 import Image from "next/image";
 import HeroText from "../../../components/sections/HeroText";
 
-export default async function EventPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+type PageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function EventPage({ params }: PageProps) {
   const post = await getEventBySlug(params.slug);
 
   return (
