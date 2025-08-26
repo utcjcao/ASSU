@@ -7,10 +7,9 @@ import HeroText from "../../../components/sections/HeroText";
 export default async function EventPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const resolvedParams = await params;
-  const post = await getEventBySlug(resolvedParams.slug);
+  const post = await getEventBySlug(params.slug);
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 font-sans">
@@ -39,13 +38,10 @@ export default async function EventPage({
 }
 
 export async function generateStaticParams() {
-  const fs = require("fs");
-  const path = require("path");
   const eventsDirectory = path.join(process.cwd(), "events", "upcoming");
-
   const filenames = fs.readdirSync(eventsDirectory);
 
-  return filenames.map((filename: string) => ({
+  return filenames.map((filename) => ({
     slug: filename.replace(/\.md$/, ""),
   }));
 }
