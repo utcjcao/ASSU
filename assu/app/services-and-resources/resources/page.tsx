@@ -1,7 +1,6 @@
 import React from "react";
 import HeroText from "../../../components/sections/HeroText";
 import Accordion from "../../../components/common/Accordion";
-import ContentGrid from "../../../components/layout/ContentGrid";
 
 const faqItems = [
   {
@@ -39,48 +38,94 @@ const collegeResources = [
   {
     id: "innis-college",
     title: "Innis College",
-    description: "2 Sussex Avenue, MSS 1J5\nregistrar.innis@utoronto.ca",
+    description:
+      "2 Sussex Avenue, MSS 1J5\n (416) 978-2513\nregistrar.innis@utoronto.ca",
     links: ["Writing Centre", "Academic Advising"],
   },
   {
     id: "new-college",
     title: "New College",
-    description: "300 Huron Street, MSS 2J6\nnewcollege.registrar@utoronto.ca",
+    description:
+      "300 Huron Street, MSS 2J6\n (416) 978-2400\nnewcollege.registrar@utoronto.ca",
+    links: ["Writing Centre", "Academic Programs"],
   },
   {
     id: "university-college",
     title: "University College",
-    description: "15 King's College Circle, MSS 1J3\nuc.registrar@utoronto.ca",
+    description:
+      "15 King's College Circle, MSS 1J3\n(416) 978-7966\nuc.registrar@utoronto.ca",
+    links: ["Writing Centre", "Advising & Support"],
   },
   {
     id: "trinity-college",
     title: "Trinity College",
-    description: "6 Hoskin Avenue, MSS 1H8\nregistrar.trinity@utoronto.ca",
+    description:
+      "6 Hoskin Avenue, MSS 1H8\n (416) 978-2687\nregistrar.trinity@utoronto.ca",
+    links: ["Writing Centre", "Math Aid Centre", "Peer Advisors"],
   },
   {
     id: "victoria-college",
     title: "Victoria College",
-    description: "73 Queen’s Park Cres, MSS 1K7\nvic.registrar@utoronto.ca",
+    description:
+      "73 Queen’s Park Cres, MSS 1K7\n (416) 585-4508\nvic.registrar@utoronto.ca",
+    links: ["Writing Centre"],
   },
   {
     id: "woodsworth-college",
     title: "Woodsworth College",
-    description: "119 St. George Street, MSS 1A9\nww.registrar@utoronto.ca",
+    description:
+      "119 St. George Street, MSS 1A9\n (416) 978-4444\nww.registrar@utoronto.ca",
+    links: ["Writing Centre", "Math Learning Centre"],
   },
   {
     id: "st-michaels-college",
     title: "St. Michael’s College",
-    description: "81 St. Mary Street, MSS 1X5\nsmc.registrar@utoronto.ca",
+    description:
+      "81 St. Mary Street, MSS 1X5\n (416) 926-7117\nsmc.registrar@utoronto.ca",
+    links: ["Academic Resources & Support"],
   },
 ];
 
 export default function Resources() {
   return (
-    <div className="w-full max-w-3xl mx-auto space-y-6 px-4">
+    <div className="w-full max-w-screen-2xl mx-auto space-y-10 px-4">
       <HeroText text="Frequently asked questions" />
       <Accordion items={faqItems} />
-      <HeroText text="College Specific Resource" />
-      <ContentGrid items={collegeResources} />
+      <HeroText text="College Specific Resources" />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-gray-300">
+        {collegeResources.map((college, index) => (
+          <React.Fragment key={college.id}>
+            <div
+              className={`flex flex-col gap-2 px-4 py-6 border-gray-300 ${
+                index % 4 !== 3 ? "lg:border-r" : ""
+              }`}
+            >
+              <h3 className="text-2xl font-semibold text-black break-words">
+                {college.title}
+              </h3>
+              <p className="text-xs text-gray-700 whitespace-pre-line break-words leading-relaxed">
+                {college.description}
+              </p>
+              <div className="flex flex-col gap-2 mt-2">
+                {college.links.map((link, i) => (
+                  <button
+                    key={i}
+                    className="px-3 py-2 text-xs bg-gray-dark text-white rounded-none hover:bg-gray-800 transition min-h-[40px] text-left"
+                  >
+                    {link}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Horizontal divider after 4th item */}
+            {index === 3 && (
+              <div className="col-span-full border-t border-gray-300"></div>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
     </div>
   );
 }
