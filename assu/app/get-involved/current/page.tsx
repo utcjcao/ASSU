@@ -120,189 +120,225 @@ export default function Current() {
           />
         </div>
 
-        {/* Projects Grid - 3 horizontal sections with vertical dividers */}
+        {/* Projects Grid - Responsive layout */}
         <div className="bg-[rgb(243,243,243)]">
-          {/* First Row - 4 projects */}
-          <div className="grid grid-cols-4">
-            {currentProjects.slice(0, 4).map((project, index) => (
-              <div key={project.id} className="relative">
-                <div className="p-3">
-                  <div className="space-y-0 -space-y-24">
-                    {project.parts.map((part, partIndex) => (
-                      <div
-                        key={partIndex}
-                        className={`${
-                          part.color === "pink"
-                            ? "text-[rgb(201,8,111)]"
-                            : "text-black"
-                        } ${
-                          part.bold
-                            ? "font-bold text-3xl"
-                            : "font-normal text-lg"
-                        } block`}
-                      >
-                        {part.text}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                {/* Vertical divider (except for last item) */}
-                {index < 3 && (
-                  <div className="absolute right-0 top-[10%] bottom-[10%] w-px bg-gray-400"></div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Thin divider between rows */}
-          <div className="w-full h-px bg-black"></div>
-
-          {/* Second Row - 3 projects */}
-          <div className="grid grid-cols-4">
-            {currentProjects.slice(4, 7).map((project, index) => (
-              <div key={project.id} className="relative">
-                <div className="p-3">
-                  <div className="space-y-0 -space-y-24">
-                    {project.parts.map((part, partIndex) => (
-                      <div
-                        key={partIndex}
-                        className={`${
-                          part.color === "pink"
-                            ? "text-[rgb(201,8,111)]"
-                            : "text-black"
-                        } ${
-                          part.bold
-                            ? "font-bold text-3xl"
-                            : "font-normal text-lg"
-                        } block`}
-                      >
-                        {part.text}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                {/* Vertical divider (except for last item) */}
-                {index < 2 && (
-                  <div className="absolute right-0 top-[10%] bottom-[10%] w-px bg-gray-400"></div>
-                )}
-              </div>
-            ))}
-            {/* Empty cell to maintain 4-column grid */}
-            <div className="p-3"></div>
-          </div>
-
-          {/* Thin divider between rows */}
-          <div className="w-full h-px bg-black"></div>
-
-          {/* Third Row - 3 projects + decorative shapes */}
-          <div className="grid grid-cols-4">
-            {currentProjects.slice(7, 10).map((project, index) => (
-              <div key={project.id} className="relative">
-                <div className="p-3">
-                  <div className="space-y-0 -space-y-24">
-                    {project.parts.map((part, partIndex) => (
-                      <div
-                        key={partIndex}
-                        className={`${
-                          part.color === "pink"
-                            ? "text-[rgb(201,8,111)]"
-                            : "text-black"
-                        } ${
-                          part.bold
-                            ? "font-bold text-3xl"
-                            : "font-normal text-lg"
-                        } block`}
-                      >
-                        {part.text}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                {/* Vertical divider (except for last item) */}
-                {index < 2 && (
-                  <div className="absolute right-0 top-[10%] bottom-[10%] w-px bg-gray-400"></div>
-                )}
-              </div>
-            ))}
-            {/* Decorative flower shapes */}
-            <div className="p-3 flex items-center justify-center gap-4">
-              {/* Outline flower */}
-              <svg className="w-12 h-12" viewBox="0 0 32 32" aria-hidden="true">
-                <defs>
-                  <mask id="flowerOuter">
-                    <rect width="32" height="32" fill="black" />
-                    <circle cx="16" cy="16" r="10.2" fill="white" />
-                    <circle cx="24" cy="16" r="7.2" fill="white" />
-                    <circle cx="21.657" cy="21.657" r="7.2" fill="white" />
-                    <circle cx="16" cy="24" r="7.2" fill="white" />
-                    <circle cx="10.343" cy="21.657" r="7.2" fill="white" />
-                    <circle cx="8" cy="16" r="7.2" fill="white" />
-                    <circle cx="10.343" cy="10.343" r="7.2" fill="white" />
-                    <circle cx="16" cy="8" r="7.2" fill="white" />
-                    <circle cx="21.657" cy="10.343" r="7.2" fill="white" />
-                  </mask>
-
-                  <mask id="flowerInner">
-                    <rect width="32" height="32" fill="black" />
-                    <circle cx="16" cy="16" r="9.2" fill="white" />
-                    <circle cx="24" cy="16" r="6.2" fill="white" />
-                    <circle cx="21.657" cy="21.657" r="6.2" fill="white" />
-                    <circle cx="16" cy="24" r="6.2" fill="white" />
-                    <circle cx="10.343" cy="21.657" r="6.2" fill="white" />
-                    <circle cx="8" cy="16" r="6.2" fill="white" />
-                    <circle cx="10.343" cy="10.343" r="6.2" fill="white" />
-                    <circle cx="16" cy="8" r="6.2" fill="white" />
-                    <circle cx="21.657" cy="10.343" r="6.2" fill="white" />
-                  </mask>
-                </defs>
-
-                <rect
-                  width="32"
-                  height="32"
-                  fill="black"
-                  mask="url(#flowerOuter)"
-                />
-                <rect
-                  width="32"
-                  height="32"
-                  fill="rgb(243, 243, 243)"
-                  mask="url(#flowerInner)"
-                />
-              </svg>
-
-              {/* Solid magenta flower */}
-              <svg
-                className="w-12 h-12" // ⬅️ increased size here
-                viewBox="0 0 32 32"
-                aria-hidden="true"
+          {/* Mobile: Single column layout */}
+          <div className="block md:hidden space-y-6">
+            {currentProjects.map((project, index) => (
+              <div
+                key={project.id}
+                className="border-b border-gray-300 pb-6 last:border-b-0"
               >
-                <defs>
-                  <mask id="flowerSolid">
-                    <rect width="32" height="32" fill="black" />
-                    <circle cx="16" cy="16" r="9.5" fill="white" />
-                    <circle cx="24" cy="16" r="6.5" fill="white" />
-                    <circle cx="21.657" cy="21.657" r="6.5" fill="white" />
-                    <circle cx="16" cy="24" r="6.5" fill="white" />
-                    <circle cx="10.343" cy="21.657" r="6.5" fill="white" />
-                    <circle cx="8" cy="16" r="6.5" fill="white" />
-                    <circle cx="10.343" cy="10.343" r="6.5" fill="white" />
-                    <circle cx="16" cy="8" r="6.5" fill="white" />
-                    <circle cx="21.657" cy="10.343" r="6.5" fill="white" />
-                  </mask>
-                </defs>
-
-                <rect
-                  width="32"
-                  height="32"
-                  fill="rgb(201, 8, 111)"
-                  mask="url(#flowerSolid)"
-                />
-              </svg>
-            </div>
+                <div className="p-3">
+                  <div className="space-y-2">
+                    {project.parts.map((part, partIndex) => (
+                      <div
+                        key={partIndex}
+                        className={`${
+                          part.color === "pink"
+                            ? "text-[rgb(201,8,111)]"
+                            : "text-black"
+                        } ${
+                          part.bold
+                            ? "font-bold text-2xl md:text-3xl"
+                            : "font-normal text-base md:text-lg"
+                        } block`}
+                      >
+                        {part.text}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Thin divider at bottom */}
-          <div className="w-full h-px bg-black"></div>
+          {/* Desktop: Original 3-row grid layout */}
+          <div className="hidden md:block">
+            {/* First Row - 4 projects */}
+            <div className="grid grid-cols-4">
+              {currentProjects.slice(0, 4).map((project, index) => (
+                <div key={project.id} className="relative">
+                  <div className="p-3">
+                    <div className="space-y-0 -space-y-24">
+                      {project.parts.map((part, partIndex) => (
+                        <div
+                          key={partIndex}
+                          className={`${
+                            part.color === "pink"
+                              ? "text-[rgb(201,8,111)]"
+                              : "text-black"
+                          } ${
+                            part.bold
+                              ? "font-bold text-[1.7rem]"
+                              : "font-normal text-lg"
+                          } block`}
+                        >
+                          {part.text}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Vertical divider (except for last item) */}
+                  {index < 3 && (
+                    <div className="absolute right-0 top-[10%] bottom-[10%] w-px bg-gray-400"></div>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="w-full h-px bg-black"></div>
+
+            {/* Second Row - 3 projects */}
+            <div className="grid grid-cols-4">
+              {currentProjects.slice(4, 7).map((project, index) => (
+                <div key={project.id} className="relative">
+                  <div className="p-3">
+                    <div className="space-y-0 -space-y-24">
+                      {project.parts.map((part, partIndex) => (
+                        <div
+                          key={partIndex}
+                          className={`${
+                            part.color === "pink"
+                              ? "text-[rgb(201,8,111)]"
+                              : "text-black"
+                          } ${
+                            part.bold
+                              ? "font-bold text-[1.7rem]"
+                              : "font-normal text-lg"
+                          } block`}
+                        >
+                          {part.text}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Vertical divider (except for last item) */}
+                  {index < 2 && (
+                    <div className="absolute right-0 top-[10%] bottom-[10%] w-px bg-gray-400"></div>
+                  )}
+                </div>
+              ))}
+              {/* Empty cell to maintain 4-column grid */}
+              <div className="p-3"></div>
+            </div>
+
+            {/* Thin divider between rows */}
+            <div className="w-full h-px bg-black"></div>
+
+            {/* Third Row - 3 projects + decorative shapes */}
+            <div className="grid grid-cols-4">
+              {currentProjects.slice(7, 10).map((project, index) => (
+                <div key={project.id} className="relative">
+                  <div className="p-3">
+                    <div className="space-y-0 -space-y-24">
+                      {project.parts.map((part, partIndex) => (
+                        <div
+                          key={partIndex}
+                          className={`${
+                            part.color === "pink"
+                              ? "text-[rgb(201,8,111)]"
+                              : "text-black"
+                          } ${
+                            part.bold
+                              ? "font-bold text-[1.7rem]"
+                              : "font-normal text-lg"
+                          } block`}
+                        >
+                          {part.text}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Vertical divider (except for last item) */}
+                  {index < 2 && (
+                    <div className="absolute right-0 top-[10%] bottom-[10%] w-px bg-gray-400"></div>
+                  )}
+                </div>
+              ))}
+              {/* Decorative flower shapes */}
+              <div className="p-3 flex items-center justify-center gap-4">
+                {/* Outline flower */}
+                <svg
+                  className="w-12 h-12"
+                  viewBox="0 0 32 32"
+                  aria-hidden="true"
+                >
+                  <defs>
+                    <mask id="flowerOuter">
+                      <rect width="32" height="32" fill="black" />
+                      <circle cx="16" cy="16" r="10.2" fill="white" />
+                      <circle cx="24" cy="16" r="7.2" fill="white" />
+                      <circle cx="21.657" cy="21.657" r="7.2" fill="white" />
+                      <circle cx="16" cy="24" r="7.2" fill="white" />
+                      <circle cx="10.343" cy="21.657" r="7.2" fill="white" />
+                      <circle cx="8" cy="16" r="7.2" fill="white" />
+                      <circle cx="10.343" cy="10.343" r="7.2" fill="white" />
+                      <circle cx="16" cy="8" r="7.2" fill="white" />
+                      <circle cx="21.657" cy="10.343" r="7.2" fill="white" />
+                    </mask>
+
+                    <mask id="flowerInner">
+                      <rect width="32" height="32" fill="black" />
+                      <circle cx="16" cy="16" r="9.2" fill="white" />
+                      <circle cx="24" cy="16" r="6.2" fill="white" />
+                      <circle cx="21.657" cy="21.657" r="6.2" fill="white" />
+                      <circle cx="16" cy="24" r="6.2" fill="white" />
+                      <circle cx="10.343" cy="21.657" r="6.2" fill="white" />
+                      <circle cx="8" cy="16" r="6.2" fill="white" />
+                      <circle cx="10.343" cy="10.343" r="6.2" fill="white" />
+                      <circle cx="16" cy="8" r="6.2" fill="white" />
+                      <circle cx="21.657" cy="10.343" r="6.2" fill="white" />
+                    </mask>
+                  </defs>
+
+                  <rect
+                    width="32"
+                    height="32"
+                    fill="black"
+                    mask="url(#flowerOuter)"
+                  />
+                  <rect
+                    width="32"
+                    height="32"
+                    fill="rgb(243, 243, 243)"
+                    mask="url(#flowerInner)"
+                  />
+                </svg>
+
+                {/* Solid magenta flower */}
+                <svg
+                  className="w-12 h-12" // ⬅️ increased size here
+                  viewBox="0 0 32 32"
+                  aria-hidden="true"
+                >
+                  <defs>
+                    <mask id="flowerSolid">
+                      <rect width="32" height="32" fill="black" />
+                      <circle cx="16" cy="16" r="9.5" fill="white" />
+                      <circle cx="24" cy="16" r="6.5" fill="white" />
+                      <circle cx="21.657" cy="21.657" r="6.5" fill="white" />
+                      <circle cx="16" cy="24" r="6.5" fill="white" />
+                      <circle cx="10.343" cy="21.657" r="6.5" fill="white" />
+                      <circle cx="8" cy="16" r="6.5" fill="white" />
+                      <circle cx="10.343" cy="10.343" r="6.5" fill="white" />
+                      <circle cx="16" cy="8" r="6.5" fill="white" />
+                      <circle cx="21.657" cy="10.343" r="6.5" fill="white" />
+                    </mask>
+                  </defs>
+
+                  <rect
+                    width="32"
+                    height="32"
+                    fill="rgb(201, 8, 111)"
+                    mask="url(#flowerSolid)"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            {/* Thin divider at bottom */}
+            <div className="w-full h-px bg-black"></div>
+          </div>
         </div>
       </section>
 
