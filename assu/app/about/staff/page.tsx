@@ -60,19 +60,55 @@ const staffItems: ContentItem[] = [
   {
     id: "jane-image",
     node: (
-      <Image
-        src="/images/about-staff-jane.webp"
-        alt="Photo of Jane Seto Paul"
-        width={220}
-        height={220}
-        className="rounded-lg object-cover"
-      />
+      <>
+        <Image
+          src="/images/about-staff-jane.webp"
+          alt="Photo of Jane Seto Paul"
+          width={220}
+          height={220}
+          className="rounded-lg object-cover"
+        />
+        {/* MOBILE ONLY */}
+        <div className="space-y-3 md:hidden mt-4">
+          <p className="text-sm text-gray-600">Executive Co-ordinator</p>
+          <h3 className="text-2xl font-bold text-black">Jane Seto Paul</h3>
+          <p className="text-gray-700 text-base leading-relaxed">
+            Jane graduated from UofT – New College in 1992 with a Bachelor of
+            Science degree, majoring in Psychology and Anthropology. In her spare
+            time, she enjoys music, movies, travel, golf, shopping and card
+            making.
+          </p>
+          <a
+            href="mailto:jane.seto@utoronto.ca"
+            className="flex items-center gap-2 text-pink-600 hover:underline"
+          >
+            <span className="text-lg">
+              <svg
+                data-bbox="20 44.5 160 110.999"
+                viewBox="0 0 200 200"
+                height="20"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                data-type="shape"
+                fill="currentColor"
+                className="text-pink-500"
+              >
+                <g>
+                  <path d="M109.336 104.331a17.481 17.481 0 0 1-18.671 0L20.222 59.784H20v78.442c0 9.54 7.784 17.273 17.386 17.273h125.228c9.602 0 17.386-7.733 17.386-17.273V59.784h-.222l-70.442 44.547z"></path>
+                  <path d="M22.578 44.5l.215.125 68.173 43.111a16.917 16.917 0 0 0 18.069 0l68.173-43.111.215-.125H22.578z"></path>
+                </g>
+              </svg>
+            </span>
+            jane.seto@utoronto.ca
+          </a>
+        </div>
+      </>
     ),
   },
   {
     id: "jane-details",
     node: (
-      <div className="space-y-3">
+      <div className="space-y-3 hidden md:block">
         <p className="text-sm text-gray-600">Executive Co-ordinator</p>
         <h3 className="text-2xl font-bold text-black">Jane Seto Paul</h3>
         <p className="text-gray-700 text-base leading-relaxed">
