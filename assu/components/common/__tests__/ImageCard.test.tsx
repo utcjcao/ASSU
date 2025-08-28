@@ -2,7 +2,6 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-// Adjust path if your alias differs
 import ImageCard from "@/components/common/ImageCard";
 import AssuImage from "../AssuImage";
 
@@ -83,7 +82,7 @@ describe("ImageCard", () => {
     expect(img).toHaveAttribute("data-alt", "Example alt");
   });
 
-  test("applies size classes for md and merges custom className", () => {
+  test("applies responsive size classes for md and merges custom className", () => {
     render(
       <ImageCard
         {...baseProps}
@@ -94,14 +93,16 @@ describe("ImageCard", () => {
     );
 
     const root = screen.getByRole("group", { name: "Card Title" });
-    // Spot-check a couple of the size utility classes
-    expect(root).toHaveClass(
-      "w-[320px]",
-      "h-[300px]",
-      "min-w-[320px]",
-      "min-h-[300px]"
-    );
-    // Merged className
+    expect(root).toHaveClass("w-full");
+    expect(root).toHaveClass("h-[240px]", "min-h-[240px]");
+
+    // md+ classes: fixed pixel sizes (use regex because of Tailwind's md: prefix)
+    expect(root.className).toMatch(/md:w-\[320px\]/);
+    expect(root.className).toMatch(/md:h-\[300px\]/);
+    expect(root.className).toMatch(/md:min-w-\[320px\]/);
+    expect(root.className).toMatch(/md:min-h-\[300px\]/);
+
+    // Custom class merge
     expect(root).toHaveClass("custom-class");
   });
 });
