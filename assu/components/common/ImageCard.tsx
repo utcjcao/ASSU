@@ -27,9 +27,9 @@ export default function ImageCard({
 
   //Scaled to size
   const sizes: Record<NonNullable<ImageCardProps["size"]>, string> = {
-    sm: "w-[280px] h-[260px] min-w-[280px] min-h-[260px] max-w-[280px] max-h-[260px] flex-none",
-    md: "w-[320px] h-[300px] min-w-[320px] min-h-[300px] max-w-[320px] max-h-[300px] flex-none",
-    lg: "w-[320px] h-[360px] min-w-[320px] min-h-[360px] max-w-[320px] max-h-[360px] flex-none",
+    sm: "w-full h-[220px] min-h-[220px] md:w-[280px] md:h-[260px] md:min-w-[280px] md:min-h-[260px] flex-none",
+    md: "w-full h-[240px] min-h-[240px] md:w-[320px] md:h-[300px] md:min-w-[320px] md:min-h-[300px] flex-none",
+    lg: "w-full h-[260px] min-h-[260px] md:w-[320px] md:h-[360px] md:min-w-[320px] md:min-h-[360px] flex-none",
   };
 
   const base = [

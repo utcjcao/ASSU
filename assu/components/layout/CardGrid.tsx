@@ -61,7 +61,7 @@ export default function CardGrid({
         style={{
           columnGap: `${gapPx}px`,
           rowGap: `${gapPx}px`,
-          gridTemplateColumns: `repeat(auto-fit, ${cardWidthPx}px)`,
+          gridTemplateColumns: `repeat(auto-fit, minmax(200px, ${cardWidthPx}px))`,
           maxWidth: `${maxWidth}px`,
           width: "100%",
         }}
