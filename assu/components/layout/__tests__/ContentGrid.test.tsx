@@ -24,6 +24,9 @@ describe("ContentGrid", () => {
     expect(grid).toHaveAttribute("aria-rowcount", "2");
     // centered container class
     expect(grid.className).toMatch(/mx-auto/);
+    // mobile: 1 col, md+: 2 cols
+    expect(grid.className).toMatch(/grid-cols-1/);
+    expect(grid.className).toMatch(/md:grid-cols-2/);
   });
 
   it("chunks items into rows and renders a gridcell for each item", () => {
@@ -45,23 +48,27 @@ describe("ContentGrid", () => {
     });
   });
 
-  it("applies partial divider classes on correct cells (top/left) with 2x2 layout", () => {
+  it("applies mobile and md+ divider classes correctly for a 2x2 layout", () => {
     render(<ContentGrid items={items} columns={2} />);
     const cells = screen.getAllByRole("gridcell");
 
-    // Index mapping in DOM order for 2 columns:
-    // [0,1] -> first row | [2,3] -> second row
-    // Cell 1 (first row, second col) => should have LEFT divider only (after:)
-    expect(cells[1].className).toMatch(/after:absolute/);
-    expect(cells[1].className).not.toMatch(/before:absolute/);
+    // Index mapping: [0,1] first row | [2,3] second row
 
-    // Cell 2 (second row, first col) => should have TOP divider only (before:)
+    // Cell 1 (first row, second col):
+    // - MOBILE: has a TOP divider (mobileTop rule)
+    // - MD+: has a LEFT divider (vertical rule appears only on md)
+    expect(cells[1].className).toMatch(/before:absolute/);
+    expect(cells[1].className).toMatch(/md:after:absolute/);
+
+    // Cell 2 (second row, first col):
+    // - Has a TOP divider
     expect(cells[2].className).toMatch(/before:absolute/);
-    expect(cells[2].className).not.toMatch(/after:absolute/);
 
-    // Cell 3 (second row, second col) => should have BOTH
+    // Cell 3 (second row, second col):
+    // - Has a TOP divider
+    // - MD+: also has a LEFT divider
     expect(cells[3].className).toMatch(/before:absolute/);
-    expect(cells[3].className).toMatch(/after:absolute/);
+    expect(cells[3].className).toMatch(/md:after:absolute/);
   });
 
   it("renders titles and optional descriptions", () => {
