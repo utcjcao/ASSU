@@ -62,7 +62,7 @@ describe("CardGrid", () => {
     expect(grid).toHaveStyle({
       columnGap: `${gapPx}px`,
       rowGap: `${gapPx}px`,
-      gridTemplateColumns: `repeat(auto-fit, ${cardWidthPx}px)`,
+      gridTemplateColumns: `repeat(auto-fit, minmax(200px, ${cardWidthPx}px))`,
     });
   });
 
