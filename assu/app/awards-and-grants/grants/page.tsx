@@ -11,6 +11,7 @@ const items: ContentItem[] = [
   {
     id: "travel-grant",
     title: "ASSU Travel Grant",
+    mergeKey: "travel",
     node: (
       <div className="flex items-start gap-3">
         {/* <AssuImage
@@ -20,27 +21,15 @@ const items: ContentItem[] = [
           imgClassName="w-full h-full object-contain"
           radiusClassName=""
         /> */}
-        {/* MOBILE: stack the description with the icon/title */}
-        <div className="md:hidden text-sm leading-relaxed">
-          This grant was created to financially assist full-time undergraduate
-          Arts & Science students presenting their own research at academic conferences.
-          Grants are strictly for the costs of travel (e.g., airfare, train fare).
-          The amount of a single grant is up to 40% of your ticket to a max of $250,
-          regardless of conference location or estimated expenses.
-          <div className="mt-2">
-            <Link href="/awards-and-grants/grants/travel-grant-application">
-              2024 Travel Grant Application
-            </Link>
-          </div>
-        </div>
       </div>
     ),
   },
   {
     id: "travel-grant-desc",
     title: "",
+    mergeKey: "travel",
     node: (
-      <div className="hidden md:block leading-relaxed">
+      <div className="leading-relaxed">
         This grant was created to financially assist full-time undergraduate Arts & Science
         students presenting their own research at academic conferences. Grants are strictly
         for the costs of travel (e.g., airfare, train fare). The amount of a single grant is
@@ -57,6 +46,7 @@ const items: ContentItem[] = [
   {
     id: "deferred-exam-fee-1",
     title: "Deferred Exam Fee Grant",
+    mergeKey: "defer",
     node: (
       <div className="flex items-start gap-3">
         {/* <AssuImage
@@ -66,27 +56,15 @@ const items: ContentItem[] = [
           imgClassName="w-full h-full object-contain"
           radiusClassName=""
         /> */}
-        {/* MOBILE */}
-        <div className="md:hidden text-sm leading-relaxed">
-          This grant was created to financially assist full-time undergraduate
-          Arts & Science students with the costs of deferred exam fees in a situation
-          where they need to postpone their final exam due to physical or mental illness.
-          The amount of the grant is up to $120 and can only be applied to the fee
-          associated with a deferred exam, regardless of additional circumstances.
-          <div className="mt-2">
-            <Link href="/awards-and-grants/grants/deferred-exam-fee-application">
-              Deferred Exam Fee Grant Application
-            </Link>
-          </div>
-        </div>
       </div>
     ),
   },
   {
     id: "deferred-exam-fee-1-desc",
     title: "",
+    mergeKey: "defer",
     node: (
-      <div className="hidden md:block leading-relaxed">
+      <div className=" leading-relaxed">
         This grant was created to financially assist full-time undergraduate Arts & Science
         students with the costs of deferred exam fees in a situation where they need to
         postpone their final exam due to physical or mental illness. The amount of the grant
@@ -103,6 +81,7 @@ const items: ContentItem[] = [
   {
     id: "donation-requests",
     title: "Donation Requests",
+    mergeKey: "donation",
     node: (
       <div className="flex items-start gap-3">
         {/* <AssuImage
@@ -112,27 +91,15 @@ const items: ContentItem[] = [
           imgClassName="w-full h-full object-contain"
           radiusClassName=""
         /> */}
-        {/* MOBILE */}
-        <div className="md:hidden text-sm leading-relaxed">
-          All ASSU Members are eligible to submit requests for monetary donations
-          from ASSU towards events and/or initiatives which enhance the undergraduate
-          student experience. The primary contact must be an ASSU member for all
-          donation requests. Eligibility does not guarantee approval; all requests are
-          subject to review and approval by the ASSU Executive.
-          <div className="mt-2">
-            <Link href="/awards-and-grants/grants/donation-request-form">
-              ASSU Donation Request Form
-            </Link>
-          </div>
-        </div>
       </div>
     ),
   },
   {
     id: "donation-requests-desc",
     title: "",
+    mergeKey: "donation",
     node: (
-      <div className="hidden md:block leading-relaxed">
+      <div className="leading-relaxed">
         All ASSU Members are eligible to submit requests for monetary donations from ASSU
         towards events and/or initiatives which enhance the undergraduate student experience.
         The primary contact must be an ASSU member for all donation requests. Eligibility does
