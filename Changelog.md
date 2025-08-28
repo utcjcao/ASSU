@@ -305,3 +305,11 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - Copy paste /about to /about/assu
 
 ---
+
+## [1.0.0 - 25/08/28]
+
+### Added
+
+- Copy paste /course-unions to /course-unions/unions
+
+---
