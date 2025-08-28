@@ -297,3 +297,11 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - Fixed current-projects mobile display
 
 ---
+
+## [1.0.0 - 25/01/29]
+
+### Added
+
+- Copy paste /about to /about/assu
+
+---
