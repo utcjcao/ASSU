@@ -196,7 +196,7 @@ export default function CourseUnionsPage() {
                 node: (
                   <Text
                     as="p"
-                    className="text-4xl md:text-xl text-[var(--color-text-primary)] mb-4"
+                    className="text-base md:text-xl lg:text-2xl text-[var(--color-text-primary)] mb-4"
                   >
                     Course Unions are the core of the Arts and Science Students’
                     Union. From A to Z, Anthropology to Women & Gender Studies,
