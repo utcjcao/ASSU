@@ -12,13 +12,15 @@ export default function About() {
     {
       content: (
         <div className="text-white text-center max-w-4xl">
-          <p className="text-2xl italic mb-4">
+          <p className="text-sm sm:text-base md:text-xl lg:text-2xl italic mb-3 md:mb-4 leading-relaxed">
             &quot;Education is the bridge between the present and the future. It
             molds individuals capable of turning challenges into opportunities
             and nurtures the imagination that will one day shape the
             world.&quot;
           </p>
-          <p className="text-right text-lg">– Maria Montessori</p>
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium">
+            – Maria Montessori
+          </p>
         </div>
       ),
       position: "center",
@@ -32,7 +34,7 @@ export default function About() {
           src="/images/about-assu-hero.webp"
           alt="University of Toronto campus with historic buildings"
           overlays={overlays}
-          aspectClassName="aspect-[18/9]"
+          aspectClassName="aspect-[4/3] md:aspect-[18/9]"
           sizes="(max-width: 640px) 100vw, (max-width: 980px) 100vw, 980px"
           className="mb-8"
         />

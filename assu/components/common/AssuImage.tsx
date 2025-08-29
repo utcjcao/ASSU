@@ -183,7 +183,7 @@ export default function AssuImage({
                   : pos === "center-left"
                   ? "top-1/2 -translate-y-1/2 left-0 p-4"
                   : pos === "center"
-                  ? "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4"
+                  ? "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-2 sm:p-4 md:p-6 lg:p-8"
                   : pos === "center-right"
                   ? "top-1/2 -translate-y-1/2 right-0 p-4"
                   : pos === "bottom-center"
