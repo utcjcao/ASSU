@@ -48,10 +48,10 @@ export default function UnionResources() {
   ];
 
   return (
-    <div className="bg-gray-lighter min-h-screen p-8">
+    <div className="bg-gray-lighter p-8">
       <div className="max-w-7xl mx-auto">
         {/* Main layout container */}
-        <div className="flex">
+        <div className="flex flex-col sm:flex-row">
           {/* Left side - Header, description, contact, and diamonds */}
           <div className="flex flex-col justify-between w-80 pr-8">
             {/* Header */}
