@@ -26,7 +26,7 @@ export default function Handbook() {
         </Link>
       </Text>
       <Divider />
-      <div className="flex justify-around gap-4 mb-6">
+      <div className="flex flex-wrap justify-around gap-4 mb-6">
         <Image
           src="/images/handbook-1.avif"
           alt="ASSU Academic Handbook"
