@@ -4,7 +4,7 @@ export default function ContactInfoGrid() {
   return (
     <div
       className="grid gap-0"
-      style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr" }}
+      style={{ gridTemplateColumns: "1fr 1fr 1fr 1.5fr" }}
     >
       {/* Column 1 */}
       <div className="p-6">
@@ -126,12 +126,12 @@ export default function ContactInfoGrid() {
                 10:00 am – 5:00 pm
               </span>
             </div>
-            <div className="text-xs md:text-sm text-black mt-2">
-              (Friday closed from May-Aug)
+            <div className="text-xs md:text-sm text-black mt-2 text-right">
+              (Friday <strong>closed</strong> from May-Aug)
             </div>
             <div className="flex justify-between">
               <span className="text-sm md:text-base text-black">Weekends</span>
-              <span className="text-sm md:text-base text-black font-semibold">
+              <span className="text-sm md:text-base text-black font-semibold text-left">
                 Closed
               </span>
             </div>
