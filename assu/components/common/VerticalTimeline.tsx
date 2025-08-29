@@ -120,62 +120,62 @@ export default function VerticalTimeline({
   }
 
   return (
-    <div
-      className={`relative max-w-6xl mx-auto ${className}`}
-      ref={timelineRef}
-    >
-      {/* Header */}
+    <div className={`relative max-w-6xl mx-auto ${className}`}>
+      {/* Header - responsive positioning */}
       {header && (
-        <div className="absolute top-0 left-0 z-10">
+        <div className="md:absolute md:top-0 md:left-0 md:z-10 mb-8 md:mb-0">
           <h2 className="text-4xl font-bold text-[var(--color-text-primary)] text-left">
             {header}
           </h2>
         </div>
       )}
 
-      {/* Continuous timeline line behind all points */}
-      <div
-        className="absolute left-1/2 w-0 border-l-2 border-dotted border-gray-300 z-0 transform -translate-x-0.5"
-        style={{ top: "0.5rem", height: `calc(100% - 1rem)` }}
-      />
+      {/* Timeline content container */}
+      <div className="md:pt-16" ref={timelineRef}>
+        {/* Continuous timeline line behind all points */}
+        <div
+          className="absolute left-1/2 w-0 border-l-2 border-dotted border-gray-300 z-0 transform -translate-x-0.5"
+          style={{ top: "0.5rem", height: `calc(100% - 1rem)` }}
+        />
 
-      {/* Timeline container */}
-      <div className="flex flex-col">
-        {timelinePoints.map((point, index) => (
-          <div
-            key={index}
-            className="relative flex items-start group"
-            data-timeline-item
-          >
-            {/* Date section - left side */}
-            <div className="flex-1 pr-8 text-right">
-              <span
-                className="font-bold text-xl text-[var(--color-text-primary)] inline-block transition-transform duration-200"
-                data-date
-              >
-                {point.date}
-              </span>
-            </div>
+        {/* Timeline container */}
+        <div className="flex flex-col">
+          {timelinePoints.map((point, index) => (
+            <div
+              key={index}
+              className="relative flex items-start group"
+              data-timeline-item
+            >
+              {/* Date section - left side */}
+              <div className="flex-1 pr-8 text-right">
+                <span
+                  className="font-bold text-xl text-[var(--color-text-primary)] inline-block transition-transform duration-200"
+                  data-date
+                >
+                  {point.date}
+                </span>
+              </div>
 
-            {/* Timeline dot - center */}
-            <div className="flex-shrink-0 relative z-10 flex justify-center">
-              <div
-                className="w-4 h-4 bg-pink rounded-full transition-transform duration-200"
-                data-dot
-              />
-            </div>
+              {/* Timeline dot - center */}
+              <div className="flex-shrink-0 relative z-10 flex justify-center">
+                <div
+                  className="w-4 h-4 bg-pink rounded-full transition-transform duration-200"
+                  data-dot
+                />
+              </div>
 
-            {/* Description section - right side */}
-            <div className="flex-1 pl-8.5 pb-8">
-              <div
-                className="text-[var(--color-text-primary)] text-base leading-relaxed"
-                data-description
-              >
-                {renderFormattedText(point.description)}
+              {/* Description section - right side */}
+              <div className="flex-1 pl-8.5 pb-8">
+                <div
+                  className="text-[var(--color-text-primary)] text-base leading-relaxed"
+                  data-description
+                >
+                  {renderFormattedText(point.description)}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
