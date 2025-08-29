@@ -36,7 +36,7 @@ export default function RootLayout({
         <Header />
 
         <main className="flex-1 flex justify-center px-4 bg-gray-lighter">
-          <div className="w-full max-w-screen-md flex flex-col p-4">
+          <div className="w-full max-w-screen-lg flex flex-col p-4">
             {children}
           </div>
         </main>
