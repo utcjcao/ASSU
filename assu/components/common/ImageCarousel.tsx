@@ -1,9 +1,7 @@
-// components/ImageCarousel.tsx
 "use client";
 
 import { useState } from "react";
 import Image from "next/image";
-
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 
 const slides = [
@@ -12,21 +10,21 @@ const slides = [
     heading: "Welcome to the ASSU Website",
     description:
       "U of T ASSU represents over 28K full-time undergrad students at the University of Toronto St. George Campus.",
-    link: "#about",
+    link: "/about/assu",
   },
   {
     src: "/images/home-carousel-2.webp",
-    heading: "Welcome to the ASSU Website",
+    heading: "Services and Resources",
     description:
-      "U of T ASSU represents over 28K full-time undergrad students at the University of Toronto St. George Campus.",
-    link: "#about",
+      "Unlock the support you need: academic, financial, and wellness resources all in one place.",
+    link: "/services-and-resources/resources",
   },
   {
     src: "/images/home-carousel-3.webp",
-    heading: "Welcome to the ASSU Website",
+    heading: "Course Unions",
     description:
-      "U of T ASSU represents over 28K full-time undergrad students at the University of Toronto St. George Campus.",
-    link: "#about",
+      "Looking to join a course union? Part of a union seeking our help? You're at the right place.",
+    link: "/course-unions",
   },
 ];
 
@@ -59,20 +57,24 @@ export function ImageCarousel() {
                   className="object-cover rounded-lg"
                   priority
                 />
-                <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white text-center px-6">
-                  <h2
-                    data-testid={`carousel-heading-${index}`}
-                    className="text-4xl font-bold"
-                  >
-                    {slide.heading}
-                  </h2>
-                  <p className="mt-4 text-lg max-w-2xl">{slide.description}</p>
-                  <a
-                    href={slide.link}
-                    className="mt-6 text-white underline text-lg"
-                  >
-                    About Us
-                  </a>
+                <div className="absolute inset-0 bg-black/40 flex items-center px-8">
+                  <div className="ml-12 max-w-sm text-left text-white">
+                    <h2
+                      data-testid={`carousel-heading-${index}`}
+                      className="text-5xl font-bold leading-tight break-words"
+                    >
+                      {slide.heading}
+                    </h2>
+                    <p className="mt-4 text-base leading-relaxed break-words max-w-md">
+                      {slide.description}
+                    </p>
+                    <a
+                      href={slide.link}
+                      className="mt-6 inline-block text-white underline text-base"
+                    >
+                      Learn More
+                    </a>
+                  </div>
                 </div>
               </div>
             </CarouselItem>
@@ -80,18 +82,34 @@ export function ImageCarousel() {
         </CarouselContent>
       </Carousel>
 
-      {/* Arrows */}
+      {/* Left Arrow */}
       <button
         onClick={handlePrev}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow"
+        className="absolute left-6 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition"
+        aria-label="Previous Slide"
       >
-        ◀
+        <Image
+          src="/svg/arrow.svg"
+          alt="Previous"
+          width={24}
+          height={24}
+          className="w-6 h-6 rotate-180"
+        />
       </button>
+
+      {/* Right Arrow */}
       <button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow"
+        className="absolute right-6 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition"
+        aria-label="Next Slide"
       >
-        ▶
+        <Image
+          src="/svg/arrow.svg"
+          alt="Next"
+          width={24}
+          height={24}
+          className="w-6 h-6"
+        />
       </button>
 
       {/* Dots */}
@@ -100,7 +118,7 @@ export function ImageCarousel() {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full ${
+            className={`w-2 h-2 rounded-full ${
               index === currentSlide ? "bg-white" : "bg-gray-400"
             }`}
           />
