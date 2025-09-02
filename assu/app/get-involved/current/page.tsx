@@ -124,7 +124,7 @@ export default function Current() {
         <div className="bg-[rgb(243,243,243)]">
           {/* Mobile: Single column layout */}
           <div className="block md:hidden space-y-6">
-            {currentProjects.map((project, index) => (
+            {currentProjects.map((project) => (
               <div
                 key={project.id}
                 className="border-b border-gray-300 pb-6 last:border-b-0"
