@@ -2,7 +2,7 @@
 
 import React from "react";
 import Text from "@/components/common/Text";
-import AssuImage from "@/components/common/AssuImage";
+// import AssuImage from "@/components/common/AssuImage";
 import Divider from "@/components/common/Divider";
 import Link from "@/components/common/Link";
 import Image from "next/image";
