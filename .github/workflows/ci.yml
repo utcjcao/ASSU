@@ -15,16 +15,16 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: cd assu && npm install
+        run: npm install
 
       - name: Lint
-        run: cd assu && npm run lint
+        run: npm run lint
 
       - name: Type Check
-        run: cd assu && npx tsc --noEmit
+        run: npx tsc --noEmit
 
       - name: Build
-        run: cd assu && npm run build
+        run: npm run build
 
       - name: Run Tests
-        run: cd assu && npm test
+        run: npm test
