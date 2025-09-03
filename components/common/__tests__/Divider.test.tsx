@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Divider from "../../common/Divider";
+import Divider from "../Divider";
 
 describe("Divider", () => {
   it("renders divider element", () => {
