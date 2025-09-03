@@ -23,12 +23,16 @@ test("ImageCarousel renders and navigates", () => {
   expect(screen.getByTestId("carousel-image-0")).toBeInTheDocument();
 
   // Click next
-  fireEvent.click(screen.getByText("▶"));
+  // fireEvent.click(screen.getByText("▶"));
+  fireEvent.click(screen.getByRole("button", { name: /next slide/i }));
+
   expect(screen.getByTestId("carousel-heading-1")).toBeInTheDocument();
   expect(screen.getByTestId("carousel-image-1")).toBeInTheDocument();
 
   // Click previous
-  fireEvent.click(screen.getByText("◀"));
+  // fireEvent.click(screen.getByText("◀"));
+  fireEvent.click(screen.getByRole("button", { name: /previous slide/i }));
+
   expect(screen.getByTestId("carousel-heading-0")).toBeInTheDocument();
   expect(screen.getByTestId("carousel-image-0")).toBeInTheDocument();
 });
