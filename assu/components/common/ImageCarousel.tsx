@@ -89,11 +89,11 @@ export function ImageCarousel() {
         aria-label="Previous Slide"
       >
         <Image
-          src="/svg/arrow.svg"
+          src="/svg/arrow-white.svg"
           alt="Previous"
-          width={24}
-          height={24}
-          className="w-6 h-6 rotate-180"
+          width={40}
+          height={40}
+          className="w-8 h-12 rotate-180"
         />
       </button>
 
@@ -104,11 +104,11 @@ export function ImageCarousel() {
         aria-label="Next Slide"
       >
         <Image
-          src="/svg/arrow.svg"
+          src="/svg/arrow-white.svg"
           alt="Next"
-          width={24}
-          height={24}
-          className="w-6 h-6"
+          width={40}
+          height={40}
+          className="w-8 h-12"
         />
       </button>
 
