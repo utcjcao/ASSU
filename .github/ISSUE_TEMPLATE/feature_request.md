@@ -1,7 +1,9 @@
 ---
 name: "Feature Request"
 about: Suggest a new feature or functionality
+title: "[FEAT] "
 labels: [feature]
+assignees: []
 ---
 
 ## Summary

@@ -1,7 +1,9 @@
 ---
 name: "Bug Report"
-about: Report something that isn’t working as expected
+about: Report something that isn’t working
+title: "[BUG] "
 labels: [bug]
+assignees: []
 ---
 
 ## Description
