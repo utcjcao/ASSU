@@ -2,6 +2,8 @@
 name: "Refactor Request"
 about: Suggest an edit
 labels: [enhancement]
+title: "[REFACTOR] "
+assignees: []
 ---
 
 ## Summary
