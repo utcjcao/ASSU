@@ -313,3 +313,11 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - Copy paste /course-unions to /course-unions/unions
 
 ---
+
+## [1.0.0 - 25/09/07]
+
+### Added
+
+- Fetched, cleaned and rendered data to /documents page
+
+---
