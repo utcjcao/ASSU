@@ -1,3 +1,4 @@
+// Import cheerio only on server side
 import * as cheerio from "cheerio";
 
 // Define the data shape for documents
@@ -124,6 +125,12 @@ function cleanUrl(url: string): string {
 // Main function to fetch and parse documents data
 export async function fetchDocumentsData(): Promise<Document[]> {
   try {
+    // Only run on server side
+    if (typeof window !== "undefined") {
+      console.warn("fetchDocumentsData should only be called on server side");
+      return getFallbackDocuments();
+    }
+
     console.log("Fetching documents data from WordPress API...");
 
     const controller = new AbortController();
@@ -150,7 +157,7 @@ export async function fetchDocumentsData(): Promise<Document[]> {
 
     if (!data || data.length === 0) {
       console.warn("No documents page found");
-      return [];
+      return getFallbackDocuments();
     }
 
     const page = data[0];
@@ -158,7 +165,7 @@ export async function fetchDocumentsData(): Promise<Document[]> {
 
     if (!content) {
       console.warn("No content found in documents page");
-      return [];
+      return getFallbackDocuments();
     }
 
     console.log("Parsing HTML content with Cheerio...");
@@ -168,7 +175,7 @@ export async function fetchDocumentsData(): Promise<Document[]> {
     const documents: Document[] = [];
 
     // Extract all links from the content
-    $("a").each((index, element) => {
+    $("a").each((index: number, element) => {
       const $element = $(element);
       const href = $element.attr("href");
       const text = $element.text();
@@ -241,31 +248,34 @@ export async function fetchDocumentsData(): Promise<Document[]> {
     return uniqueDocuments;
   } catch (error) {
     console.error("Error fetching documents data:", error);
-
-    // Return some fallback data if the API fails
-    return [
-      {
-        documentName: "Summer Budget 2025",
-        link: "https://assu.ca/wp/wp-content/uploads/2025/05/Summer-Budget-2025.pdf",
-        documentType: "Budgets and Financial Statements",
-      },
-      {
-        documentName: "Financial Statement April 30th 2025",
-        link: "https://assu.ca/wp/wp-content/uploads/2025/05/Financial-Statement-FINAL.pdf",
-        documentType: "Budgets and Financial Statements",
-      },
-      {
-        documentName: "ASSU Constitution and Bylaws 2024",
-        link: "https://assu.ca/wp/wp-content/uploads/2024/04/ASSU-Constitution-Bylaws-2024.pdf",
-        documentType: "ASSU Constitution",
-      },
-      {
-        documentName: "ASSU Bylaws 2016",
-        link: "https://assu.ca/wp/wp-content/uploads/2008/12/BYLAWS.2016.pdf",
-        documentType: "ASSU Constitution",
-      },
-    ];
+    return getFallbackDocuments();
   }
+}
+
+// Helper function to get fallback documents
+function getFallbackDocuments(): Document[] {
+  return [
+    {
+      documentName: "Summer Budget 2025",
+      link: "https://assu.ca/wp/wp-content/uploads/2025/05/Summer-Budget-2025.pdf",
+      documentType: "Budgets and Financial Statements",
+    },
+    {
+      documentName: "Financial Statement April 30th 2025",
+      link: "https://assu.ca/wp/wp-content/uploads/2025/05/Financial-Statement-FINAL.pdf",
+      documentType: "Budgets and Financial Statements",
+    },
+    {
+      documentName: "ASSU Constitution and Bylaws 2024",
+      link: "https://assu.ca/wp/wp-content/uploads/2024/04/ASSU-Constitution-Bylaws-2024.pdf",
+      documentType: "ASSU Constitution",
+    },
+    {
+      documentName: "ASSU Bylaws 2016",
+      link: "https://assu.ca/wp/wp-content/uploads/2008/12/BYLAWS.2016.pdf",
+      documentType: "ASSU Constitution",
+    },
+  ];
 }
 
 // Function to group documents by type for display
