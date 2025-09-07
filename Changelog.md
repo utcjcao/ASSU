@@ -289,3 +289,11 @@ This project adheres to [Semantic Versioning](https://semver.org).
 - Implemented complete gallery page with multi-image carousel layout
 
 ---
+
+## [1.0.0 - 25/09/06]
+
+### Added
+
+- Fetched, cleaned and rendered ASSU documents on /documents
+
+---
