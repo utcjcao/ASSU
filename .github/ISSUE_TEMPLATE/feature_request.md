@@ -1,19 +1,23 @@
 ---
-name: "Feature Request"
+name: Feature Request
 about: Suggest a new feature or functionality
 title: "[FEAT] "
-labels: [feature]
-assignees: []
+labels: ''
+assignees: ''
+
 ---
 
 ## Summary
 
 Briefly describe the feature you’d like to see.
 
-## Motivation
+## Dependencies
 
-Why is this feature important? What problem does it solve?
+Mention impacted modules, APIs, libraries, or design files.
 
-## Proposed Solution
+## Acceptance Criteria
 
-How would you implement this? (optional)
+Define how success is measured. 
+- [ ]
+- [ ]
+- [ ]

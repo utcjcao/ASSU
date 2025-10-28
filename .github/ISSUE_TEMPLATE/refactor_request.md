@@ -1,19 +1,20 @@
 ---
-name: "Refactor Request"
+name: Refactor Request
 about: Suggest an edit
-labels: [enhancement]
 title: "[REFACTOR] "
-assignees: []
+labels: enhancement
+assignees: ''
+
 ---
 
 ## Summary
 
 Briefly describe the feature you’d like to refactor.
 
-## Motivation
+## Acceptance Criteria
 
-Why does this feature need to be changed?
+Define how success is measured.
 
-## Proposed Solution
-
-How would you implement this? (optional)
+- [ ]
+- [ ]
+- [ ]

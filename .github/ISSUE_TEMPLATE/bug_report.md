@@ -1,9 +1,10 @@
 ---
-name: "Bug Report"
+name: Bug Report
 about: Report something that isn’t working
 title: "[BUG] "
-labels: [bug]
-assignees: []
+labels: bug
+assignees: ''
+
 ---
 
 ## Description
