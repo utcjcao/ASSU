@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import GoogleMap from './GoogleMap';
+import LeafletMap from "./LeafletMap";
 
 interface MapSectionProps {
   /** Section title */
@@ -21,67 +21,18 @@ interface MapSectionProps {
 }
 
 const MapSection: React.FC<MapSectionProps> = ({
-  title = 'Find Us',
-  description = 'Visit us at our location. The map below shows our exact position and you can interact with it to explore the surrounding area.',
-  className = '',
+  title = "Find Us",
+  description = "Visit us at our location. The map below shows our exact position and you can interact with it to explore the surrounding area.",
+  className = "",
   mapConfig = {},
 }) => {
-  // You'll need to set your Google Maps API key here
-  // For production, use environment variables: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
-  const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
-
-
-
-  if (!GOOGLE_MAPS_API_KEY) {
-    return (
-      <section className={`w-full py-12 px-4 ${className}`}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-4xl md:text-5xl font-sans text-gray-darker mb-4">
-              {title}
-            </h2>
-            <p className="text-lg font-body text-gray-dark max-w-2xl mx-auto">
-              {description}
-            </p>
-          </div>
-          
-          <div className="bg-yellow/10 border border-yellow/30 rounded-lg p-8 text-center">
-            <div className="text-yellow text-3xl mb-4">🗺️</div>
-            <h3 className="text-xl font-sans text-gray-darker mb-2">
-              Google Maps API Key Required
-            </h3>
-            <p className="text-gray-dark font-body mb-4">
-              To display the interactive map, please add your Google Maps API key to your environment variables.
-            </p>
-            <div className="bg-gray-lighter rounded-md p-4 text-left">
-              <code className="text-sm font-mono text-gray-darker">
-                NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_api_key_here
-              </code>
-            </div>
-            <p className="text-sm text-gray font-body mt-4">
-              Get your API key from the{' '}
-              <a 
-                href="https://developers.google.com/maps/documentation/javascript/get-api-key"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-pink hover:text-pink-light underline"
-              >
-                Google Cloud Console
-              </a>
-            </p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   const {
-    lat = 37.4419, // Stanford University coordinates as default
-    lng = -122.1419,
+    lat = 43.6629, // Default to University of Toronto coordinates
+    lng = -79.3957,
     zoom = 15,
-    height = '500px',
-    markerTitle = 'Our Location',
-    ariaLabel = 'Interactive map showing our location',
+    height = "500px",
+    markerTitle = "Our Location",
+    ariaLabel = "Interactive map showing our location",
   } = mapConfig;
 
   return (
@@ -105,8 +56,7 @@ const MapSection: React.FC<MapSectionProps> = ({
 
         {/* Map Container */}
         <div className="w-full">
-          <GoogleMap
-            apiKey={GOOGLE_MAPS_API_KEY}
+          <LeafletMap
             lat={lat}
             lng={lng}
             zoom={zoom}
@@ -116,8 +66,6 @@ const MapSection: React.FC<MapSectionProps> = ({
             className="w-full"
           />
         </div>
-
-
       </div>
     </section>
   );

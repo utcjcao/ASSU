@@ -3,6 +3,7 @@ import { Questrial, Bitter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import "leaflet/dist/leaflet.css";
 
 const questrial = Questrial({
   weight: "400",
