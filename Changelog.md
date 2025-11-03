@@ -324,4 +324,12 @@ This project adheres to [Semantic Versioning](https://semver.org).
 ### Fixed
 
 - Fixed the contact us SVGs
+
+
+## [1.0.0 - 25/11/03]
+
+### Added
+
+- Added the data type and cleaning for the past exam library
+---
 ---
