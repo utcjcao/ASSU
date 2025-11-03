@@ -226,18 +226,20 @@ export default function ContactUs() {
         {/* Contact Information Section - 4 columns */}
         <div className="mb-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-8">
-            {/* Column 1 - Three dots SVG and Contact Us */}
-            <div className="text-left">
-              <div className="mb-4 flex justify-start">
-                <Image
-                  src="/svg/hamburger-menu.svg"
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="w-10 h-10 text-gray-darker"
-                />
+            {/* Column 1 - Contact Us */}
+            <div className="text-left flex flex-col justify-end h-full">
+              <div className="mb-4 flex justify-start gap-3">
+                <svg width="40" height="40" viewBox="0 0 40 40" className="text-pink">
+                  <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" strokeWidth="3" />
+                </svg>
+                <svg width="40" height="40" viewBox="0 0 40 40" className="text-pink">
+                  <circle cx="20" cy="20" r="20" fill="currentColor" />
+                </svg>
+                <svg width="40" height="40" viewBox="0 0 40 40" className="text-pink">
+                  <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" strokeWidth="3" />
+                </svg>
               </div>
-              <h3 className="text-base font-sans text-gray-darker font-semibold">Contact Us</h3>
+              <h3 className="text-3xl font-sans text-gray-darker font-semibold">Contact Us</h3>
             </div>
 
             {/* Column 2 - Address */}
@@ -274,7 +276,7 @@ export default function ContactUs() {
                         alt="LinkedIn"
                         width={24}
                         height={24}
-                        className="w-6 h-6 hover:opacity-75 transition-opacity"
+                        className="w-6 h-6 hover:opacity-75 transition-opacity brightness-0"
                       />
                     </a>
                     <a
@@ -288,7 +290,7 @@ export default function ContactUs() {
                         alt="Instagram"
                         width={24}
                         height={24}
-                        className="w-6 h-6 hover:opacity-75 transition-opacity"
+                        className="w-6 h-6 hover:opacity-75 transition-opacity brightness-0"
                       />
                     </a>
                   </div>
