@@ -312,6 +312,12 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 - Copy paste /course-unions to /course-unions/unions
 
+
+## [1.0.0 - 25/08/28]
+
+### Fixed
+
+- Made the awards and grants table visible on mobile (fixed formatting issue)
 ---
 
 ## [1.0.0 - 25/09/07]
