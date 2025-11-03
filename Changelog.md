@@ -318,6 +318,12 @@ This project adheres to [Semantic Versioning](https://semver.org).
 ### Fixed
 
 - Made the awards and grants table visible on mobile (fixed formatting issue)
+
+## [1.0.0 - 25/11/03]
+
+### Fixed
+
+- Fixed the contact us SVGs
 ---
 
 ## [1.0.0 - 25/09/07]
