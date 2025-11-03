@@ -90,11 +90,15 @@ export default function Tabs({
   return (
     <div className={`w-full ${className}`}>
       {/* Tab List */}
-      <div
-        role="tablist"
-        aria-label="Tabs navigation"
-        className={`flex justify-center border-b-2 border-gray-lighter ${tabListClassName}`}
-      >
+      <div className="relative md:static">
+        {/* Scroll indicator gradient for mobile */}
+        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none z-10 md:hidden" />
+        
+        <div
+          role="tablist"
+          aria-label="Tabs navigation"
+          className={`flex md:justify-center border-b-2 border-gray-lighter overflow-x-auto scrollbar-hide ${tabListClassName}`}
+        >
         {tabs.map((tab, index) => {
           const isActive = tab.id === activeTab;
           return (
@@ -107,7 +111,7 @@ export default function Tabs({
               id={`tab-${tab.id}`}
               tabIndex={isActive ? 0 : -1}
               className={`
-                flex-1 px-6 py-3 min-h-[44px] min-w-[44px] font-medium text-lg
+                md:flex-1 flex-shrink-0 px-6 py-3 min-h-[44px] min-w-[44px] font-medium text-lg
                 border-b-2 transition-all duration-200 ease-in-out
                 focus:outline-none focus:ring-2 focus:ring-pink focus:ring-offset-2
                 hover:bg-pink-lighter hover:text-pink
@@ -125,6 +129,7 @@ export default function Tabs({
             </button>
           );
         })}
+        </div>
       </div>
 
       {/* Tab Panel */}
