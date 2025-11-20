@@ -23,7 +23,7 @@ interface MapSectionProps {
 const MapSection: React.FC<MapSectionProps> = ({
   title = "Find Us",
   description = "Visit us at our location. The map below shows our exact position and you can interact with it to explore the surrounding area.",
-  className = "",
+  className = "py-12",
   mapConfig = {},
 }) => {
   const {
@@ -36,7 +36,7 @@ const MapSection: React.FC<MapSectionProps> = ({
   } = mapConfig;
 
   return (
-    <section className={`w-full py-12 px-4 ${className}`}>
+    <section className={`w-full px-4 ${className}`}>
       <div className="max-w-6xl mx-auto">
         {/* Section Header - only show if title or description exists */}
         {(title || description) && (

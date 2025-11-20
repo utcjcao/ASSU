@@ -70,7 +70,7 @@ export default function About() {
         <Divider margin="0" />
         <ContactInfoGrid />
         <Divider borderTopWidth="3px" margin="0" />
-        <MapSection title="" description="" className="py-0! mb-10" />
+        <MapSection title="" description="" className="!py-8" />
         <Divider borderTopWidth="3px" />
       </div>
     </div>
