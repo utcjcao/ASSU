@@ -124,8 +124,8 @@ const LeafletMap: React.FC<LeafletMapProps> = ({
 
   return (
     <div
-      className={`relative w-full rounded-lg overflow-hidden border border-gray-light shadow-lg ${className}`}
-      style={{ height }}
+      className={`relative z-0 w-full rounded-lg overflow-hidden border border-gray-light shadow-lg ${className}`}
+      style={{ height, zIndex: 0 }}
     >
       {/* Map Container */}
       <div
