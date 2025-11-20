@@ -3,7 +3,13 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     // Allow local public assets; extend this when loading external domains
-    remotePatterns: [],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "assu.ca",
+        pathname: "/**",
+      },
+    ],
   },
   webpack: (config, { isServer }) => {
     // Ensure cheerio is only bundled on server side
