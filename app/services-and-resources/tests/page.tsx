@@ -2,14 +2,23 @@ import React from "react";
 import HeroText from "../../../components/sections/HeroText";
 import Divider from "../../../components/common/Divider";
 import { KeyValueList } from "../../../components/common/KeyValueList";
+import { fetchTestsData } from "@/lib/tests";
 
-const testData = [
-  { key: "ACT", values: ["240", "245", "247", "348", "349", "370"] },
-  { key: "ANA", values: ["300", "301"] },
-  { key: "APM", values: ["120", "130"] },
-];
+export async function generateStaticParams() {
+  try {
+    const tests = await fetchTestsData();
+    console.log(`Fetched ${tests.length} test courses at build time`);
+    return [{}];
+  } catch (error) {
+    console.error("Error in generateStaticParams:", error);
+    return [{}];
+  }
+}
 
-const Tests = () => {
+export default async function Tests() {
+  // Fetch tests data at build time
+  const testData = await fetchTestsData();
+
   return (
     <div className="w-full max-w-3xl mx-auto space-y-4">
       <HeroText text="Past Test Library" />
@@ -26,7 +35,7 @@ const Tests = () => {
         <p>
           We are currently having a Test Drive in attempts to greatly expand our
           test bank. We are having a draw for the students who donate tests we
-          don’t currently have.{" "}
+          don&apos;t currently have.{" "}
           <span className="text-pink font-medium">
             Past tests can be submitted to the ASSU office.
           </span>
@@ -51,6 +60,4 @@ const Tests = () => {
       />
     </div>
   );
-};
-
-export default Tests;
+}
