@@ -92,13 +92,12 @@ export default function Header() {
   };
 
   const aboutItems = [
-    { label: "About ASSU", href: "/about/assu" },
     { label: "ASSU Executives", href: "/about/executives" },
     { label: "ASSU Staff", href: "/about/staff" },
+    { label: "Documents", href: "/services-and-resources/documents" },
   ];
 
   const courseUnionsItems = [
-    { label: "Unions", href: "/course-unions/unions" },
     { label: "Resources for Unions", href: "/course-unions/union-resources" },
   ];
 
@@ -123,7 +122,6 @@ export default function Header() {
       label: "Free Academic Resources",
       href: "/services-and-resources/resources",
     },
-    { label: "Documents", href: "/services-and-resources/documents" },
     { label: "Academic Handbook", href: "/services-and-resources/handbook" },
     { label: "Useful Links", href: "/services-and-resources/misc" },
   ];
