@@ -1,4 +1,5 @@
 import Text from "../common/Text";
+import Image from "next/image";
 
 export default function ContactInfoGrid() {
   return (
@@ -51,43 +52,63 @@ export default function ContactInfoGrid() {
                 </p>
                 <div className="flex space-x-4">
                   <a
-                    href="#"
+                    href="https://www.facebook.com/assu.uoft/"
                     aria-label="Facebook"
                     className="hover:opacity-70"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <img
+                    <Image
                       src="/images/facebook-logo.webp"
                       alt="Facebook"
                       className="w-7 h-7"
+                      width={28}
+                      height={28}
                     />
                   </a>
-                  <a href="#" aria-label="Twitter" className="hover:opacity-70">
-                    <img
+                  <a
+                    href="https://x.com/assu_uoft?lang=en"
+                    aria-label="Twitter"
+                    className="hover:opacity-70"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image
                       src="/images/twitter-logo.webp"
                       alt="Twitter"
                       className="w-7 h-7"
+                      width={28}
+                      height={28}
                     />
                   </a>
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/company/uoft-assu/about/"
                     aria-label="LinkedIn"
                     className="hover:opacity-70"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <img
+                    <Image
                       src="/images/linkedin-logo.webp"
                       alt="LinkedIn"
                       className="w-7 h-7"
+                      width={28}
+                      height={28}
                     />
                   </a>
                   <a
-                    href="#"
+                    href="https://www.instagram.com/assu_uoft/?hl=en"
                     aria-label="Instagram"
                     className="hover:opacity-70"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <img
+                    <Image
                       src="/images/instagram-logo.webp"
                       alt="Instagram"
                       className="w-7 h-7"
+                      width={28}
+                      height={28}
                     />
                   </a>
                 </div>
@@ -201,32 +222,64 @@ export default function ContactInfoGrid() {
                 </a>
               </p>
               <div className="flex space-x-3">
-                <a href="#" aria-label="Facebook" className="hover:opacity-70">
-                  <img
+                <a
+                  href="https://www.facebook.com/assu.uoft/"
+                  aria-label="Facebook"
+                  className="hover:opacity-70"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
                     src="/images/facebook-logo.webp"
                     alt="Facebook"
                     className="w-6 h-6"
+                    width={24}
+                    height={24}
                   />
                 </a>
-                <a href="#" aria-label="Twitter" className="hover:opacity-70">
-                  <img
+                <a
+                  href="https://x.com/assu_uoft?lang=en"
+                  aria-label="Twitter"
+                  className="hover:opacity-70"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
                     src="/images/twitter-logo.webp"
                     alt="Twitter"
                     className="w-6 h-6"
+                    width={24}
+                    height={24}
                   />
                 </a>
-                <a href="#" aria-label="LinkedIn" className="hover:opacity-70">
-                  <img
+                <a
+                  href="https://www.linkedin.com/company/uoft-assu/about/"
+                  aria-label="LinkedIn"
+                  className="hover:opacity-70"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
                     src="/images/linkedin-logo.webp"
                     alt="LinkedIn"
                     className="w-6 h-6"
+                    width={24}
+                    height={24}
                   />
                 </a>
-                <a href="#" aria-label="Instagram" className="hover:opacity-70">
-                  <img
+                <a
+                  href="https://www.instagram.com/assu_uoft/?hl=en"
+                  aria-label="Instagram"
+                  className="hover:opacity-70"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
                     src="/images/instagram-logo.webp"
                     alt="Instagram"
                     className="w-6 h-6"
+                    width={24}
+                    height={24}
                   />
                 </a>
               </div>
