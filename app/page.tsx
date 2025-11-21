@@ -133,24 +133,26 @@ const outerItems: ContentItem[] = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-4">
-      <Divider />
-      <ImageCarousel></ImageCarousel>
+    <div className="flex flex-col">
+      <Divider className="mb-8" />
+      <div className="py-8">
+        <ImageCarousel></ImageCarousel>
+      </div>
 
       {/* <HeroText>ASSU News</HeroText> */}
 
-      <Divider />
+      <Divider className="mb-8" />
       {/* card grid */}
 
-      <section className="mx-auto px-4 ">
+      <section className="mx-auto px-4">
         <ContentGrid
           items={outerItems}
           columns={2}
           className="grid-cols-[2fr_5fr]"
         />
       </section>
-      <Divider />
-      <div className="flex justify-center">
+      <Divider className="mt-8" />
+      <div className="flex justify-center py-8">
         {/* Left icons */}
         <div className="flex items-center space-x-2">
           <Image
@@ -175,7 +177,7 @@ export default function Home() {
           Empowering Students, Building a Community
         </p>
       </div>
-      <Divider />
+      <Divider className="mt-8" />
 
       {/* services */}
       {/* hero text */}

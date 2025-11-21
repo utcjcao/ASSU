@@ -1,6 +1,4 @@
-import { getEventBySlug } from "@/lib/posts";
-import fs from "fs";
-import path from "path";
+import { getEventBySlug, fetchUpcomingPosts } from "@/lib/posts";
 import Image from "next/image";
 import HeroText from "../../../components/sections/HeroText";
 
@@ -38,12 +36,45 @@ export default async function EventPage({
   );
 }
 
-// ✅ Static generation for dynamic slugs
+// ✅ Static generation for dynamic slugs from WordPress
 export async function generateStaticParams() {
-  const eventsDirectory = path.join(process.cwd(), "events", "upcoming");
-  const filenames = fs.readdirSync(eventsDirectory);
+  try {
+    // Fetch all posts to get their slugs
+    const posts = await fetchUpcomingPosts();
+    
+    // We need to fetch the actual WordPress posts to get slugs
+    // Since fetchUpcomingPosts doesn't return slugs, we'll fetch directly
+    if (typeof window !== "undefined") {
+      return [];
+    }
 
-  return filenames.map((filename) => ({
-    slug: filename.replace(/\.md$/, ""),
-  }));
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+    const response = await fetch(
+      "https://assu.ca/wp/wp-json/wp/v2/posts?categories=24",
+      {
+        signal: controller.signal,
+        headers: {
+          "User-Agent": "ASSU-Website/1.0",
+        },
+      }
+    );
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      console.error(`HTTP error! status: ${response.status}`);
+      return [];
+    }
+
+    const data = await response.json();
+    
+    return data.map((post: { slug: string }) => ({
+      slug: post.slug,
+    }));
+  } catch (error) {
+    console.error("Error generating static params for events:", error);
+    return [];
+  }
 }

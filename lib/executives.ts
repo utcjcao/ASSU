@@ -242,31 +242,25 @@ export async function fetchExecutivesData(): Promise<Executive[]> {
             const bioParts: string[] = [];
 
             while (currentNode) {
+              // Wrap node in cheerio to check tag name safely
+              const $node = $(currentNode);
+              const tagName = $node.prop("tagName")?.toLowerCase();
+
               // Stop at next h4 tag
-              if (
-                currentNode.nodeType === 1 &&
-                (currentNode as cheerio.Element).tagName === "h4"
-              ) {
+              if (tagName === "h4") {
                 break;
               }
 
               // Stop at hr tag (section divider)
-              if (
-                currentNode.nodeType === 1 &&
-                (currentNode as cheerio.Element).tagName === "hr"
-              ) {
+              if (tagName === "hr") {
                 break;
               }
 
               // Collect text from p tags and substantial divs
-              if (currentNode.nodeType === 1) {
-                const tagName = (currentNode as cheerio.Element).tagName;
-                if (tagName === "p" || tagName === "div") {
-                  const $node = $(currentNode);
-                  const nodeText = $node.text().trim();
-                  if (nodeText && nodeText.length > 10) {
-                    bioParts.push(nodeText);
-                  }
+              if (tagName === "p" || tagName === "div") {
+                const nodeText = $node.text().trim();
+                if (nodeText && nodeText.length > 10) {
+                  bioParts.push(nodeText);
                 }
               }
 

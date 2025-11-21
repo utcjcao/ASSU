@@ -10,6 +10,15 @@ export interface BlogPost {
   dateObj: Date; // Keep original date object for filtering
 }
 
+// Define the data shape for a single event/post (used in event detail pages)
+export interface EventPost {
+  title: string;
+  date: string;
+  description: string;
+  image?: string;
+  contentHtml: string;
+}
+
 // Define the WordPress API response structure for posts
 interface WordPressPost {
   id: number;
@@ -302,4 +311,115 @@ function getFallbackPosts(): BlogPost[] {
       dateObj: new Date("2025-03-04"),
     },
   ];
+}
+
+// Function to fetch a single event/post by slug
+export async function getEventBySlug(slug: string): Promise<EventPost> {
+  try {
+    // Only run on server side
+    if (typeof window !== "undefined") {
+      console.warn("getEventBySlug should only be called on server side");
+      throw new Error("getEventBySlug can only be called on server side");
+    }
+
+    console.log(`Fetching event with slug: ${slug} from WordPress API...`);
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+    // Fetch posts from category 24 and find by slug
+    const response = await fetch(
+      "https://assu.ca/wp/wp-json/wp/v2/posts?categories=24",
+      {
+        signal: controller.signal,
+        headers: {
+          "User-Agent": "ASSU-Website/1.0",
+        },
+      }
+    );
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data: WordPressPost[] = await response.json();
+    
+    // Find the post with matching slug
+    const post = data.find((p) => p.slug === slug);
+
+    if (!post) {
+      throw new Error(`Post with slug "${slug}" not found`);
+    }
+
+    // Extract title
+    const title = cleanText(post.title.rendered);
+
+    // Format date
+    const date = formatDate(post.date);
+
+    // Extract description from excerpt
+    let description = extractTextFromHtml(post.excerpt.rendered);
+    
+    // If excerpt is empty or too short, try content
+    if (!description || description.length < 50) {
+      description = extractTextFromHtml(post.content.rendered);
+      // Limit description length
+      if (description.length > 500) {
+        description = description.substring(0, 500) + "...";
+      }
+    }
+
+    // Get image
+    let image: string | undefined = undefined;
+
+    // Try to fetch featured media first
+    if (post.featured_media > 0) {
+      const featuredMediaLink =
+        post._links?.["wp:featuredmedia"]?.[0]?.href;
+      const fetchedImage = await fetchFeaturedMediaUrl(
+        post.featured_media,
+        featuredMediaLink
+      );
+      if (fetchedImage) {
+        image = fetchedImage;
+      }
+    }
+
+    // If no featured media, try extracting from content
+    if (!image) {
+      const extractedImage = extractImageFromContent(post.content.rendered);
+      if (extractedImage) {
+        image = extractedImage;
+      }
+    }
+
+    // Get full HTML content (cleaned but preserving HTML structure)
+    const $ = cheerio.load(post.content.rendered);
+    // Remove script and style tags for security
+    $("script, style").remove();
+    const contentHtml = $.html();
+
+    return {
+      title,
+      date,
+      description,
+      image,
+      contentHtml,
+    };
+  } catch (error) {
+    console.error(`Error fetching event with slug "${slug}":`, error);
+    // Return a fallback event
+    return {
+      title: "Event Not Found",
+      date: new Date().toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+      description: "The requested event could not be found.",
+      contentHtml: "<p>The requested event could not be found.</p>",
+    };
+  }
 }
