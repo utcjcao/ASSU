@@ -44,7 +44,7 @@ export default function Footer() {
                   className="hover:text-gray-300 transition-colors"
                 >
                   <p>
-                    101 St.George Street <br /> Sidney Smith Hall, Room 1068
+                    100 St.George Street <br /> Sidney Smith Hall, Room 1068
                   </p>
                 </a>
               </div>
@@ -129,7 +129,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="inline-block min-h-[44px] py-3 px-3 hover:text-gray-300 transition-colors text-lg leading-relaxed"
                 >
-                  101 St.George Street <br /> Sidney Smith Hall, Room 1068
+                  100 St.George Street <br /> Sidney Smith Hall, Room 1068
                 </a>
               </div>
             </address>
