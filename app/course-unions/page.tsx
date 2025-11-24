@@ -3,9 +3,15 @@
 import React from "react";
 import Divider from "@/components/common/Divider";
 import Text from "@/components/common/Text";
-import CardGrid from "@/components/layout/CardGrid";
 import ContentGrid from "@/components/layout/ContentGrid";
 import { ImageCarousel } from "@/components/common/ImageCarousel";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
+import Image from "next/image";
 
 const MAX_COLS = 4;
 const CARD_W = 300; // ImageCard size="md" -> 300px (sm=280, lg=320)
@@ -156,15 +162,6 @@ const unions: CourseUnion[] = [
 ];
 
 export default function CourseUnionsPage() {
-  const gridItems = unions.map((u) => ({
-    id: u.id,
-    imageSrc: u.image,
-    imageAltText: u.imageAlt,
-    title: u.name,
-    subtitle: u.subtitle,
-    description: u.desc,
-  }));
-
   return (
     <main className="min-h-screen bg-gray-lighter" aria-labelledby="page-title">
       <div className="max-w-6xl mx-auto px-4 py-8 md:py-12">
@@ -220,12 +217,30 @@ export default function CourseUnionsPage() {
         <Divider className="mb-6" width="100%" />
 
         <div className="mx-auto px-4" style={{ maxWidth: `${CONTENT_MAX}px` }}>
-          <div className="w-full h-px bg-black/20" />
-
-          <section aria-label="Course unions grid" className="mt-10">
-            <div className="overflow-x-hidden">
-              <CardGrid items={gridItems} columns={3} gapPx={50} />
-            </div>
+          <section aria-label="Course unions list" className="mt-10">
+            <Accordion type="single" collapsible className="w-full">
+              {unions.map((union) => (
+                <AccordionItem key={union.id} value={union.id}>
+                  <AccordionTrigger>
+                    <span className="flex-1 text-left">
+                      {union.name} {union.subtitle}
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-4">
+                    <div className="flex flex-col gap-4">
+                      <Image
+                        src={union.image}
+                        alt={union.imageAlt}
+                        width={300}
+                        height={200}
+                        className="w-full max-w-md rounded-lg object-cover"
+                      />
+                      {union.desc}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </section>
         </div>
       </div>
