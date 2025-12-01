@@ -1,5 +1,23 @@
+import Link from "@/components/common/Link";
 import Divider from "../../../components/common/Divider";
 import Tabs, { TabItem } from "../../../components/common/Tabs";
+
+type AwardLink = {
+  label: string;
+  href: string;
+};
+
+function Links({ items }: { items: AwardLink[] }) {
+  return (
+    <div className="space-y-1 text-pink font-semibold">
+      {items.map((item) => (
+        <div key={item.href}>
+          <Link href={item.href}>{item.label}</Link>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function Awards() {
   // Gavin Nowlan Award tabs
@@ -11,13 +29,24 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            ASSU annually awards a $1500 scholarship to one (1) full-time undergraduate student enrolled in the Faculty of Arts and Science on the St. George campus. ASSU also chooses two (2) $750 runner-ups. The award is named after a two-term President of ASSU. To be eligible for the award, you are required to fulfill the following criteria:
+            ASSU annually awards a $1500 scholarship to one (1) full-time
+            undergraduate student enrolled in the Faculty of Arts and Science on
+            the St. George campus. ASSU also chooses two (2) $750 runner-ups.
+            The award is named after a two-term President of ASSU. To be
+            eligible for the award, you are required to fulfill the following
+            criteria:
           </p>
           <ol className="list-decimal ml-8 space-y-2 text-gray-dark">
-            <li>Must be a full time Arts and Science student registered on the St. George campus</li>
+            <li>
+              Must be a full time Arts and Science student registered on the St.
+              George campus
+            </li>
             <li>Must have a minimum CGPA of 1.70</li>
             <li>Must be a 2nd year student or higher</li>
-            <li>Must demonstrate leadership in extra-curricular activities ON CAMPUS</li>
+            <li>
+              Must demonstrate leadership in extra-curricular activities ON
+              CAMPUS
+            </li>
           </ol>
         </div>
       ),
@@ -56,13 +85,24 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            ASSU annually awards a $1500 scholarship to one (1) full-time undergraduate student enrolled in the Faculty of Arts and Science on the St. George campus. ASSU also chooses two (2) $750 runner-ups. The award is named after a two-term President of ASSU. To be eligible for the award, you are required to fulfill the following criteria:
+            ASSU annually awards a $1500 scholarship to one (1) full-time
+            undergraduate student enrolled in the Faculty of Arts and Science on
+            the St. George campus. ASSU also chooses two (2) $750 runner-ups.
+            The award is named after a two-term President of ASSU. To be
+            eligible for the award, you are required to fulfill the following
+            criteria:
           </p>
           <ol className="list-decimal ml-8 space-y-2 text-gray-dark">
-            <li>Must be a full time Arts and Science student registered on the St. George campus</li>
+            <li>
+              Must be a full time Arts and Science student registered on the St.
+              George campus
+            </li>
             <li>Must have a minimum CGPA of 1.70</li>
             <li>Must be a 2nd year student or higher</li>
-            <li>Must demonstrate leadership in extra-curricular activities ON CAMPUS and OFF CAMPUS</li>
+            <li>
+              Must demonstrate leadership in extra-curricular activities ON
+              CAMPUS and OFF CAMPUS
+            </li>
           </ol>
         </div>
       ),
@@ -109,7 +149,11 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            A Student LEADERSHIP award for those who are involved in extra-curricular activities ON CAMPUS. Students must be registered full-time, A&S students, registered on the St. George campus, in 2nd year or higher, have a minimum CGPA of 1.70 and must be currently receiving OSAP/other Provincial Student Aid.
+            A Student LEADERSHIP award for those who are involved in
+            extra-curricular activities ON CAMPUS. Students must be registered
+            full-time, A&S students, registered on the St. George campus, in 2nd
+            year or higher, have a minimum CGPA of 1.70 and must be currently
+            receiving OSAP/other Provincial Student Aid.
           </p>
         </div>
       ),
@@ -143,7 +187,12 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            A Student leadership award for those who demonstrate significant involvement in extra-curricular activities ON or OFF campus in their BIPOC community. Applicants must be FULL-TIME, A&S students, registered on the St. George campus, in 2nd year or higher, have a minimum CGPA of 1.70 and must be currently receiving OSAP/Provincial loans and be a member of a BIPOC community.
+            A Student leadership award for those who demonstrate significant
+            involvement in extra-curricular activities ON or OFF campus in their
+            BIPOC community. Applicants must be FULL-TIME, A&S students,
+            registered on the St. George campus, in 2nd year or higher, have a
+            minimum CGPA of 1.70 and must be currently receiving OSAP/Provincial
+            loans and be a member of a BIPOC community.
           </p>
         </div>
       ),
@@ -171,7 +220,12 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            A student award for those who demonstrate significant involvement in extra-curricular activities that are aimed at enhancing EQUITY at the University of Toronto St. George campus and/or within the wider community. Applicants must be, FULL-TIME, Arts & Science students, registered on the St. George campus, in 2nd year or higher, with a minimum CGPA of 1.7.
+            A student award for those who demonstrate significant involvement in
+            extra-curricular activities that are aimed at enhancing EQUITY at
+            the University of Toronto St. George campus and/or within the wider
+            community. Applicants must be, FULL-TIME, Arts & Science students,
+            registered on the St. George campus, in 2nd year or higher, with a
+            minimum CGPA of 1.7.
           </p>
         </div>
       ),
@@ -197,7 +251,9 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            This award recognizes first year students in the Faculty of Arts and Science who have become involved in extra-curricular activities on campus and are receiving OSAP or other Provincial student aid.
+            This award recognizes first year students in the Faculty of Arts and
+            Science who have become involved in extra-curricular activities on
+            campus and are receiving OSAP or other Provincial student aid.
           </p>
         </div>
       ),
@@ -314,7 +370,9 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            This award recognizes 2nd year students in the Faculty of Arts and Science who have demonstrated their involvement in extra-curricular activities on campus and are receiving OSAP or other Provincial aid.
+            This award recognizes 2nd year students in the Faculty of Arts and
+            Science who have demonstrated their involvement in extra-curricular
+            activities on campus and are receiving OSAP or other Provincial aid.
           </p>
         </div>
       ),
@@ -361,7 +419,9 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            This award is presented annually to a faculty member who has demonstrated excellence in teaching. The award is named after a two-term President of ASSU.
+            This award is presented annually to a faculty member who has
+            demonstrated excellence in teaching. The award is named after a
+            two-term President of ASSU.
           </p>
         </div>
       ),
@@ -404,7 +464,11 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            This award is presented annually to an active ASSU Course Union who organized engaging programming for their students, both academically and socially; attended participated in ASSU Council; and created community amongst their students. The award is named after a two-term President of ASSU.
+            This award is presented annually to an active ASSU Course Union who
+            organized engaging programming for their students, both academically
+            and socially; attended participated in ASSU Council; and created
+            community amongst their students. The award is named after a
+            two-term President of ASSU.
           </p>
         </div>
       ),
@@ -420,10 +484,16 @@ export default function Awards() {
           <p>HISTORY STUDENTS&apos; ASSOCIATION (HSA) - (2021-2022)</p>
           <p>INTERNATIONAL RELATIONS SOCIETY (IRS) - (2020-2021)</p>
           <p>DIASPORA & TRANSNATIONAL STUDIES UNION (DTSU) - (2019-2020)</p>
-          <p>NEUROSCIENCE ASSOCIATION OF UNDERGRADUATE STUDENTS (NAUS) - (2018-2019)</p>
+          <p>
+            NEUROSCIENCE ASSOCIATION OF UNDERGRADUATE STUDENTS (NAUS) -
+            (2018-2019)
+          </p>
           <p>ENVIRONMENTAL STUDENTS&apos; UNION (ENSU) - (2017-2018)</p>
           <p>INDIGENOUS STUDIES STUDENTS&apos; UNION (ISSU) - (2016-2017)</p>
-          <p>COGNITIVE SCIENCE & ARTIFICIAL INTELLIGENCE STUDENTS&apos; ASSOCIATION (CASA) - (2015-2016)</p>
+          <p>
+            COGNITIVE SCIENCE & ARTIFICIAL INTELLIGENCE STUDENTS&apos;
+            ASSOCIATION (CASA) - (2015-2016)
+          </p>
           <p>CLASSICS STUDENTS&apos; UNION (CLASSU) - (2014-2015)</p>
           <p>ASSOCIATION OF POLITICAL SCIENCE STUDENTS (APSS) - (2013-2014)</p>
           <p>ANTHROPOLOGY STUDENTS ASSOCIATION (ASA) - (2012-2013)</p>
@@ -446,7 +516,11 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            This award is awarded annually by the Executive to someone who has outstanding achievements in promoting diversity and equity issues such as Race and Ethnicity, Class, Family, Gender, Age, Ability, etc, and in eliminating barriers to diversity in the Faculty of Arts and Science at the University of Toronto.
+            This award is awarded annually by the Executive to someone who has
+            outstanding achievements in promoting diversity and equity issues
+            such as Race and Ethnicity, Class, Family, Gender, Age, Ability,
+            etc, and in eliminating barriers to diversity in the Faculty of Arts
+            and Science at the University of Toronto.
           </p>
         </div>
       ),
@@ -467,7 +541,9 @@ export default function Awards() {
           <p>A.W. PEET - (2016-2017)</p>
           <p>CASSANDRA WILLIAMS - (2016-2017)</p>
           <p>BLACK LIBERATION COLLECTIVE - (2015-2016)</p>
-          <p>THRIVE UofT AND UofT STUDENTS AGAINST SEXUAL VIOLENCE - (2014-2015)</p>
+          <p>
+            THRIVE UofT AND UofT STUDENTS AGAINST SEXUAL VIOLENCE - (2014-2015)
+          </p>
           <p>WASHROOM INCLUSIVITY PROJECT - (2013-2014)</p>
           <p>TRANSITIONAL YEAR PROGRAM - (2012-2013)</p>
           <p>KAYLA CARTER - (2011-2012)</p>
@@ -490,7 +566,12 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            Annually, ASSU awards a member of the university community for their service, above and beyond their regular duties, to students in the Faculty of Arts and Science. The award is named after Uma Sarkar, a two-term ASSU President, who continued to assist ASSU long after she graduated. The ASSU Executive decides the winner. A sum of $500 is donated to a charity organization in the winner&apos;s name.
+            Annually, ASSU awards a member of the university community for their
+            service, above and beyond their regular duties, to students in the
+            Faculty of Arts and Science. The award is named after Uma Sarkar, a
+            two-term ASSU President, who continued to assist ASSU long after she
+            graduated. The ASSU Executive decides the winner. A sum of $500 is
+            donated to a charity organization in the winner&apos;s name.
           </p>
         </div>
       ),
@@ -533,7 +614,10 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            This award is to give recognition for Executive Members of Course Unions who are in their graduating year. Winners of this award in the past have demonstrated their involvement with their course union above and beyond what is generally expected of an Executive member.
+            This award is to give recognition for Executive Members of Course
+            Unions who are in their graduating year. Winners of this award in
+            the past have demonstrated their involvement with their course union
+            above and beyond what is generally expected of an Executive member.
           </p>
         </div>
       ),
@@ -614,7 +698,14 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            This award was established in memory of Ali Saeed (1992-2014) - an international student from Pakistan studying Political Science, who was a dedicated collaborator in the work ASSU did over the 2013-2014 academic year. He was a passionate photographer, student activist, and was highly respected by his peers and all who knew him. This award is open to international students in their 2nd year or higher with a CGPA of 3.0 or higher who have demonstrated leadership on our campus or in the community. The value of the award is $5,000
+            This award was established in memory of Ali Saeed (1992-2014) - an
+            international student from Pakistan studying Political Science, who
+            was a dedicated collaborator in the work ASSU did over the 2013-2014
+            academic year. He was a passionate photographer, student activist,
+            and was highly respected by his peers and all who knew him. This
+            award is open to international students in their 2nd year or higher
+            with a CGPA of 3.0 or higher who have demonstrated leadership on our
+            campus or in the community. The value of the award is $5,000
           </p>
         </div>
       ),
@@ -646,17 +737,21 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            Awarded to a full-time graduating student in the Faculty of Arts & Science.
+            Awarded to a full-time graduating student in the Faculty of Arts &
+            Science.
           </p>
           <p className="text-gray-dark">
-            Students require demonstration of academic excellence (CGPA 3.0 or higher), financial need (OSAP or out of province loan) and outstanding extra-curricular leadership.
+            Students require demonstration of academic excellence (CGPA 3.0 or
+            higher), financial need (OSAP or out of province loan) and
+            outstanding extra-curricular leadership.
           </p>
           <p className="text-gray-dark">
-            Recipients must enroll in a graduate program at the University of Toronto, Faculty of Arts & Science. Please note, students enrolling in graduate programs at other faculties or campuses are not eligible.
+            Recipients must enroll in a graduate program at the University of
+            Toronto, Faculty of Arts & Science. Please note, students enrolling
+            in graduate programs at other faculties or campuses are not
+            eligible.
           </p>
-          <p className="text-gray-dark">
-            The value of the award is $5500
-          </p>
+          <p className="text-gray-dark">The value of the award is $5500</p>
         </div>
       ),
     },
@@ -681,7 +776,14 @@ export default function Awards() {
       content: (
         <div className="space-y-4">
           <p className="text-gray-dark">
-            A student award conferred to those who have established a new organization, during the 23/24 or 24/25 academic year, at the University of Toronto St. George campus and/or within the wider community. The organization must be centered around a topic/subject which has previously received little attention on our campus from other organizations, or the organization may be focused on a pre-existing topic/subject but conducts events and initiatives on a significant and unprecedented scale
+            A student award conferred to those who have established a new
+            organization, during the 23/24 or 24/25 academic year, at the
+            University of Toronto St. George campus and/or within the wider
+            community. The organization must be centered around a topic/subject
+            which has previously received little attention on our campus from
+            other organizations, or the organization may be focused on a
+            pre-existing topic/subject but conducts events and initiatives on a
+            significant and unprecedented scale
           </p>
         </div>
       ),
@@ -701,13 +803,25 @@ export default function Awards() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
       {/* Top horizontal line */}
-      <Divider width="100%" maxWidth="100%" color="var(--color-gray)" borderTopWidth="3px" />
+      <Divider
+        width="100%"
+        maxWidth="100%"
+        color="var(--color-gray)"
+        borderTopWidth="3px"
+      />
 
       {/* ASSU Awards Title */}
-      <h1 className="text-4xl font-bold text-gray-darker text-left">ASSU Awards</h1>
+      <h1 className="text-4xl font-bold text-gray-darker text-left">
+        ASSU Awards
+      </h1>
 
       {/* Bottom horizontal line */}
-      <Divider width="100%" maxWidth="100%" color="var(--color-gray)" borderTopWidth="3px" />
+      <Divider
+        width="100%"
+        maxWidth="100%"
+        color="var(--color-gray)"
+        borderTopWidth="3px"
+      />
 
       {/* Gavin Nowlan Award Section */}
       <div className="space-y-4">
@@ -715,10 +829,20 @@ export default function Awards() {
           Gavin Nowlan Campus Student Leadership Award
         </h2>
         <p className="text-gray-dark">
-          Nomination forms are due <span className="text-pink font-semibold">January 24th 2025 by 5pm Eastern Time</span>
+          Nomination forms are due{" "}
+          <span className="text-pink font-semibold">
+            January 24th 2025 by 5pm Eastern Time
+          </span>
         </p>
-        <p className="text-pink font-semibold">ASSU Leadership Application 2024-25</p>
-        
+        <Links
+          items={[
+            {
+              label: "ASSU Leadership Application 2024-25",
+              href: "https://assu.ca/wp/wp-content/uploads/2025/11/ASSU-Leadership-Application-2025-26.pdf",
+            },
+          ]}
+        />
+
         {/* Gavin Nowlan Tabs */}
         <Tabs tabs={gavinNowlanTabs} defaultActiveTab="criteria" />
       </div>
@@ -732,10 +856,20 @@ export default function Awards() {
           William R. Gardner Student Leadership Award
         </h2>
         <p className="text-gray-dark">
-          Nomination forms are due <span className="text-pink font-semibold">January 24th 2025 by 5pm Eastern Time</span>
+          Nomination forms are due{" "}
+          <span className="text-pink font-semibold">
+            January 24th 2025 by 5pm Eastern Time
+          </span>
         </p>
-        <p className="text-pink font-semibold">ASSU Leadership Application 2024-25</p>
-        
+        <Links
+          items={[
+            {
+              label: "ASSU Leadership Application 2024-25",
+              href: "https://assu.ca/wp/wp-content/uploads/2025/11/ASSU-Leadership-Application-2025-26.pdf",
+            },
+          ]}
+        />
+
         {/* William Gardner Tabs */}
         <Tabs tabs={williamGardnerTabs} defaultActiveTab="criteria" />
       </div>
@@ -749,10 +883,20 @@ export default function Awards() {
           Abdullah Shihipar Campus Student Leadership Award
         </h2>
         <p className="text-gray-dark">
-          Nomination forms are due <span className="text-pink font-semibold">January 24th 2025 by 5pm Eastern Time</span>
+          Nomination forms are due{" "}
+          <span className="text-pink font-semibold">
+            January 24th 2025 by 5pm Eastern Time
+          </span>
         </p>
-        <p className="text-pink font-semibold">ASSU Leadership Application 2024-25</p>
-        
+        <Links
+          items={[
+            {
+              label: "ASSU Leadership Application 2024-25",
+              href: "https://assu.ca/wp/wp-content/uploads/2025/11/ASSU-Leadership-Application-2025-26.pdf",
+            },
+          ]}
+        />
+
         {/* Abdullah Shihipar Tabs */}
         <Tabs tabs={abdullahShihiparTabs} defaultActiveTab="criteria" />
       </div>
@@ -766,10 +910,20 @@ export default function Awards() {
           Ikran Jama Student Leadership Award
         </h2>
         <p className="text-gray-dark">
-          Nomination forms are due <span className="text-pink font-semibold">January 24th 2025 by 5pm Eastern Time</span>
+          Nomination forms are due{" "}
+          <span className="text-pink font-semibold">
+            January 24th 2025 by 5pm Eastern Time
+          </span>
         </p>
-        <p className="text-pink font-semibold">JAMA Award Application 2024-25</p>
-        
+        <Links
+          items={[
+            {
+              label: "JAMA Award Application 2024-25",
+              href: "https://assu.ca/wp/wp-content/uploads/2025/11/JAMA-AwardApplication-2025-26.pdf",
+            },
+          ]}
+        />
+
         {/* Ikran Jama Tabs */}
         <Tabs tabs={ikranJamaTabs} defaultActiveTab="criteria" />
       </div>
@@ -783,10 +937,20 @@ export default function Awards() {
           Fatemeh Nami Student Equity Award
         </h2>
         <p className="text-gray-dark">
-          Nomination forms are due <span className="text-pink font-semibold">January 24th 2025 by 5pm Eastern Time</span>
+          Nomination forms are due{" "}
+          <span className="text-pink font-semibold">
+            January 24th 2025 by 5pm Eastern Time
+          </span>
         </p>
-        <p className="text-pink font-semibold">NAMI Equity Award Application 2024-25</p>
-        
+        <Links
+          items={[
+            {
+              label: "NAMI Equity Award Application 2024-25",
+              href: "https://assu.ca/wp/wp-content/uploads/2025/11/NAMI-Equity-AwardApplication-2025-26.pdf",
+            },
+          ]}
+        />
+
         {/* Fatemeh Nami Tabs */}
         <Tabs tabs={fatemehNamiTabs} defaultActiveTab="criteria" />
       </div>
@@ -800,10 +964,20 @@ export default function Awards() {
           ASSU First Year Student Award
         </h2>
         <p className="text-gray-dark">
-          Nomination forms are due <span className="text-pink font-semibold">January 24th 2025 by 5pm Eastern Time</span>
+          Nomination forms are due{" "}
+          <span className="text-pink font-semibold">
+            January 24th 2025 by 5pm Eastern Time
+          </span>
         </p>
-        <p className="text-pink font-semibold">1st Year Award Application</p>
-        
+        <Links
+          items={[
+            {
+              label: "1st Year Award Application",
+              href: "https://assu.ca/wp/wp-content/uploads/2025/11/1stYEAR-AwardApplication-2025-26.pdf",
+            },
+          ]}
+        />
+
         {/* First Year Tabs */}
         <Tabs tabs={firstYearTabs} defaultActiveTab="criteria" />
       </div>
@@ -817,10 +991,20 @@ export default function Awards() {
           ASSU 2nd Year Student Award
         </h2>
         <p className="text-gray-dark">
-          Nomination forms are due <span className="text-pink font-semibold">January 24th 2025 by 5pm Eastern Time</span>
+          Nomination forms are due{" "}
+          <span className="text-pink font-semibold">
+            January 24th 2025 by 5pm Eastern Time
+          </span>
         </p>
-        <p className="text-pink font-semibold">2nd Year Award Application</p>
-        
+        <Links
+          items={[
+            {
+              label: "2nd Year Award Application",
+              href: "https://assu.ca/wp/wp-content/uploads/2025/11/2ndYEAR-AwardApplication-2025-26.pdf",
+            },
+          ]}
+        />
+
         {/* Second Year Tabs */}
         <Tabs tabs={secondYearTabs} defaultActiveTab="criteria" />
       </div>
@@ -834,10 +1018,20 @@ export default function Awards() {
           Ranjini (Rini) Ghosh Excellence in Teaching Award
         </h2>
         <p className="text-gray-dark">
-          Nomination forms are due <span className="text-pink font-semibold">February 14th by 5pm Eastern Time</span>
+          Nomination forms are due{" "}
+          <span className="text-pink font-semibold">
+            February 14th by 5pm Eastern Time
+          </span>
         </p>
-        <p className="text-pink font-semibold">Teaching Award Nomination 2024-2025</p>
-        
+        <Links
+          items={[
+            {
+              label: "Teaching Award Nomination 2024-2025",
+              href: "https://assu.ca/wp/wp-content/uploads/2025/11/GHOSHAwardNomination-2025-26.pdf",
+            },
+          ]}
+        />
+
         {/* Teaching Award Tabs */}
         <Tabs tabs={teachingAwardTabs} defaultActiveTab="criteria" />
       </div>
@@ -851,10 +1045,20 @@ export default function Awards() {
           Sanjeev (Sanj) Dewett Course Union of the Year Award
         </h2>
         <p className="text-gray-dark">
-          Nomination forms are due <span className="text-pink font-semibold">February 28th, 2025 by 5pm Eastern Time</span>
+          Nomination forms are due{" "}
+          <span className="text-pink font-semibold">
+            February 28th, 2025 by 5pm Eastern Time
+          </span>
         </p>
-        <p className="text-pink font-semibold">DEWETT CU Award 2024-25</p>
-        
+        <Links
+          items={[
+            {
+              label: "DEWETT CU Award 2024-25 Application",
+              href: "https://assu.ca/wp/wp-content/uploads/2025/11/DEWETT-CU-Award-2025-26.pdf",
+            },
+          ]}
+        />
+
         {/* Course Union Award Tabs */}
         <Tabs tabs={courseUnionAwardTabs} defaultActiveTab="criteria" />
       </div>
@@ -867,7 +1071,7 @@ export default function Awards() {
         <h2 className="text-2xl font-bold text-pink">
           Terry Buckland Award for Diversity and Equity in Education
         </h2>
-        
+
         {/* Terry Buckland Tabs */}
         <Tabs tabs={terryBucklandTabs} defaultActiveTab="criteria" />
       </div>
@@ -880,7 +1084,7 @@ export default function Awards() {
         <h2 className="text-2xl font-bold text-pink">
           Urmila (Uma) Sarkar Service Award
         </h2>
-        
+
         {/* Urmila Sarkar Tabs */}
         <Tabs tabs={urmilaSarkarTabs} defaultActiveTab="criteria" />
       </div>
@@ -894,10 +1098,20 @@ export default function Awards() {
           Katharine Ball Graduating Award for Course Unions
         </h2>
         <p className="text-gray-dark">
-          Nomination forms are due <span className="text-pink font-semibold">February 14th, 2025 by 5pm Eastern Time</span>
+          Nomination forms are due{" "}
+          <span className="text-pink font-semibold">
+            February 14th, 2025 by 5pm Eastern Time
+          </span>
         </p>
-        <p className="text-pink font-semibold">BALL Award Application 2024-25</p>
-        
+        <Links
+          items={[
+            {
+              label: "BALL Award Application 2024-25",
+              href: "https://assu.ca/wp/wp-content/uploads/2025/11/BALL-AwardApplication-2025-26.pdf",
+            },
+          ]}
+        />
+
         {/* Katharine Ball Tabs */}
         <Tabs tabs={katharineBallTabs} defaultActiveTab="criteria" />
       </div>
@@ -911,10 +1125,20 @@ export default function Awards() {
           Ali Saeed Memorial Award for International Students
         </h2>
         <p className="text-gray-dark">
-          Nomination forms are due <span className="text-pink font-semibold">February 14th, 2025 by 5pm Eastern Time</span>
+          Nomination forms are due{" "}
+          <span className="text-pink font-semibold">
+            February 14th, 2025 by 5pm Eastern Time
+          </span>
         </p>
-        <p className="text-pink font-semibold">SAEED Award Application 2024-25</p>
-        
+        <Links
+          items={[
+            {
+              label: "SAEED Award Application 2024-25",
+              href: "https://assu.ca/wp/wp-content/uploads/2025/11/SAEED-AwardApplication-2025-26.pdf",
+            },
+          ]}
+        />
+
         {/* Ali Saeed Tabs */}
         <Tabs tabs={aliSaeedTabs} defaultActiveTab="criteria" />
       </div>
@@ -928,10 +1152,20 @@ export default function Awards() {
           ASSU Graduating Student Leadership Award
         </h2>
         <p className="text-gray-dark">
-          Nomination forms are due <span className="text-pink font-semibold">April 11, 2025 by 5pm Eastern Time</span>
+          Nomination forms are due{" "}
+          <span className="text-pink font-semibold">
+            Friday, April 10th, 2026 5pm
+          </span>
         </p>
-        <p className="text-pink font-semibold">ASSU Graduating Student Leadership Application 2024-25</p>
-        
+        <Links
+          items={[
+            {
+              label: "ASSU Graduating Student Leadership Application 2024-25",
+              href: "https://assu.ca/wp/wp-content/uploads/2025/11/ASSU-Graduating-Student-Leadership-Award-2025-26.pdf",
+            },
+          ]}
+        />
+
         {/* Graduating Student Tabs */}
         <Tabs tabs={graduatingStudentTabs} defaultActiveTab="criteria" />
       </div>
@@ -944,11 +1178,8 @@ export default function Awards() {
         <h2 className="text-2xl font-bold text-pink">
           ASSU New Student Initiative Award
         </h2>
-        <p className="text-gray-dark">
-          Nomination forms are due <span className="text-pink font-semibold">February 21st, 2025 by 5pm Eastern Time</span>
-        </p>
-        <p className="text-pink font-semibold">New Initiative Award Application 2024-25</p>
-        
+        <p className="text-pink font-semibold">Applications Open Fall 2025</p>
+
         {/* New Initiative Tabs */}
         <Tabs tabs={newInitiativeTabs} defaultActiveTab="criteria" />
       </div>
