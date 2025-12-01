@@ -220,7 +220,7 @@ export default function Header() {
               isSubrouteActive={isSubrouteActive}
             />
           </li>
-          <li
+          {/* <li
             role="none"
             className={`${navItemClasses} ${
               isRouteActive("/gallery") ? activeNavItemClasses : ""
@@ -233,7 +233,7 @@ export default function Header() {
             >
               Gallery
             </Link>
-          </li>
+          </li> */}
           <li role="none">
             <DropdownMenu
               label="Awards & Grants"

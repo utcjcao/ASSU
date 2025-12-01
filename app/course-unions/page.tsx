@@ -4,7 +4,6 @@ import React from "react";
 import Divider from "@/components/common/Divider";
 import Text from "@/components/common/Text";
 import ContentGrid from "@/components/layout/ContentGrid";
-import { ImageCarousel } from "@/components/common/ImageCarousel";
 import {
   Accordion,
   AccordionItem,
@@ -175,47 +174,24 @@ export default function CourseUnionsPage() {
             Course Unions
           </Text>
         </div>
-
         <Divider className="mb-8" width="100%" />
-
-        <div className="mx-auto px-4" style={{ maxWidth: `${CONTENT_MAX}px` }}>
-          <ContentGrid
-            items={[
-              {
-                id: "unionsCarousel",
-                ariaLabel: "Carousel of union pictures",
-                node: <ImageCarousel />,
-              },
-              {
-                id: "unionsText",
-                ariaLabel:
-                  "Course Unions are the core of the Arts and Science Students’ Union. From A to Z, Anthropology to Women & Gender Studies, these academic unions represent the students in disciplines within the Faculty of Arts and Science and by taking any course you are automatically a part of them. We have nearly 55 active Course Unions offering several academic and social services for their members. While each Course Union is unique, both in vision and in form, all share the common goals of meeting students’ needs and representing students’ views.",
-                node: (
-                  <Text
-                    as="p"
-                    className="text-base md:text-xl lg:text-2xl text-[var(--color-text-primary)] mb-4"
-                  >
-                    Course Unions are the core of the Arts and Science Students’
-                    Union. From A to Z, Anthropology to Women & Gender Studies,
-                    these academic unions represent the students in disciplines
-                    within the Faculty of Arts and Science and by taking any
-                    course you are automatically a part of them.
-                    <br />
-                    <br />
-                    We have nearly 55 active Course Unions offering several
-                    academic and social services for their members. While each
-                    Course Union is unique, both in vision and in form, all
-                    share the common goals of meeting students’ needs and
-                    representing students’ views.
-                  </Text>
-                ),
-              },
-            ]}
-          />
-        </div>
-
+        <Text
+          as="p"
+          className="text-base md:text-xl lg:text-2xl text-[var(--color-text-primary)] mb-4"
+        >
+          Course Unions are the core of the Arts and Science Students’ Union.
+          From A to Z, Anthropology to Women & Gender Studies, these academic
+          unions represent the students in disciplines within the Faculty of
+          Arts and Science and by taking any course you are automatically a part
+          of them.
+          <br />
+          <br />
+          We have nearly 55 active Course Unions offering several academic and
+          social services for their members. While each Course Union is unique,
+          both in vision and in form, all share the common goals of meeting
+          students’ needs and representing students’ views.
+        </Text>
         <Divider className="mb-6" width="100%" />
-
         <div className="mx-auto px-4" style={{ maxWidth: `${CONTENT_MAX}px` }}>
           <section aria-label="Course unions list" className="mt-10">
             <Accordion type="single" collapsible className="w-full">

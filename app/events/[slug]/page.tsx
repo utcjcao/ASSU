@@ -41,7 +41,7 @@ export async function generateStaticParams() {
   try {
     // Fetch all posts to get their slugs
     const posts = await fetchUpcomingPosts();
-    
+
     // We need to fetch the actual WordPress posts to get slugs
     // Since fetchUpcomingPosts doesn't return slugs, we'll fetch directly
     if (typeof window !== "undefined") {
@@ -69,7 +69,7 @@ export async function generateStaticParams() {
     }
 
     const data = await response.json();
-    
+
     return data.map((post: { slug: string }) => ({
       slug: post.slug,
     }));

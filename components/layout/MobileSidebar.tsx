@@ -122,7 +122,6 @@ export default function MobileSidebar({
                 ))}
               </div>
             </section>
-
             {/* Course Unions */}
             <section
               className="border-b border-gray-200 pb-4"
@@ -162,7 +161,6 @@ export default function MobileSidebar({
                 ))}
               </div>
             </section>
-
             {/* Get Involved */}
             <section
               className="border-b border-gray-200 pb-4"
@@ -202,8 +200,7 @@ export default function MobileSidebar({
                 ))}
               </div>
             </section>
-
-            {/* Gallery */}
+            {/* Gallery
             <section className="border-b border-gray-200 pb-4">
               <Link
                 href="/gallery"
@@ -215,8 +212,7 @@ export default function MobileSidebar({
               >
                 Gallery
               </Link>
-            </section>
-
+            </section> */}
             {/* Awards & Grants */}
             <section
               className="border-b border-gray-200 pb-4"
@@ -256,7 +252,6 @@ export default function MobileSidebar({
                 ))}
               </div>
             </section>
-
             {/* Services & Resources */}
             <section
               className="border-b border-gray-200 pb-4"
@@ -296,7 +291,6 @@ export default function MobileSidebar({
                 ))}
               </div>
             </section>
-
             {/* Contact Us */}
             <section className="pb-4">
               <Link
