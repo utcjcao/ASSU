@@ -4,7 +4,6 @@ import React from "react";
 import ContentGrid, { ContentItem } from "@/components/layout/ContentGrid";
 import Divider from "@/components/common/Divider";
 import Link from "@/components/common/Link";
-// import AssuImage from "@/components/common/AssuImage";
 
 // Grid items for the Grants page
 const items: ContentItem[] = [
@@ -36,7 +35,7 @@ const items: ContentItem[] = [
         train fare). The amount of a single grant is up to 40% of your ticket to
         a max of $250, regardless of conference location or estimated expenses.
         <div className="mt-2">
-          <Link href="/awards-and-grants/grants/travel-grant-application">
+          <Link href="https://assu.ca/wp/services-resources/assu-travel-grant/">
             2024 Travel Grant Application
           </Link>
         </div>
@@ -72,7 +71,7 @@ const items: ContentItem[] = [
         be applied to the fee associated with a deferred exam, regardless of
         additional circumstances.
         <div className="mt-2">
-          <Link href="/awards-and-grants/grants/deferred-exam-fee-application">
+          <Link href="https://assu.ca/wp/services-resources/deferred-exam-fee-grant/">
             Deferred Exam Fee Grant Application
           </Link>
         </div>
@@ -108,7 +107,7 @@ const items: ContentItem[] = [
         approval; all requests are subject to review and approval by the ASSU
         Executive.
         <div className="mt-2">
-          <Link href="/awards-and-grants/grants/donation-request-form">
+          <Link href="https://assu.ca/wp/services-resources/donation-requests/">
             ASSU Donation Request Form
           </Link>
         </div>
