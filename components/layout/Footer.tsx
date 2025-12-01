@@ -44,7 +44,7 @@ export default function Footer() {
                   className="hover:text-gray-300 transition-colors"
                 >
                   <p>
-                    100 St.George Street <br /> Sidney Smith Hall, Room 1068
+                    100 St. George Street <br /> Sidney Smith Hall, Room 1068
                   </p>
                 </a>
               </div>

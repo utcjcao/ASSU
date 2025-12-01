@@ -1,40 +1,99 @@
-import React from "react";
-import Text from "@/components/common/Text";
-// import AssuImage from "@/components/common/AssuImage";
-import Divider from "@/components/common/Divider";
-import Link from "@/components/common/Link";
+import fs from "fs/promises";
+import path from "path";
 import Image from "next/image";
-import { fetchExecutivesData } from "@/lib/executives";
+import Divider from "@/components/common/Divider";
+import Text from "@/components/common/Text";
+import HeroText from "@/components/sections/HeroText";
 
-export async function generateStaticParams() {
-  try {
-    const executives = await fetchExecutivesData();
-    console.log(`Fetched ${executives.length} executives at build time`);
-    return [{}];
-  } catch (error) {
-    console.error("Error in generateStaticParams:", error);
-    return [{}];
+type ExecutiveRow = {
+  name: string;
+  image?: string;
+  bio: string;
+};
+
+type Executive = {
+  name: string;
+  title?: string;
+  image?: string;
+  bio: string;
+};
+
+function parseCsvLine(line: string): string[] {
+  const result: string[] = [];
+  let current = "";
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    const next = line[i + 1];
+
+    if (char === '"' && inQuotes && next === '"') {
+      current += '"';
+      i++; // skip escaped quote
+      continue;
+    }
+
+    if (char === '"') {
+      inQuotes = !inQuotes;
+      continue;
+    }
+
+    if (char === "," && !inQuotes) {
+      result.push(current.trim());
+      current = "";
+      continue;
+    }
+
+    current += char;
   }
+
+  result.push(current.trim());
+  return result;
+}
+
+async function loadExecutives(): Promise<Executive[]> {
+  const csvPath = path.join(process.cwd(), "info", "executives.csv");
+  const content = await fs.readFile(csvPath, "utf-8");
+  const lines = content.trim().split(/\r?\n/);
+
+  const header = parseCsvLine(lines.shift() ?? "");
+  const rows: ExecutiveRow[] = lines
+    .map(parseCsvLine)
+    .filter((cols) => cols.length >= 1)
+    .map((cols) => {
+      const row: Record<string, string> = {};
+      header.forEach((key, idx) => {
+        row[key] = cols[idx] ?? "";
+      });
+      return {
+        name: row.name || "",
+        image: row.image || undefined,
+        bio: row.bio || "",
+      };
+    });
+
+  return rows.map((row) => {
+    const [namePart, ...titleParts] = row.name.split(",");
+    const name = namePart?.trim() ?? "";
+    const title = titleParts.join(",").trim() || undefined;
+
+    return {
+      name,
+      title,
+      image: row.image?.trim() || undefined,
+      bio: row.bio?.trim() || "",
+    };
+  });
 }
 
 export default async function Executives() {
-  // Fetch executives data at build time
-  const executives = await fetchExecutivesData();
+  const executives = await loadExecutives();
+
   return (
     <div className="min-h-screen bg-gray-lighter">
-      {/* Header Section */}
       <div className="max-w-6xl mx-auto px-4 py-12 md:py-20">
-        <div className="text-center mb-16">
-          <Divider className="mb-8" width="100%" maxWidth="100%" />
-
-          <Text
-            as="h1"
-            className="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-4"
-          >
-            Our Team
-          </Text>
-
-          <Divider className="mb-6" width="100%" maxWidth="100%" />
+        <div className="text-center mb-16 max max-w-3xl mx-auto">
+          <HeroText text="Our Team"></HeroText>
 
           <Text
             as="p"
@@ -46,124 +105,58 @@ export default async function Executives() {
           <div className="w-full h-px bg-black opacity-25"></div>
         </div>
 
-        {/* Executives Section */}
-        <div className="relative">
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-black opacity-25 transform -translate-x-1/2"></div>
-
-          <div className="space-y-16 md:space-y-24">
-            {executives.map((executive, index) => (
-              <div key={executive.name} className="bg-gray-lighter">
-                <div className="relative">
-                  <div
-                    className={`grid gap-8 md:gap-12 items-start ${
-                      executive.image ? "md:grid-cols-2" : "md:grid-cols-1"
+        <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          {executives.map((executive, index) => (
+            <div
+              key={`${executive.name}-${index}`}
+              className="bg-white rounded-lg shadow-sm p-6 md:p-8 flex flex-col space-y-6"
+            >
+              <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-gray-200">
+                {executive.image ? (
+                  <Image
+                    src={executive.image}
+                    alt={`${executive.name}${
+                      executive.title ? ` - ${executive.title}` : ""
                     }`}
-                  >
-                    {/* Image Section - Alternating sides */}
-                    {executive.image && (
-                      <div
-                        className={`order-2 ${
-                          index % 2 === 0 ? "md:order-1" : "md:order-2"
-                        }`}
-                      >
-                        <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-lg">
-                          <Image
-                            src={executive.image}
-                            alt={`${executive.name} - ${executive.title}`}
-                            fill
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            className="object-cover"
-                          />
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Content Section - Alternating sides */}
-                    <div
-                      className={`order-1 ${
-                        executive.image
-                          ? index % 2 === 0
-                            ? "md:order-2"
-                            : "md:order-1"
-                          : ""
-                      }`}
-                    >
-                      <div className="space-y-6 flex flex-col justify-end h-full">
-                        <div>
-                          <Text
-                            as="h2"
-                            className="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] mb-2"
-                          >
-                            {executive.name}
-                          </Text>
-                          <Text
-                            as="h3"
-                            className="text-xl md:text-2xl text-[var(--color-text-primary)]"
-                          >
-                            {executive.title}
-                          </Text>
-                        </div>
-
-                        {/* Bio */}
-                        <div>
-                          <Text
-                            as="p"
-                            className="text-[var(--color-text-secondary)] leading-relaxed text-base md:text-lg whitespace-pre-line"
-                          >
-                            {executive.bio}
-                          </Text>
-                        </div>
-
-                        <div className="flex flex-wrap gap-4 pt-4">
-                          <Link href={`mailto:${executive.email}`}>
-                            <span className="inline-flex items-center gap-2">
-                              <span>📧</span>
-                              <span>{executive.email}</span>
-                            </span>
-                          </Link>
-
-                          {executive.linkedin && (
-                            <Link href={`https://${executive.linkedin}`}>
-                              <span className="inline-flex items-center gap-2">
-                                <span>❤️</span>
-                                <span>{executive.linkedin}</span>
-                              </span>
-                            </Link>
-                          )}
-
-                          {executive.instagram && (
-                            <Link
-                              href={`https://instagram.com/${executive.instagram.replace(
-                                "@",
-                                ""
-                              )}`}
-                            >
-                              <span className="inline-flex items-center gap-2">
-                                <span>❤️</span>
-                                <span>{executive.instagram}</span>
-                              </span>
-                            </Link>
-                          )}
-                        </div>
-                      </div>
-                    </div>
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm">
+                    No image available
                   </div>
-
-                  {/* Horizontal line below each executive section  */}
-                  {index < executives.length - 1 && (
-                    <div className="flex justify-between mt-8 gap-8 md:gap-12">
-                      <div className="w-[calc(50%-1rem)] md:w-[calc(50%-1.5rem)] h-px bg-black opacity-25"></div>
-                      <div className="w-[calc(50%-1rem)] md:w-[calc(50%-1.5rem)] h-px bg-black opacity-25"></div>
-                    </div>
-                  )}
-                </div>
+                )}
               </div>
-            ))}
-          </div>
+
+              <div className="space-y-3">
+                <Text
+                  as="h2"
+                  className="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)]"
+                >
+                  {executive.name}
+                </Text>
+                {executive.title && (
+                  <Text
+                    as="h3"
+                    className="text-xl md:text-2xl text-[var(--color-text-primary)]"
+                  >
+                    {executive.title}
+                  </Text>
+                )}
+              </div>
+
+              <Text
+                as="p"
+                className="text-[var(--color-text-secondary)] leading-relaxed text-base md:text-lg whitespace-pre-line"
+              >
+                {executive.bio}
+              </Text>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Bottom divider */}
       <div className="max-w-6xl mx-auto px-4 -mt-8">
         <Divider width="100%" maxWidth="100%" />
       </div>

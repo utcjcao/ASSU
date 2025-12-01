@@ -1,26 +1,17 @@
 "use client";
 
-import Divider from "components/common/Divider";
-// import CardGrid from "components/layout/CardGrid";
-import { ImageCarousel } from "@/components/common/ImageCarousel";
 import React from "react";
+import Image from "next/image";
+import Divider from "components/common/Divider";
+import { ImageCarousel } from "@/components/common/ImageCarousel";
 import ContentGrid, { ContentItem } from "@/components/layout/ContentGrid";
 import Button from "@/components/common/Button";
-import Image from "next/image";
 
 const serviceItems: ContentItem[] = [
   {
     id: "events",
     node: (
-      <div className="grid grid-cols-[28px_1fr] gap-3 items-start">
-        {/* Icon */}
-        <Image
-          src="/svg/star.svg"
-          alt="Events icon"
-          width={28}
-          height={28}
-          className="text-pink-500"
-        />
+      <div className=" gap-3 items-start">
         {/* Text + button */}
         <div className="flex flex-col">
           <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
@@ -37,20 +28,7 @@ const serviceItems: ContentItem[] = [
   {
     id: "initiatives",
     node: (
-      <div className="grid grid-cols-[28px_1fr] gap-3 items-start">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="28"
-          height="28"
-          fill="white"
-          stroke="currentColor"
-          strokeWidth="1"
-        >
-          <path d="M12 4 L6 14 H18 Z" />
-
-          <path d="M12 10 L6 20 H18 Z" />
-        </svg>
+      <div className=" gap-3 items-start">
         <div className="flex flex-col">
           <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
             Our Initiatives
@@ -67,19 +45,7 @@ const serviceItems: ContentItem[] = [
   {
     id: "office",
     node: (
-      <div className="grid grid-cols-[28px_1fr] gap-3 items-start">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="28"
-          height="28"
-          fill="white"
-          stroke="currentColor"
-          strokeWidth="1"
-        >
-          <rect x="4" y="4" width="10" height="10" />
-          <rect x="10" y="10" width="10" height="10" />
-        </svg>
+      <div className=" gap-3 items-start">
         <div className="flex flex-col">
           <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
             Office Services
@@ -95,13 +61,7 @@ const serviceItems: ContentItem[] = [
   {
     id: "financial",
     node: (
-      <div className="grid grid-cols-[28px_1fr] gap-3 items-start">
-        <Image
-          src="/svg/circle.svg"
-          alt="Financial Help icon"
-          width={28}
-          height={28}
-        />
+      <div className=" gap-3 items-start">
         <div className="flex flex-col">
           <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
             Financial Help
@@ -116,66 +76,46 @@ const serviceItems: ContentItem[] = [
   },
 ];
 
-const outerItems: ContentItem[] = [
-  {
-    id: "heading",
-    node: (
-      <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)]">
-        Our Services
-      </h2>
-    ),
-  },
-  {
-    id: "services-grid",
-    node: <ContentGrid items={serviceItems} columns={2} />,
-  },
-];
-
 export default function Home() {
   return (
-    <div className="flex flex-col">
-      <Divider className="mb-8" />
-      <div className="py-8">
-        <ImageCarousel></ImageCarousel>
+    <div className="w-full max-w-3xl mx-auto px-4">
+      <div className="w-full py-8">
+        {/* Desktop / tablet carousel */}
+        <div className="hidden md:block">
+          <ImageCarousel />
+        </div>
+        {/* Mobile single hero */}
+        <div className="md:hidden relative w-full h-64 rounded-lg overflow-hidden">
+          <Image
+            src="/images/home-carousel-1.webp"
+            alt="Welcome to the ASSU Website"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/40 flex items-center px-6">
+            <h2 className="text-3xl font-bold text-white leading-tight">
+              Welcome to the ASSU Website.
+            </h2>
+          </div>
+        </div>
       </div>
 
-      {/* <HeroText>ASSU News</HeroText> */}
-
       <Divider className="mb-8" />
-      {/* card grid */}
-
       <section className="mx-auto px-4">
-        <ContentGrid
-          items={outerItems}
-          columns={2}
-          className="grid-cols-[2fr_5fr]"
-        />
+        <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)] mb-4">
+          Our Services
+        </h2>
+        <Divider className="mb-8" />
+        <ContentGrid items={serviceItems} columns={2} />
       </section>
-      <Divider className="mt-8" />
-      <div className="flex justify-center py-8">
-        {/* Left icons */}
-        <div className="flex items-center space-x-2">
-          <Image
-            src="/svg/cloud.svg"
-            alt="Gray flower icon"
-            width={32}
-            height={32}
-          />
-          <Image
-            src="/svg/cloud.svg"
-            alt="Pink flower icon"
-            width={32}
-            height={32}
-          />
+      <Divider />
+      <div className="w-full py-8 px-4">
+        <div className="flex w-full items-center justify-center">
+          <p className="text-2xl text-gray-900 text-center w-full sm:w-auto">
+            Empowering Students, Building a Community
+          </p>
         </div>
-
-        {/* Divider line */}
-        <div className="mx-3 h-8 w-px bg-gray-400" />
-
-        {/* Text */}
-        <p className="text-2xl text-gray-900">
-          Empowering Students, Building a Community
-        </p>
       </div>
       <Divider className="mt-8" />
 
