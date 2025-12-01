@@ -211,7 +211,7 @@ export default function ServicesAndResources() {
                 university-run tutoring program.
               </p>
               <Link
-                href="/services-and-resources"
+                href="https://assu.ca/wp/get-involved/projectuniversal-minds/"
                 className="bg-[rgb(201,8,111)] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[rgb(180,7,100)] transition-colors duration-300 flex items-center mx-auto mt-auto"
               >
                 EXPLORE
