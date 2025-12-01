@@ -2,7 +2,6 @@
 
 import React from "react";
 import Text from "@/components/common/Text";
-import Divider from "@/components/common/Divider";
 import Image from "next/image";
 import HeroText from "@/components/sections/HeroText";
 

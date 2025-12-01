@@ -6,6 +6,7 @@ type BlogPost = {
   date: string;
   title: string;
   description: string;
+  dateObj?: Date;
 };
 
 type BlogListProps = {
