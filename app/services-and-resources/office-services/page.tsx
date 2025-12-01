@@ -23,9 +23,9 @@ const items: ContentItem[] = [
           must be on a USB drive and in .pdf format. There is a limit of 8
           double-sided or 16 single-sided pages a day. After that, the regular
           charge of 5 cents a side applies. If you prefer us to print your
-          documents, we have black-and-white printing available in-office for
-          5 cents a side (10 cents double-sided). You can email your documents
-          and we’ll have them ready. We accept cash or e-transfers for payment.
+          documents, we have black-and-white printing available in-office for 5
+          cents a side (10 cents double-sided). You can email your documents and
+          we’ll have them ready. We accept cash or e-transfers for payment.
         </p>
         <p className="text-lg">
           Email:{" "}
@@ -75,14 +75,14 @@ const items: ContentItem[] = [
         <p>
           Forgot your laptop or charger? Students can borrow laptops from the
           ASSU Office (Sidney Smith Hall, 1068) for up to 2 business days
-          (Mon–Fri) on a first-come, first-served basis. To borrow, bring a valid
-          TCard or government-issued ID and a $50 deposit (cash or e-transfer).
-          The deposit is returned when the laptop is brought back in good
-          condition by 4:00 pm on the due date.
+          (Mon–Fri) on a first-come, first-served basis. To borrow, bring a
+          valid TCard or government-issued ID and a $50 deposit (cash or
+          e-transfer). The deposit is returned when the laptop is brought back
+          in good condition by 4:00 pm on the due date.
         </p>
         <p>
           Find the full terms and conditions{" "}
-          <Link href="/services-and-resources/office-services/laptop-loan-terms">
+          <Link href="https://docs.google.com/document/d/1xvVq5pfYqht79v6235gDOpCv31_ExdVTfvvlQzkjkvM/edit?tab=t.0">
             here
           </Link>
           .
@@ -101,8 +101,8 @@ const items: ContentItem[] = [
     mergeKey: "pop",
     node: (
       <div className="text-base leading-relaxed">
-        We sell non-brand name pop. Cola, Diet Cola, and Ginger Ale for only
-        50 cents!
+        We sell non-brand name pop. Cola, Diet Cola, and Ginger Ale for only 50
+        cents!
       </div>
     ),
   },
@@ -172,8 +172,8 @@ export default function OfficeServicesPage() {
         <p className="mt-6 mb-8 text-base md:text-lg text-gray-700 max-w-4xl">
           Supporting students with essential resources, our office services
           provide printing, study spaces, locker rentals, and administrative
-          assistance to enhance your campus experience. Visit us for
-          everything you need!
+          assistance to enhance your campus experience. Visit us for everything
+          you need!
         </p>
 
         {/* Main content grid */}

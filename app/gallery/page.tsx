@@ -8,6 +8,8 @@ import {
   CarouselItem,
 } from "../../components/ui/carousel";
 
+import { notFound } from "next/navigation";
+
 interface SingleWithTextRow {
   type: "single-with-text";
   image: string;
@@ -104,6 +106,8 @@ const galleryData: GalleryPage[] = [
 ];
 
 export default function Gallery() {
+  notFound();
+
   const [currentPage, setCurrentPage] = useState(0);
 
   const handlePrev = () => {
