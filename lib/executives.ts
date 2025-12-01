@@ -61,9 +61,7 @@ function extractEmail(text: string): string | null {
   const emailPattern = /(\w+)\[at\]assu\[dot\](ca|com)/gi;
   const match = text.match(emailPattern);
   if (match) {
-    const email = match[0]
-      .replace(/\[at\]/gi, "@")
-      .replace(/\[dot\]/gi, ".");
+    const email = match[0].replace(/\[at\]/gi, "@").replace(/\[dot\]/gi, ".");
     return email.toLowerCase();
   }
   return null;
@@ -89,7 +87,11 @@ function extractInstagram(text: string): string | null {
 }
 
 // Function to clean bio text (remove email and Instagram mentions)
-function cleanBio(bio: string, email: string, instagram: string | null): string {
+function cleanBio(
+  bio: string,
+  email: string,
+  instagram: string | null
+): string {
   let cleaned = bio;
 
   // Remove email mentions
@@ -219,7 +221,9 @@ export async function fetchExecutivesData(): Promise<Executive[]> {
               bioText = sectionText.substring(h4Index + h4Text.length).trim();
 
               // Remove any following h4 content (next executive)
-              const nextH4Match = bioText.match(/\n\s*[A-Z][a-z]+ [A-Z][a-z]+ [A-Z][a-z]+,/);
+              const nextH4Match = bioText.match(
+                /\n\s*[A-Z][a-z]+ [A-Z][a-z]+ [A-Z][a-z]+,/
+              );
               if (nextH4Match && nextH4Match.index !== undefined) {
                 bioText = bioText.substring(0, nextH4Match.index).trim();
               }
@@ -228,7 +232,9 @@ export async function fetchExecutivesData(): Promise<Executive[]> {
               const $nextSection = $section.next("section");
               if ($nextSection.length) {
                 const nextSectionText = $nextSection.text();
-                const nextH4InNextSection = nextSectionText.match(/^[A-Z][a-z]+ [A-Z][a-z]+ [A-Z][a-z]+,/);
+                const nextH4InNextSection = nextSectionText.match(
+                  /^[A-Z][a-z]+ [A-Z][a-z]+ [A-Z][a-z]+,/
+                );
                 if (nextH4InNextSection) {
                   // We've reached the next executive, stop here
                 }
@@ -288,7 +294,7 @@ export async function fetchExecutivesData(): Promise<Executive[]> {
             $images.each((imgIndex: number, imgElement) => {
               const $img = $(imgElement);
               const imgSrc = $img.attr("src");
-              
+
               // Skip emoji images and very small images (likely icons)
               if (
                 imgSrc &&
@@ -323,7 +329,8 @@ export async function fetchExecutivesData(): Promise<Executive[]> {
               title,
               image,
               bio: cleanedBio,
-              email: email || `${name.toLowerCase().replace(/\s+/g, "")}@assu.ca`,
+              email:
+                email || `${name.toLowerCase().replace(/\s+/g, "")}@assu.ca`,
               instagram: instagram || undefined,
             });
           }
@@ -353,4 +360,3 @@ function getFallbackExecutives(): Executive[] {
     },
   ];
 }
-

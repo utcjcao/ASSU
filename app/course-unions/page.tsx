@@ -15,7 +15,7 @@ type CourseUnion = {
 };
 
 async function loadCourseUnions(): Promise<CourseUnion[]> {
-  const csvPath = path.join(process.cwd(), "unions", "unions.csv");
+  const csvPath = path.join(process.cwd(), "info", "unions.csv");
   const content = await fs.readFile(csvPath, "utf-8");
 
   return content
