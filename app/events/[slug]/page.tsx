@@ -1,6 +1,8 @@
-import { getEventBySlug, fetchUpcomingPosts } from "@/lib/posts";
+import { getEventBySlug } from "@/lib/posts";
 import Image from "next/image";
 import HeroText from "../../../components/sections/HeroText";
+
+// todo: connect the events section later: fetchUpcomingPosts
 
 export default async function EventPage({
   params,
@@ -40,7 +42,7 @@ export default async function EventPage({
 export async function generateStaticParams() {
   try {
     // Fetch all posts to get their slugs
-    const posts = await fetchUpcomingPosts();
+    // const posts = await fetchUpcomingPosts();
 
     // We need to fetch the actual WordPress posts to get slugs
     // Since fetchUpcomingPosts doesn't return slugs, we'll fetch directly

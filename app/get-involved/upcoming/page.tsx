@@ -41,30 +41,22 @@ export default async function Upcoming() {
   upcomingPosts.sort((a, b) => a.dateObj.getTime() - b.dateObj.getTime());
   pastPosts.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
 
-  // Remove dateObj before passing to BlogList
-  const upcomingPostsClean = upcomingPosts.map(
-    ({ dateObj: _dateObj, ...post }) => post
-  );
-  const pastPostsClean = pastPosts.map(
-    ({ dateObj: _dateObj, ...post }) => post
-  );
-
   console.log(
-    `Filtered posts: ${upcomingPostsClean.length} upcoming, ${pastPostsClean.length} past`
+    `Filtered posts: ${upcomingPosts.length} upcoming, ${pastPosts.length} past`
   );
 
   return (
     <>
       <HeroText text="Upcoming Events" />
-      {upcomingPostsClean.length > 0 && <BlogList posts={upcomingPostsClean} />}
-      {upcomingPostsClean.length === 0 && (
+      {upcomingPosts.length > 0 && <BlogList posts={upcomingPosts} />}
+      {upcomingPosts.length === 0 && (
         <p className="text-center text-gray-dark py-8">
           No upcoming events at this time.
         </p>
       )}
       <HeroText text="Past Events" />
-      {pastPostsClean.length > 0 && <BlogList posts={pastPostsClean} />}
-      {pastPostsClean.length === 0 && (
+      {pastPosts.length > 0 && <BlogList posts={pastPosts} />}
+      {pastPosts.length === 0 && (
         <p className="text-center text-gray-dark py-8">
           No past events to display.
         </p>
