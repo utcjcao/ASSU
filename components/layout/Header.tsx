@@ -40,10 +40,6 @@ export default function Header() {
     }
   }, [isMobileMenuOpen]);
 
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [pathname]);
-
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {

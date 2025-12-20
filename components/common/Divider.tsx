@@ -23,13 +23,15 @@ const Divider: React.FC<DividerProps> = ({
 }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-      setIsTablet(window.innerWidth <= 1024 && window.innerWidth > 768);
+      const w = window.innerWidth;
+      const nextIsMobile = w <= 768;
+      const nextIsTablet = w <= 1024 && w > 768;
+
+      setIsMobile((prev) => (prev === nextIsMobile ? prev : nextIsMobile));
+      setIsTablet((prev) => (prev === nextIsTablet ? prev : nextIsTablet));
     };
 
     handleResize();
@@ -38,10 +40,7 @@ const Divider: React.FC<DividerProps> = ({
   }, []);
 
   const getMaxWidth = () => {
-    // Use default value during SSR and initial render to match server
-    if (!isMounted) {
-      return maxWidth || "980px";
-    }
+    if (maxWidth) return maxWidth;
     if (isMobile) return "95%";
     if (isTablet) return "90%";
     return "980px";
