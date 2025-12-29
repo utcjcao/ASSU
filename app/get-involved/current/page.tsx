@@ -105,19 +105,14 @@ export default function Current() {
       {/* Current Projects Section */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* Divider above Current Projects */}
-        <Divider className="mb-8" width="100%" maxWidth="100%" color="black" />
+        <Divider className="mb-8" color="black" />
 
         <div className="mb-8">
           <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
             Current Projects
           </h1>
           {/* Divider below title */}
-          <Divider
-            className="mb-8"
-            width="100%"
-            maxWidth="100%"
-            color="black"
-          />
+          <Divider className="mb-8" color="black" />
         </div>
 
         {/* Projects Grid - Responsive layout */}
@@ -355,19 +350,14 @@ export default function Current() {
       {/* Achievements Section */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-2">
         {/* Divider above Achievements */}
-        <Divider className="mb-8" width="100%" maxWidth="100%" color="black" />
+        <Divider className="mb-8" color="black" />
 
         <div className="mb-4">
           <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
             Achievements in the Past Year
           </h2>
           {/* Divider below title */}
-          <Divider
-            className="mb-1"
-            width="100%"
-            maxWidth="100%"
-            color="black"
-          />
+          <Divider className="mb-1" color="black" />
         </div>
 
         {/* Simple bulleted list */}
@@ -381,7 +371,7 @@ export default function Current() {
             ))}
           </ul>
         </div>
-        <Divider className="pt-2" width="100%" maxWidth="100%" color="black" />
+        <Divider className="pt-2" color="black" />
       </section>
     </div>
   );

@@ -42,22 +42,9 @@ export default async function Tests() {
         </p>
       </div>
 
-      <Divider
-        height="0"
-        color="var(--color-line)"
-        className="w-full"
-        margin="0 0 0.5rem 0"
-        maxWidth="100%"
-      />
-
+      <Divider />
       <KeyValueList items={testData} />
-      <Divider
-        height="0"
-        color="var(--color-line)"
-        className="w-full"
-        margin="0 0 0.5rem 0"
-        maxWidth="100%"
-      />
+      <Divider />
     </div>
   );
 }
