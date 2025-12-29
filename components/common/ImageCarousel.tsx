@@ -48,7 +48,7 @@ export function ImageCarousel() {
               key={index}
               className={`pl-4 ${index === currentSlide ? "block" : "hidden"}`}
             >
-              <div className="relative h-[500px] w-full">
+              <div className="relative h-[560px] w-full">
                 <Image
                   data-testid={`carousel-image-${index}`}
                   src={slide.src}
