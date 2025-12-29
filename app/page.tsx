@@ -1,11 +1,10 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
-import Divider from "components/common/Divider";
 import { ImageCarousel } from "@/components/common/ImageCarousel";
 import ContentGrid, { ContentItem } from "@/components/layout/ContentGrid";
 import Button from "@/components/common/Button";
+import HeroText from "@/components/sections/HeroText";
 
 const serviceItems: ContentItem[] = [
   {
@@ -78,7 +77,7 @@ const serviceItems: ContentItem[] = [
 
 export default function Home() {
   return (
-    <div className="w-full max-w-3xl mx-auto px-4">
+    <div className="w-full mx-auto px-4">
       <div className="w-full py-8">
         {/* Desktop / tablet carousel */}
         <div className="hidden md:block">
@@ -101,26 +100,9 @@ export default function Home() {
         </div>
       </div>
 
-      <Divider className="mb-8" />
-      <section className="mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)] mb-4">
-          Our Services
-        </h2>
-        <Divider className="mb-8" />
-        <ContentGrid items={serviceItems} columns={2} />
-      </section>
-      <Divider />
-      <div className="w-full py-8 px-4">
-        <div className="flex w-full items-center justify-center">
-          <p className="text-2xl text-gray-900 text-center w-full sm:w-auto">
-            Empowering Students, Building a Community
-          </p>
-        </div>
-      </div>
-      <Divider className="mt-8" />
-
-      {/* services */}
-      {/* hero text */}
+      <HeroText text="Our Services" />
+      <ContentGrid items={serviceItems} columns={2} />
+      <HeroText text="Empowering Students, Building a Community" />
     </div>
   );
 }

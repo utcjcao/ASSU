@@ -291,3 +291,12 @@ body {
     display: none;
   }
 }
+
+.event-content a {
+  color: var(--color-pink);
+  text-decoration: underline;
+}
+
+.event-content a:hover {
+  color: var(--color-purple-dark);
+}

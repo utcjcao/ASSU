@@ -6,6 +6,7 @@ type BlogPost = {
   date: string;
   title: string;
   description: string;
+  slug: string;
   dateObj?: Date;
 };
 
@@ -18,7 +19,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
     <div className="flex flex-col items-center my-8">
       <div className="w-full max-w-3xl space-y-6">
         {posts.map((post, index) => (
-          <BlogCard key={index} {...post} />
+          <BlogCard key={post.slug || String(index)} {...post} />
         ))}
       </div>
     </div>

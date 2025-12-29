@@ -7,6 +7,7 @@ export interface BlogPost {
   date: string;
   title: string;
   description: string;
+  slug: string;
   dateObj: Date; // Keep original date object for filtering
 }
 
@@ -111,12 +112,12 @@ function extractImageFromContent(html: string): string | null {
   const $ = cheerio.load(html);
   // Look for images in the content
   const $images = $("img");
-  
+
   if ($images.length > 0) {
     // Get the first image src
     const firstImage = $images.first();
     const src = firstImage.attr("src");
-    
+
     if (src) {
       // Clean and normalize the image URL
       if (src.startsWith("http")) {
@@ -130,7 +131,7 @@ function extractImageFromContent(html: string): string | null {
       }
     }
   }
-  
+
   return null;
 }
 
@@ -141,7 +142,7 @@ async function fetchFeaturedMediaUrl(
 ): Promise<string | null> {
   try {
     const mediaUrl = featuredMediaLink;
-    
+
     // If we have a direct link, use it
     if (mediaUrl && mediaUrl.includes("/wp/v2/media/")) {
       const controller = new AbortController();
@@ -161,7 +162,7 @@ async function fetchFeaturedMediaUrl(
         return media.source_url;
       }
     }
-    
+
     // Fallback: try direct media endpoint
     if (mediaId > 0) {
       const controller = new AbortController();
@@ -187,7 +188,7 @@ async function fetchFeaturedMediaUrl(
   } catch (error) {
     console.error("Error fetching featured media:", error);
   }
-  
+
   return null;
 }
 
@@ -206,7 +207,7 @@ export async function fetchUpcomingPosts(): Promise<BlogPost[]> {
     const timeoutId = setTimeout(() => controller.abort(), 10000);
 
     const response = await fetch(
-      "https://assu.ca/wp/wp-json/wp/v2/posts?categories=24",
+      "https://assu.ca/wp/wp-json/wp/v2/posts?categories=28",
       {
         signal: controller.signal,
         headers: {
@@ -247,7 +248,7 @@ export async function fetchUpcomingPosts(): Promise<BlogPost[]> {
 
         // Extract description from excerpt
         let description = extractTextFromHtml(post.excerpt.rendered);
-        
+
         // If excerpt is empty or too short, try content
         if (!description || description.length < 50) {
           description = extractTextFromHtml(post.content.rendered);
@@ -285,6 +286,7 @@ export async function fetchUpcomingPosts(): Promise<BlogPost[]> {
           date,
           title,
           description,
+          slug: post.slug,
           dateObj: new Date(post.date),
         };
       })
@@ -308,6 +310,7 @@ function getFallbackPosts(): BlogPost[] {
       title: "Test Raffle Contest",
       description:
         "Our famous test library exists solely because students donate their term tests. Help us update our test library by donating yours - your name will be entered in a draw to win one of two pairs of AirPod 3s that we are raffling away!",
+      slug: "test-raffle-contest",
       dateObj: new Date("2025-03-04"),
     },
   ];
@@ -327,9 +330,8 @@ export async function getEventBySlug(slug: string): Promise<EventPost> {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-    // Fetch posts from category 24 and find by slug
     const response = await fetch(
-      "https://assu.ca/wp/wp-json/wp/v2/posts?categories=24",
+      "https://assu.ca/wp/wp-json/wp/v2/posts?categories=28",
       {
         signal: controller.signal,
         headers: {
@@ -345,7 +347,7 @@ export async function getEventBySlug(slug: string): Promise<EventPost> {
     }
 
     const data: WordPressPost[] = await response.json();
-    
+
     // Find the post with matching slug
     const post = data.find((p) => p.slug === slug);
 
@@ -361,7 +363,7 @@ export async function getEventBySlug(slug: string): Promise<EventPost> {
 
     // Extract description from excerpt
     let description = extractTextFromHtml(post.excerpt.rendered);
-    
+
     // If excerpt is empty or too short, try content
     if (!description || description.length < 50) {
       description = extractTextFromHtml(post.content.rendered);
@@ -376,8 +378,7 @@ export async function getEventBySlug(slug: string): Promise<EventPost> {
 
     // Try to fetch featured media first
     if (post.featured_media > 0) {
-      const featuredMediaLink =
-        post._links?.["wp:featuredmedia"]?.[0]?.href;
+      const featuredMediaLink = post._links?.["wp:featuredmedia"]?.[0]?.href;
       const fetchedImage = await fetchFeaturedMediaUrl(
         post.featured_media,
         featuredMediaLink

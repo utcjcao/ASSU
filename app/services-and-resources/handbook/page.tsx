@@ -12,15 +12,13 @@ export default function Handbook() {
       </Text>
       <Divider borderTopWidth="3px" />
       <Text as="p" className="text-lg">
-        The ASSU Academic Handbook is an{" "}
-        <strong>essential guide to rules, regulations, and services</strong>{" "}
-        that students need to be aware of at the St. George campus of the
-        University of Toronto.
+        The ASSU Academic Handbook is an essential guide to rules, regulations,
+        and services that students need to be aware of at the St. George campus
+        of the University of Toronto.
       </Text>
       <Text as="p" className="text-lg">
-        You can find paper copies of the handbook in <strong>our office</strong>
-        , Sid Smith Rm 1068 <br /> You can also download the .pdf of the
-        handbook here:{" "}
+        You can find paper copies of the handbook in our office at Room 1068 in
+        Sidney Smith. You can also download the .pdf of the handbook here:{" "}
         <Link href="https://f69d17aa-c996-4c07-84e8-5658e41b3090.filesusr.com/ugd/82c36b_0fc2556ac71749e0976805440b15d9dd.pdf">
           Academic Handbook
         </Link>

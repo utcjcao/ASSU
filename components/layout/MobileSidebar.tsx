@@ -1,25 +1,83 @@
 import Link from "next/link";
+import type { NavGroup } from "./nav";
 
 interface MobileSidebarProps {
+  nav: NavGroup[];
   isOpen: boolean;
   onClose: () => void;
-  aboutItems: Array<{ label: string; href: string }>;
-  courseUnionsItems: Array<{ label: string; href: string }>;
-  getInvolvedItems: Array<{ label: string; href: string }>;
-  awardsGrantsItems: Array<{ label: string; href: string }>;
-  servicesResourcesItems: Array<{ label: string; href: string }>;
   isRouteActive: (href: string) => boolean;
   isSubrouteActive: (href: string) => boolean;
 }
 
+interface MobileSectionProps {
+  label: string;
+  href: string;
+  items?: Array<{ label: string; href: string }>;
+  onClose: () => void;
+  isRouteActive: (href: string) => boolean;
+  isSubrouteActive: (href: string) => boolean;
+}
+
+function MobileSection({
+  label,
+  href,
+  items,
+  onClose,
+  isRouteActive,
+  isSubrouteActive,
+}: MobileSectionProps) {
+  const hasItems = !!items?.length;
+  const sectionId =
+    "mobile-section-" + (href.replace(/[^a-z0-9]+/gi, "-") || "root");
+  const headingClass = `text-lg font-sans text-gray-darker${
+    hasItems ? " mb-2" : ""
+  }`;
+
+  return (
+    <section
+      className={`pb-4 ${hasItems ? "border-b border-gray-200" : ""}`}
+      aria-labelledby={sectionId}
+    >
+      <h3 className={headingClass} id={sectionId}>
+        <Link
+          href={href}
+          onClick={onClose}
+          className={`py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
+            isRouteActive(href) ? "text-pink" : "text-gray-darker"
+          }`}
+          aria-current={isRouteActive(href) ? "page" : undefined}
+        >
+          {label}
+        </Link>
+      </h3>
+
+      {hasItems ? (
+        <div className="space-y-2 ml-4">
+          {items!.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={onClose}
+              className={`text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
+                isSubrouteActive(item.href) ? "text-pink" : "text-gray-dark"
+              }`}
+              aria-current={
+                isSubrouteActive(item.href) ? "page" : undefined
+              }
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      ) : null}
+    </section>
+  );
+}
+
 export default function MobileSidebar({
+  nav,
   isOpen,
   onClose,
-  aboutItems,
-  courseUnionsItems,
-  getInvolvedItems,
-  awardsGrantsItems,
-  servicesResourcesItems,
   isRouteActive,
   isSubrouteActive,
 }: MobileSidebarProps) {
@@ -83,229 +141,28 @@ export default function MobileSidebar({
             role="navigation"
             aria-labelledby="mobile-menu-title"
           >
-            {/* About ASSU */}
-            <section
-              className="border-b border-gray-200 pb-4"
-              aria-labelledby="about-section"
-            >
-              <h3
-                id="about-section"
-                className="text-lg font-sans text-gray-darker mb-2"
-              >
-                <Link
-                  href="/about"
-                  onClick={onClose}
-                  className={`py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
-                    isRouteActive("/about") ? "text-pink" : ""
-                  }`}
-                >
-                  About ASSU
-                </Link>
-              </h3>
-              <div className="space-y-2 ml-4">
-                {aboutItems.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.href}
-                    onClick={onClose}
-                    className={`text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
-                      isSubrouteActive(item.href)
-                        ? "text-pink"
-                        : "text-gray-dark"
-                    }`}
-                    aria-current={
-                      isSubrouteActive(item.href) ? "page" : undefined
-                    }
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </section>
-            {/* Course Unions */}
-            <section
-              className="border-b border-gray-200 pb-4"
-              aria-labelledby="course-unions-section"
-            >
-              <h3
-                id="course-unions-section"
-                className="text-lg font-sans text-gray-darker mb-2"
-              >
-                <Link
-                  href="/course-unions"
-                  onClick={onClose}
-                  className={`py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
-                    isRouteActive("/course-unions") ? "text-pink" : ""
-                  }`}
-                >
-                  Course Unions
-                </Link>
-              </h3>
-              <div className="space-y-2 ml-4">
-                {courseUnionsItems.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.href}
-                    onClick={onClose}
-                    className={`text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
-                      isSubrouteActive(item.href)
-                        ? "text-pink"
-                        : "text-gray-dark"
-                    }`}
-                    aria-current={
-                      isSubrouteActive(item.href) ? "page" : undefined
-                    }
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </section>
-            {/* Get Involved */}
-            <section
-              className="border-b border-gray-200 pb-4"
-              aria-labelledby="get-involved-section"
-            >
-              <h3
-                id="get-involved-section"
-                className="text-lg font-sans text-gray-darker mb-2"
-              >
-                <Link
-                  href="/get-involved"
-                  onClick={onClose}
-                  className={`py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
-                    isRouteActive("/get-involved") ? "text-pink" : ""
-                  }`}
-                >
-                  Get Involved
-                </Link>
-              </h3>
-              <div className="space-y-2 ml-4">
-                {getInvolvedItems.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.href}
-                    onClick={onClose}
-                    className={`text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
-                      isSubrouteActive(item.href)
-                        ? "text-pink"
-                        : "text-gray-dark"
-                    }`}
-                    aria-current={
-                      isSubrouteActive(item.href) ? "page" : undefined
-                    }
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </section>
-            {/* Gallery
-            <section className="border-b border-gray-200 pb-4">
-              <Link
-                href="/gallery"
-                onClick={onClose}
-                className={`text-lg font-sans hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
-                  isRouteActive("/gallery") ? "text-pink" : "text-gray-darker"
-                }`}
-                aria-current={isRouteActive("/gallery") ? "page" : undefined}
-              >
-                Gallery
-              </Link>
-            </section> */}
-            {/* Awards & Grants */}
-            <section
-              className="border-b border-gray-200 pb-4"
-              aria-labelledby="awards-grants-section"
-            >
-              <h3
-                id="awards-grants-section"
-                className="text-lg font-sans text-gray-darker mb-2"
-              >
-                <Link
-                  href="/awards-and-grants"
-                  onClick={onClose}
-                  className={`py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
-                    isRouteActive("/awards-and-grants") ? "text-pink" : ""
-                  }`}
-                >
-                  Awards & Grants
-                </Link>
-              </h3>
-              <div className="space-y-2 ml-4">
-                {awardsGrantsItems.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.href}
-                    onClick={onClose}
-                    className={`text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
-                      isSubrouteActive(item.href)
-                        ? "text-pink"
-                        : "text-gray-dark"
-                    }`}
-                    aria-current={
-                      isSubrouteActive(item.href) ? "page" : undefined
-                    }
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </section>
-            {/* Services & Resources */}
-            <section
-              className="border-b border-gray-200 pb-4"
-              aria-labelledby="services-resources-section"
-            >
-              <h3
-                id="services-resources-section"
-                className="text-lg font-sans text-gray-darker mb-2"
-              >
-                <Link
-                  href="/services-and-resources"
-                  onClick={onClose}
-                  className={`py-2 hover:text-pink transition-colors min-h-11 flex items-center ${
-                    isRouteActive("/services-and-resources") ? "text-pink" : ""
-                  }`}
-                >
-                  Services & Resources
-                </Link>
-              </h3>
-              <div className="space-y-2 ml-4">
-                {servicesResourcesItems.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.href}
-                    onClick={onClose}
-                    className={`text-sm hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
-                      isSubrouteActive(item.href)
-                        ? "text-pink"
-                        : "text-gray-dark"
-                    }`}
-                    aria-current={
-                      isSubrouteActive(item.href) ? "page" : undefined
-                    }
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </section>
-            {/* Contact Us */}
-            <section className="pb-4">
-              <Link
-                href="/contact-us"
-                onClick={onClose}
-                className={`text-lg font-sans hover:text-pink transition-colors py-2 min-h-11 flex items-center ${
-                  isRouteActive("/contact-us")
-                    ? "text-pink"
-                    : "text-gray-darker"
-                }`}
-                aria-current={isRouteActive("/contact-us") ? "page" : undefined}
-              >
-                Contact Us
-              </Link>
-            </section>
+            {nav.map((group) =>
+              group.type === "dropdown" ? (
+                <MobileSection
+                  key={group.href}
+                  label={group.label}
+                  href={group.href}
+                  items={group.items}
+                  onClose={onClose}
+                  isRouteActive={isRouteActive}
+                  isSubrouteActive={isSubrouteActive}
+                />
+              ) : (
+                <MobileSection
+                  key={group.href}
+                  label={group.label}
+                  href={group.href}
+                  onClose={onClose}
+                  isRouteActive={isRouteActive}
+                  isSubrouteActive={isSubrouteActive}
+                />
+              )
+            )}
           </nav>
         </div>
       </aside>
