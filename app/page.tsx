@@ -62,7 +62,7 @@ export default async function Home() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-black/15 flex items-center px-6">
+        <div className="absolute inset-0 bg-black/5 flex items-center px-6">
           <h2 className="text-3xl font-bold text-white leading-tight">
             Welcome to the ASSU Website.
           </h2>
