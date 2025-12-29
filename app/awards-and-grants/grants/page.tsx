@@ -4,6 +4,7 @@ import React from "react";
 import ContentGrid, { ContentItem } from "@/components/layout/ContentGrid";
 import Divider from "@/components/common/Divider";
 import Link from "@/components/common/Link";
+import HeroText from "@/components/sections/HeroText";
 
 // Grid items for the Grants page
 const items: ContentItem[] = [
@@ -11,17 +12,7 @@ const items: ContentItem[] = [
     id: "travel-grant",
     title: "ASSU Travel Grant",
     mergeKey: "travel",
-    node: (
-      <div className="flex items-start gap-3">
-        {/* <AssuImage
-          src="/svg/abs-shape.svg"
-          alt=""
-          className="w-6 h-6 shrink-0"
-          imgClassName="w-full h-full object-contain"
-          radiusClassName=""
-        /> */}
-      </div>
-    ),
+    node: <div />,
   },
   {
     id: "travel-grant-desc",
@@ -46,17 +37,7 @@ const items: ContentItem[] = [
     id: "deferred-exam-fee-1",
     title: "Deferred Exam Fee Grant",
     mergeKey: "defer",
-    node: (
-      <div className="flex items-start gap-3">
-        {/* <AssuImage
-          src="/svg/droplet.svg"
-          alt=""
-          className="w-6 h-6 shrink-0"
-          imgClassName="w-full h-full object-contain"
-          radiusClassName=""
-        /> */}
-      </div>
-    ),
+    node: <div />,
   },
   {
     id: "deferred-exam-fee-1-desc",
@@ -82,17 +63,7 @@ const items: ContentItem[] = [
     id: "donation-requests",
     title: "Donation Requests",
     mergeKey: "donation",
-    node: (
-      <div className="flex items-start gap-3">
-        {/* <AssuImage
-          src="/svg/heart.svg"
-          alt=""
-          className="w-6 h-6 shrink-0"
-          imgClassName="w-full h-full object-contain"
-          radiusClassName=""
-        /> */}
-      </div>
-    ),
+    node: <div />,
   },
   {
     id: "donation-requests-desc",
@@ -118,37 +89,29 @@ const items: ContentItem[] = [
 
 export default function GrantsPage() {
   return (
-    <div className="min-h-screen bg-gray-lighter" aria-labelledby="page-title">
-      <main className="max-w-5xl mx-auto px-6 py-12">
-        <Divider />
-        <h1 id="page-title" className="text-4xl font-bold mb-8">
-          ASSU Grants
-        </h1>
-        <Divider />
+    <div className="min-h-screen " aria-labelledby="page-title">
+      <HeroText text="ASSU Grants"></HeroText>
 
-        {/* Top notice line under the heading */}
-        <p className="mt-6 mb-8 text-base md:text-lg text-gray-700">
-          All forms should be submitted to{" "}
-          <Link href="/contact-us">ASSU office (Sid Smith Room 1068)</Link>, or
-          email{" "}
-          <Link href="mailto:students.assu@utoronto.ca">
-            students.assu@utoronto.ca
-          </Link>
-          .
-        </p>
+      <p className="mt-6 mb-8 text-base md:text-lg text-gray-700">
+        All forms should be submitted to{" "}
+        <Link href="/contact-us">ASSU office (Sid Smith Room 1068)</Link>, or
+        email{" "}
+        <Link href="mailto:students.assu@utoronto.ca">
+          students.assu@utoronto.ca
+        </Link>
+        .
+      </p>
 
-        <Divider />
+      <Divider margin="0" />
 
-        {/* ContentGrid draws the thin separators between cells like the mock */}
-        <ContentGrid
-          items={items}
-          columns={2}
-          ariaLabel="ASSU grants grid"
-          className="mt-2"
-        />
+      <ContentGrid
+        items={items}
+        columns={2}
+        ariaLabel="ASSU grants grid"
+        className="mt-2"
+      />
 
-        <Divider />
-      </main>
+      <Divider />
     </div>
   );
 }

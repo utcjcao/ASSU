@@ -43,13 +43,11 @@ export default function AwardsAndGrants() {
         Check eligibility, application deadlines, and get guidance on securing
         funding for your academic journey.
       </Text>
-      <Divider />
-      {/* add content grid here */}
+      <Divider margin="0" />
       <ContentGrid
         items={contentItems}
         columns={2}
         ariaLabel="Awards and grants options"
-        className="mt-6"
       />
     </div>
   );

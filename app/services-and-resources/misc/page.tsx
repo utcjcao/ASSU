@@ -2,6 +2,7 @@ import Divider from "components/common/Divider";
 import Text from "components/common/Text";
 // import Link from "components/common/Link";
 import LinkSection, { LinkItem } from "components/common/LinkSection";
+import HeroText from "@/components/sections/HeroText";
 
 export default function Misc() {
   const studentSocieties: LinkItem[] = [
@@ -64,11 +65,7 @@ export default function Misc() {
 
   return (
     <div>
-      <Divider borderTopWidth="3px" />
-      <Text as="h1" className="text-5xl font-sans font-bold">
-        Useful Links
-      </Text>
-      <Divider borderTopWidth="3px" />
+      <HeroText text="Useful Links"></HeroText>
       <Text as="p" className="text-lg">
         Find essential links to student societies, academic resources, and U of
         T services. <br /> Easily access the resources that keep you informed
@@ -78,7 +75,6 @@ export default function Misc() {
       <LinkSection header="Student Societies" links={studentSocieties} />
       <Divider />
       <LinkSection header="U of T Resources" links={uoftLinks} isArrowFilled />
-      <Divider />
     </div>
   );
 }

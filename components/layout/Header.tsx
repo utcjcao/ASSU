@@ -62,7 +62,7 @@ const NAV: NavGroup[] = [
     items: [
       { label: "ASSU Executives", href: "/about/executives" },
       { label: "ASSU Staff", href: "/about/staff" },
-      { label: "Documents", href: "/services-and-resources/documents" },
+      { label: "Documents", href: "/about/documents" },
     ],
   },
   {

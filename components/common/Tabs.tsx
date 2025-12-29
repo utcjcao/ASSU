@@ -1,7 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Tabs as TabsRoot, TabsList, TabsTrigger, TabsContent } from "../ui/tabs";
+import {
+  Tabs as TabsRoot,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "../ui/tabs";
 
 export interface TabItem {
   id: string;
@@ -41,12 +46,11 @@ export default function Tabs({
     >
       {/* Tab List */}
       <div className="relative md:static">
-
         <TabsList
           aria-label="Tabs navigation"
           className={`flex md:justify-center border-b-2 border-gray-lighter overflow-x-auto overflow-y-visible scrollbar-hide h-auto items-end bg-transparent p-0 rounded-none ${tabListClassName}`}
         >
-          {tabs.map((tab, index) => {
+          {tabs.map((tab, _index) => {
             const isActive = tab.id === activeTab;
             return (
               <TabsTrigger

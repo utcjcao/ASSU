@@ -5,6 +5,7 @@ import Button from "@/components/common/Button";
 import ContentGrid, { ContentItem } from "@/components/layout/ContentGrid";
 import Divider from "@/components/common/Divider";
 import AssuImage from "@/components/common/AssuImage";
+import HeroText from "@/components/sections/HeroText";
 
 // Content items for the Initiatives page (pairs row-by-row in the grid)
 const items: ContentItem[] = [
@@ -80,24 +81,13 @@ const items: ContentItem[] = [
 
 export default function InitiativesPage() {
   return (
-    <div className="min-h-screen bg-gray-lighter" aria-labelledby="page-title">
-      <main className="max-w-5xl mx-auto px-6 py-12">
-        <Divider />
-        <h1 id="page-title" className="text-4xl font-bold mb-8">
-          Our Initiatives
-        </h1>
-        <Divider />
+    <div aria-labelledby="page-title">
+      <HeroText text="Our Initiatives"></HeroText>
 
-        {/* ContentGrid draws the thin separators between cells like the mock */}
-        <ContentGrid
-          items={items}
-          columns={2}
-          ariaLabel="Initiatives grid"
-          className="mt-6"
-        />
+      {/* ContentGrid draws the thin separators between cells like the mock */}
+      <ContentGrid items={items} columns={2} ariaLabel="Initiatives grid" />
 
-        <Divider />
-      </main>
+      <Divider />
     </div>
   );
 }

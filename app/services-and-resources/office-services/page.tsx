@@ -4,6 +4,8 @@ import React from "react";
 import ContentGrid, { ContentItem } from "@/components/layout/ContentGrid";
 import Divider from "@/components/common/Divider";
 import Link from "@/components/common/Link";
+import HeroText from "@/components/sections/HeroText";
+import Text from "@/components/common/Text";
 
 // Grid items for Office Services
 const items: ContentItem[] = [
@@ -160,32 +162,22 @@ const items: ContentItem[] = [
 
 export default function OfficeServicesPage() {
   return (
-    <div className="min-h-screen bg-gray-lighter" aria-labelledby="page-title">
-      <main className="max-w-5xl mx-auto px-6 py-12">
-        <Divider />
-        <h1 id="page-title" className="text-4xl font-bold mb-6">
-          Office Services
-        </h1>
-        <Divider />
+    <div aria-labelledby="page-title">
+      <HeroText text="Office Services"></HeroText>
 
-        {/* Intro body text under the heading */}
-        <p className="mt-6 mb-8 text-base md:text-lg text-gray-700 max-w-4xl">
-          Supporting students with essential resources, our office services
-          provide printing, study spaces, locker rentals, and administrative
-          assistance to enhance your campus experience. Visit us for everything
-          you need!
-        </p>
+      {/* Intro body text under the heading */}
+      <Text as="p">
+        Supporting students with essential resources, our office services
+        provide printing, study spaces, locker rentals, and administrative
+        assistance to enhance your campus experience. Visit us for everything
+        you need!
+      </Text>
+      <Divider margin="0"></Divider>
 
-        {/* Main content grid */}
-        <ContentGrid
-          items={items}
-          columns={2}
-          ariaLabel="Office services"
-          className="mt-2"
-        />
+      {/* Main content grid */}
+      <ContentGrid items={items} columns={2} ariaLabel="Office services" />
 
-        <Divider />
-      </main>
+      <Divider />
     </div>
   );
 }

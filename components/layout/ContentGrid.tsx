@@ -17,6 +17,7 @@ interface ContentGridProps {
   // grid label for screen readers
   ariaLabel?: string;
   className?: string;
+  cellClassName?: string;
   mergeAdjacentOnMobile?: boolean;
 }
 
@@ -27,7 +28,7 @@ function chunk<T>(arr: T[], size: number): T[][] {
 }
 
 function groupForMobile(items: ContentItem[], enabled: boolean) {
-  if (!enabled) return items.map(i => [i]);
+  if (!enabled) return items.map((i) => [i]);
   const groups: ContentItem[][] = [];
   let i = 0;
   while (i < items.length) {
@@ -49,12 +50,14 @@ export default function ContentGrid({
   columns = 2,
   ariaLabel = "Content grid",
   className = "",
+  cellClassName = "",
   mergeAdjacentOnMobile = true,
 }: ContentGridProps) {
   const colCount = Math.max(1, columns);
   const rows = chunk(items, colCount);
   const mobileGroups = groupForMobile(items, mergeAdjacentOnMobile);
-  const cellBase = "relative p-5 md:p-6 min-h-11 min-w-11 focus-within:outline-none rounded-none";
+  const cellBase =
+    "relative p-5 md:p-6 min-h-11 min-w-11 focus-within:outline-none rounded-none";
   const titleCls = "text-base md:text-lg font-semibold text-pink";
   const descCls = "mt-2 text-sm md:text-base text-gray-700";
 
@@ -68,10 +71,9 @@ export default function ContentGrid({
       >
         {mobileGroups.map((group, idx) => {
           const isFirst = idx === 0;
-          const mobileTop =
-            !isFirst
-              ? "before:content-[''] before:absolute before:top-0 before:left-4 before:right-4 before:h-px before:bg-gray-500"
-              : "";
+          const mobileTop = !isFirst
+            ? "before:content-[''] before:absolute before:top-0 before:left-4 before:right-4 before:h-px before:bg-gray-500"
+            : "";
           return (
             <div key={idx} role="row" className={["contents"].join(" ")}>
               <div
@@ -79,12 +81,16 @@ export default function ContentGrid({
                 tabIndex={0}
                 className={[
                   cellBase,
+                  cellClassName,
                   mobileTop,
                   "focus-visible:ring-2 focus-visible:ring-pink focus-visible:ring-offset-2 cursor-default",
                 ].join(" ")}
               >
                 {group.map((item, j) => (
-                  <div key={item.id ?? j} className={j > 0 ? "pt-5" : ""}>
+                  <div
+                    key={item.id ?? j}
+                    className={j > 0 ? "pt-5 flex-1 flex" : ""}
+                  >
                     {item.title ? (
                       <p className={titleCls} id={`content-title-${item.id}`}>
                         {item.title}
@@ -93,7 +99,9 @@ export default function ContentGrid({
                     {item.description ? (
                       <p className={descCls}>{item.description}</p>
                     ) : null}
-                    {item.node ? <div className="pt-5">{item.node}</div> : null}
+                    {item.node ? (
+                      <div className="pt-5 flex-1 flex">{item.node}</div>
+                    ) : null}
                   </div>
                 ))}
               </div>
@@ -108,11 +116,10 @@ export default function ContentGrid({
         aria-label={ariaLabel}
         aria-rowcount={rows.length}
         aria-colcount={colCount}
-        className={[
-          "hidden md:grid gap-0",
-          `md:grid-cols-${columns}`,
-          "mx-auto",
-        ].join(" ")}
+        className="hidden md:grid gap-0 mx-auto"
+        style={{
+          gridTemplateColumns: `repeat(${colCount}, minmax(0, 1fr))`,
+        }}
       >
         {rows.map((row, rIndex) => (
           <div key={`row-${rIndex}`} role="row" className="contents">
@@ -137,6 +144,7 @@ export default function ContentGrid({
                   {...(item.title ? { "aria-labelledby": titleId } : {})}
                   className={[
                     cellBase,
+                    cellClassName,
                     partialTop,
                     partialLeft,
                     "focus-visible:ring-2 focus-visible:ring-pink focus-visible:ring-offset-2",
@@ -151,7 +159,9 @@ export default function ContentGrid({
                   {item.description ? (
                     <p className={descCls}>{item.description}</p>
                   ) : null}
-                  {item.node ? <div className="pt-5">{item.node}</div> : null}
+                  {item.node ? (
+                    <div className="pt-5 flex-1 flex">{item.node}</div>
+                  ) : null}
                 </div>
               );
             })}

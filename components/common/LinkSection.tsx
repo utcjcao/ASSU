@@ -21,9 +21,9 @@ export default function LinkSection({
   className = "",
 }: LinkSectionProps) {
   return (
-    <div className={`min-h-[300px] mb-6 ${className}`}>
+    <div className={className}>
       {/* Main layout container */}
-      <div className="flex h-full">
+      <div className="flex h-full mb-6">
         {/* Left side - Header and Arrow */}
         <div className="flex flex-col justify-between w-45">
           {/* Header at top left */}

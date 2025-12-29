@@ -2,11 +2,11 @@
 
 import Divider from "../../components/common/Divider";
 import MapSection from "../../components/common/MapSection";
-import Link from "@/components/common/Link";
 import Accordion, {
   type AccordionItemData,
 } from "@/components/common/Accordion";
 import HeroText from "@/components/sections/HeroText";
+import ContactInfoGrid from "@/components/layout/ContactInfoGrid";
 
 const faqItems: AccordionItemData[] = [
   {
@@ -55,101 +55,28 @@ const faqItems: AccordionItemData[] = [
 
 export default function ContactUs() {
   return (
-    <div className="bg-gray-lighter min-h-screen">
-      <div className="max-w-3xl mx-auto px-4 py-8">
-        <HeroText text="Frequently Asked Questions" />
-        <div className="mb-8">
-          <Accordion items={faqItems} />
-        </div>
+    <div>
+      <HeroText text="Frequently Asked Questions" />
+      <Accordion items={faqItems} />
 
-        {/* removed unused contact form, TODO LATER */}
+      {/* removed unused contact form, TODO LATER */}
+      <Divider margin="0" />
+      <ContactInfoGrid></ContactInfoGrid>
+      <Divider margin="0" />
 
-        {/* Contact Information Section - 4 columns */}
-        <div className="mb-8 max-w-3xl">
-          <Divider borderTopWidth="4px" />
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-8">
-            {/* Column 1 - Three dots SVG and Contact Us */}
-            <div className="text-left">
-              <h3 className="text-base font-sans text-gray-darker font-semibold">
-                Contact Us
-              </h3>
-            </div>
-            {/* Column 2 - Address */}
-            <div className="text-left relative">
-              <div className="hidden md:block absolute left-0 top-0 bottom-0 w-px bg-gray-light -ml-20"></div>
-              <div className="md:-ml-16">
-                <h3 className="text-base font-sans text-gray-darker font-semibold mb-3 text-left">
-                  Address
-                </h3>
-                <div className="text-gray-dark font-body text-left text-sm">
-                  <p className="text-left">100 St. George Street</p>
-                  <p className="text-left">Sidney Smith Hall</p>
-                  <p className="text-left">Room 1068</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Column 3 - Contact Details */}
-            <div className="text-left relative">
-              <div className="hidden md:block absolute left-0 top-0 bottom-0 w-px bg-gray-light -ml-20"></div>
-              <div className="md:-ml-16">
-                <h3 className="text-base font-sans text-gray-darker font-semibold mb-3 text-left">
-                  Contact
-                </h3>
-                <div className="text-gray-dark font-body space-y-1 text-left text-sm">
-                  <p className="text-left">Phone: (416) 978-4903</p>
-                  <p className="text-left">Fax: (416) 971-2161</p>
-                  <p className="mt-2 text-left">students.assu@utoronto.ca</p>
-                  <div className="flex gap-3 mt-4 justify-start">
-                    <Link href="https://www.linkedin.com/company/uoft-assu/about/">
-                      Linkedin
-                    </Link>
-                    <Link href="https://www.instagram.com/assu_uoft/?hl=en">
-                      Instagram
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Column 4 - Opening Hours */}
-            <div className="text-left relative">
-              <div className="hidden md:block absolute left-0 top-0 bottom-0 w-px bg-gray-light -ml-20"></div>
-              <div className="md:-ml-16">
-                <h3 className="text-base font-sans text-gray-darker font-semibold mb-3 text-left">
-                  Opening Hours
-                </h3>
-                <div className="text-gray-dark font-body space-y-1 text-left text-sm">
-                  <p className="text-left">Monday 10:00 am - 5:00 pm</p>
-                  <p className="text-left">Tuesday 10:00 am - 5:00 pm</p>
-                  <p className="text-left">Wednesday 10:00 am - 6:00 pm</p>
-                  <p className="text-left">Thursday 10:00 am - 6:00 pm</p>
-                  <p className="text-left">
-                    Friday 10:00 am - 5:00 pm (Friday closed from May-Aug)
-                  </p>
-                  <p className="font-bold text-left">Weekends Closed</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Final thick horizontal line */}
-          <Divider borderTopWidth="4px" />
-        </div>
-
-        {/* Map Section */}
-        <MapSection
-          title=""
-          description=""
-          mapConfig={{
-            lat: 43.6629,
-            lng: -79.3957,
-            zoom: 15,
-            height: "400px",
-            markerTitle: "ASSU - Sidney Smith Hall",
-            ariaLabel: "Map showing ASSU location at Sidney Smith Hall",
-          }}
-        />
-      </div>
+      {/* Map Section */}
+      <MapSection
+        title=""
+        description=""
+        mapConfig={{
+          lat: 43.6629,
+          lng: -79.3957,
+          zoom: 15,
+          height: "400px",
+          markerTitle: "ASSU - Sidney Smith Hall",
+          ariaLabel: "Map showing ASSU location at Sidney Smith Hall",
+        }}
+      />
     </div>
   );
 }

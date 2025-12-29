@@ -1,6 +1,7 @@
 import Link from "@/components/common/Link";
 import Divider from "../../../components/common/Divider";
 import Tabs, { TabItem } from "../../../components/common/Tabs";
+import HeroText from "@/components/sections/HeroText";
 
 type AwardLink = {
   label: string;
@@ -802,16 +803,7 @@ export default function Awards() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
-      {/* Top horizontal line */}
-      <Divider color="var(--color-gray)" borderTopWidth="3px" />
-
-      {/* ASSU Awards Title */}
-      <h1 className="text-4xl font-bold text-gray-darker text-left">
-        ASSU Awards
-      </h1>
-
-      {/* Bottom horizontal line */}
-      <Divider color="var(--color-gray)" borderTopWidth="3px" />
+      <HeroText text="ASSU Awards"></HeroText>
 
       {/* Gavin Nowlan Award Section */}
       <div className="space-y-4">
@@ -837,8 +829,7 @@ export default function Awards() {
         <Tabs tabs={gavinNowlanTabs} defaultActiveTab="criteria" />
       </div>
 
-      {/* Separator line */}
-      <div className="border-t border-gray-light my-8"></div>
+      <Divider color="var(--color-gray-light)" margin="32px auto" />
 
       {/* William Gardner Award Section */}
       <div className="space-y-4">
@@ -864,8 +855,7 @@ export default function Awards() {
         <Tabs tabs={williamGardnerTabs} defaultActiveTab="criteria" />
       </div>
 
-      {/* Separator line */}
-      <div className="border-t border-gray-light my-8"></div>
+      <Divider color="var(--color-gray-light)" margin="32px auto" />
 
       {/* Abdullah Shihipar Award Section */}
       <div className="space-y-4">
@@ -891,8 +881,7 @@ export default function Awards() {
         <Tabs tabs={abdullahShihiparTabs} defaultActiveTab="criteria" />
       </div>
 
-      {/* Separator line */}
-      <div className="border-t border-gray-light my-8"></div>
+      <Divider color="var(--color-gray-light)" margin="32px auto" />
 
       {/* Ikran Jama Award Section */}
       <div className="space-y-4">
@@ -918,8 +907,7 @@ export default function Awards() {
         <Tabs tabs={ikranJamaTabs} defaultActiveTab="criteria" />
       </div>
 
-      {/* Separator line */}
-      <div className="border-t border-gray-light my-8"></div>
+      <Divider color="var(--color-gray-light)" margin="32px auto" />
 
       {/* Fatemeh Nami Award Section */}
       <div className="space-y-4">
@@ -945,8 +933,7 @@ export default function Awards() {
         <Tabs tabs={fatemehNamiTabs} defaultActiveTab="criteria" />
       </div>
 
-      {/* Separator line */}
-      <div className="border-t border-gray-light my-8"></div>
+      <Divider color="var(--color-gray-light)" margin="32px auto" />
 
       {/* ASSU First Year Award Section */}
       <div className="space-y-4">
@@ -972,8 +959,7 @@ export default function Awards() {
         <Tabs tabs={firstYearTabs} defaultActiveTab="criteria" />
       </div>
 
-      {/* Separator line */}
-      <div className="border-t border-gray-light my-8"></div>
+      <Divider color="var(--color-gray-light)" margin="32px auto" />
 
       {/* ASSU 2nd Year Award Section */}
       <div className="space-y-4">
@@ -999,8 +985,7 @@ export default function Awards() {
         <Tabs tabs={secondYearTabs} defaultActiveTab="criteria" />
       </div>
 
-      {/* Separator line */}
-      <div className="border-t border-gray-light my-8"></div>
+      <Divider color="var(--color-gray-light)" margin="32px auto" />
 
       {/* Ranjini Ghosh Teaching Award Section */}
       <div className="space-y-4">
@@ -1026,8 +1011,7 @@ export default function Awards() {
         <Tabs tabs={teachingAwardTabs} defaultActiveTab="criteria" />
       </div>
 
-      {/* Separator line */}
-      <div className="border-t border-gray-light my-8"></div>
+      <Divider color="var(--color-gray-light)" margin="32px auto" />
 
       {/* Sanjeev Dewett Course Union Award Section */}
       <div className="space-y-4">
@@ -1053,8 +1037,7 @@ export default function Awards() {
         <Tabs tabs={courseUnionAwardTabs} defaultActiveTab="criteria" />
       </div>
 
-      {/* Separator line */}
-      <div className="border-t border-gray-light my-8"></div>
+      <Divider color="var(--color-gray-light)" margin="32px auto" />
 
       {/* Terry Buckland Award Section */}
       <div className="space-y-4">
@@ -1066,8 +1049,7 @@ export default function Awards() {
         <Tabs tabs={terryBucklandTabs} defaultActiveTab="criteria" />
       </div>
 
-      {/* Separator line */}
-      <div className="border-t border-gray-light my-8"></div>
+      <Divider color="var(--color-gray-light)" margin="32px auto" />
 
       {/* Urmila Sarkar Service Award Section */}
       <div className="space-y-4">
@@ -1079,8 +1061,7 @@ export default function Awards() {
         <Tabs tabs={urmilaSarkarTabs} defaultActiveTab="criteria" />
       </div>
 
-      {/* Separator line */}
-      <div className="border-t border-gray-light my-8"></div>
+      <Divider color="var(--color-gray-light)" margin="32px auto" />
 
       {/* Katharine Ball Award Section */}
       <div className="space-y-4">
@@ -1106,8 +1087,7 @@ export default function Awards() {
         <Tabs tabs={katharineBallTabs} defaultActiveTab="criteria" />
       </div>
 
-      {/* Separator line */}
-      <div className="border-t border-gray-light my-8"></div>
+      <Divider color="var(--color-gray-light)" margin="32px auto" />
 
       {/* Ali Saeed Memorial Award Section */}
       <div className="space-y-4">
@@ -1133,8 +1113,7 @@ export default function Awards() {
         <Tabs tabs={aliSaeedTabs} defaultActiveTab="criteria" />
       </div>
 
-      {/* Separator line */}
-      <div className="border-t border-gray-light my-8"></div>
+      <Divider color="var(--color-gray-light)" margin="32px auto" />
 
       {/* ASSU Graduating Student Leadership Award Section */}
       <div className="space-y-4">
@@ -1160,7 +1139,6 @@ export default function Awards() {
         <Tabs tabs={graduatingStudentTabs} defaultActiveTab="criteria" />
       </div>
 
-      {/* Separator line */}
       <div className="border-t border-gray-light my-8"></div>
 
       {/* ASSU New Student Initiative Award Section */}
