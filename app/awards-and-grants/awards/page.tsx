@@ -803,12 +803,7 @@ export default function Awards() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
       {/* Top horizontal line */}
-      <Divider
-        width="100%"
-        maxWidth="100%"
-        color="var(--color-gray)"
-        borderTopWidth="3px"
-      />
+      <Divider color="var(--color-gray)" borderTopWidth="3px" />
 
       {/* ASSU Awards Title */}
       <h1 className="text-4xl font-bold text-gray-darker text-left">
@@ -816,12 +811,7 @@ export default function Awards() {
       </h1>
 
       {/* Bottom horizontal line */}
-      <Divider
-        width="100%"
-        maxWidth="100%"
-        color="var(--color-gray)"
-        borderTopWidth="3px"
-      />
+      <Divider color="var(--color-gray)" borderTopWidth="3px" />
 
       {/* Gavin Nowlan Award Section */}
       <div className="space-y-4">
