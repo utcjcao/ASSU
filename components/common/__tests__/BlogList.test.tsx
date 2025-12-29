@@ -9,6 +9,7 @@ const mockPosts = [
     title: "Test Raffle Contest!",
     description:
       "Our famous test library exists solely because students donate their tests...",
+    slug: "test-raffle-contest",
   },
   {
     image: "/images/involved-upcoming-2.webp",
@@ -16,6 +17,7 @@ const mockPosts = [
     title: "Join Our Team",
     description:
       "ASSU Election Nominations are open! Are you looking to get more involved...",
+    slug: "join-our-team",
   },
 ];
 

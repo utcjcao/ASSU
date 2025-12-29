@@ -1,11 +1,8 @@
-// import Divider from "components/common/Divider";
-// import HeroImage from "components/sections/HeroImage";
 import AssuImage from "components/common/AssuImage";
 import Button from "components/common/Button";
 import ImageCard from "components/common/ImageCard";
 import CardGrid from "components/layout/CardGrid";
 import { ImageCarousel } from "@/components/common/ImageCarousel";
-// import HeroImage from "../components/sections/HeroImage";
 import Tabs, { TabItem } from "components/common/Tabs";
 import ContentGrid from "@/components/layout/ContentGrid";
 import MapSection from "@/components/common/MapSection";

@@ -1,4 +1,3 @@
-import React from "react";
 import HeroText from "../../../components/sections/HeroText";
 import BlogList from "@/components/common/BlogList";
 import { fetchUpcomingPosts } from "@/lib/posts";
@@ -47,14 +46,7 @@ export default async function Upcoming() {
 
   return (
     <>
-      <HeroText text="Upcoming Events" />
-      {upcomingPosts.length > 0 && <BlogList posts={upcomingPosts} />}
-      {upcomingPosts.length === 0 && (
-        <p className="text-center text-gray-dark py-8">
-          No upcoming events at this time.
-        </p>
-      )}
-      <HeroText text="Past Events" />
+      <HeroText text="Events" />
       {pastPosts.length > 0 && <BlogList posts={pastPosts} />}
       {pastPosts.length === 0 && (
         <p className="text-center text-gray-dark py-8">

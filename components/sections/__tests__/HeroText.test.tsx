@@ -20,7 +20,7 @@ describe("HeroText Component", () => {
 
   it("renders top and bottom horizontal lines", () => {
     render(<HeroText />);
-    const lines = screen.getAllByRole("separator");
+    const lines = screen.getAllByTestId("divider");
     expect(lines).toHaveLength(2);
   });
 

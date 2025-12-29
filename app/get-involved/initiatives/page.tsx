@@ -22,7 +22,7 @@ const items: ContentItem[] = [
       "An annual event where students from all Arts & Science disciplines present their research through oral and poster presentations.",
     node: (
       <Button ariaLabel="Explore Undergraduate Research Conference">
-        <a href="/get-involved/urc">Explore →</a>
+        <a href="/get-involved/initiatives/urc">Explore →</a>
       </Button>
     ),
   },
@@ -35,7 +35,7 @@ const items: ContentItem[] = [
       "A student‑run, multidisciplinary journal that publishes outstanding undergraduate research and creative work across humanities, social sciences, and sciences.",
     node: (
       <Button ariaLabel="Explore Arbor Journal">
-        <a href="/get-involved/arbor-journal">Explore →</a>
+        <a href="/get-involved/initiatives/arbor-journal">Explore →</a>
       </Button>
     ),
   },
@@ -46,7 +46,7 @@ const items: ContentItem[] = [
       "A volunteer‑based tutoring program connecting U of T students with local high school students to provide free one‑on‑one academic support in Math, Science, and English.",
     node: (
       <Button ariaLabel="Explore Project Universal Minds">
-        <a href="/get-involved/universal-minds">Explore →</a>
+        <a href="/get-involved/initiatives/universal-minds">Explore →</a>
       </Button>
     ),
   },
