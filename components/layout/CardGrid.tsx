@@ -44,26 +44,34 @@ export default function CardGrid({
   ariaLabel = "Card grid",
   className = "",
   cardWidthPx = 300,
-  gapPx = 16,
+  gapPx = 0,
 }: CardGridProps) {
   const colCount = Math.max(1, Math.min(6, columns));
   const rows = chunk(items, colCount);
 
-  const maxCols = Math.max(1, Math.min(4, columns));
-  const maxWidth = maxCols * cardWidthPx + (maxCols - 1) * gapPx;
+  const maxWidth = "100%";
 
   return (
     <div className="w-full flex justify-center">
       <div
         role="grid"
         aria-label={ariaLabel}
-        className={["grid", "justify-center", className].join(" ")}
+        className={[
+          "grid",
+          "grid-cols-1",
+          "md:[grid-template-columns:var(--cardgrid-cols)]",
+          "gap-y-6",
+          "md:[row-gap:var(--cardgrid-row-gap)]",
+          "justify-center",
+          className,
+        ].join(" ")}
         style={{
           columnGap: `${gapPx}px`,
-          rowGap: `${gapPx}px`,
-          gridTemplateColumns: `repeat(auto-fit, minmax(200px, ${cardWidthPx}px))`,
-          maxWidth: `${maxWidth}px`,
+          justifyContent: "space-between",
+          maxWidth,
           width: "100%",
+          ["--cardgrid-cols" as string]: `repeat(${colCount}, minmax(200px, ${cardWidthPx}px))`,
+          ["--cardgrid-row-gap" as string]: `${gapPx}px`,
         }}
       >
         {rows.map((row, rIndex) => (
@@ -90,6 +98,7 @@ export default function CardGrid({
                     subtitle={card.subtitle}
                     description={card.description}
                     size="md"
+                    href={card.href}
                   />
                   <span id={titleId} className="sr-only">
                     {card.title}

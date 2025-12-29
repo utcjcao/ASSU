@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import AssuImage from "./AssuImage";
 
 interface ImageCardProps {
@@ -22,6 +23,7 @@ export default function ImageCard({
   description,
   className,
   size = "sm",
+  href,
 }: ImageCardProps) {
   const hasOverlay = Boolean(description);
 
@@ -78,13 +80,13 @@ export default function ImageCard({
   //   </div>
   // ) : null;
 
+  const Wrapper: React.ElementType = href ? Link : "div";
+  const wrapperProps = href
+    ? { href, "aria-label": title }
+    : { role: "group", "aria-label": title };
+
   return (
-    <div
-      className={[base, sizes[size], className].join(" ")}
-      tabIndex={-1}
-      role="group"
-      aria-label={title}
-    >
+    <Wrapper className={[base, sizes[size], className].join(" ")} {...wrapperProps}>
       <div className={media}>
         <AssuImage
           src={imageSrc}
@@ -110,6 +112,6 @@ export default function ImageCard({
           </div>
         </div>
       )}
-    </div>
+    </Wrapper>
   );
 }
