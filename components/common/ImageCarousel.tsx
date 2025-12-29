@@ -40,7 +40,7 @@ export function ImageCarousel() {
   };
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto rounded-lg overflow-hidden">
+    <div className="relative w-full mx-auto rounded-lg overflow-hidden">
       <Carousel>
         <CarouselContent className="-ml-4">
           {slides.map((slide, index) => (
@@ -57,7 +57,7 @@ export function ImageCarousel() {
                   className="object-cover rounded-lg"
                   priority
                 />
-                <div className="absolute inset-0 bg-black/40 flex items-center px-8">
+                <div className="absolute inset-0 bg-black/15 flex items-center px-8">
                   <div className="ml-12 max-w-sm text-left text-white">
                     <h2
                       data-testid={`carousel-heading-${index}`}
