@@ -90,20 +90,12 @@ export default async function Executives() {
   const executives = await loadExecutives();
 
   return (
-    <div className="min-h-screen bg-gray-lighter">
+    <div className="">
       <div className="max-w-6xl mx-auto px-4 py-12 md:py-20">
-        <div className="text-center mb-16 max max-w-3xl mx-auto">
-          <HeroText text="Our Team"></HeroText>
+        <HeroText text="Our Team"></HeroText>
 
-          <Text
-            as="p"
-            className="text-xl md:text-2xl text-[var(--color-text-secondary)] mb-4"
-          >
-            Get to know your 2024-25 ASSU Executive Team.
-          </Text>
-
-          <div className="w-full h-px bg-black opacity-25"></div>
-        </div>
+        <Text as="p">Get to know your 2024-25 ASSU Executive Team.</Text>
+        <Divider />
 
         <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {executives.map((executive, index) => (
@@ -157,9 +149,7 @@ export default async function Executives() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 -mt-8">
-        <Divider width="100%" maxWidth="100%" />
-      </div>
+      <Divider />
     </div>
   );
 }
