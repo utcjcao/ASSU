@@ -15,7 +15,6 @@ export default function NotFound() {
         404
       </Text>
 
-      {/* Error Message */}
       <Text
         as="h2"
         className="text-2xl md:text-3xl font-semibold mb-4"

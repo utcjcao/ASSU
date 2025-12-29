@@ -2,15 +2,12 @@ import Divider from "@/components/common/Divider";
 import Text from "@/components/common/Text";
 import Link from "@/components/common/Link";
 import Image from "next/image";
+import HeroText from "@/components/sections/HeroText";
 
 export default function Handbook() {
   return (
     <div className="max-w-7xl mx-auto px-4">
-      <Divider borderTopWidth="3px" />
-      <Text as="h1" className="text-5xl font-sans font-bold">
-        Academic Handbook
-      </Text>
-      <Divider borderTopWidth="3px" />
+      <HeroText text="Academic Handbook"></HeroText>
       <Text as="p" className="text-lg">
         The ASSU Academic Handbook is an essential guide to rules, regulations,
         and services that students need to be aware of at the St. George campus

@@ -1,5 +1,5 @@
 <svg preserveAspectRatio="none" data-bbox="25 20 150 160" viewBox="25 20 150 160" height="200" width="200" xmlns="http://www.w3.org/2000/svg" data-type="shape" role="presentation" aria-hidden="true" aria-label="">
     <g>
-        <path d="M104.687 62.329V20C60.677 20 25 55.817 25 100s35.677 80 79.687 80v-42.329C118.106 162.86 144.557 180 175 180V20c-30.443 0-56.894 17.14-70.313 42.329z"></path>
+        <path d="M104.687 62.329V20C60.677 20 25 55.817 25 100s35.677 80 79.687 80v-42.329C118.106 162.86 144.557 180 175 180V20c-30.443 0-56.894 17.14-70.313 42.329z" fill="none" stroke="rgb(201,8,111)" stroke-width="1.5"></path>
     </g>
 </svg>

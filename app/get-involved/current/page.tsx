@@ -1,5 +1,6 @@
 import HeroImage from "@/components/sections/HeroImage";
 import Divider from "@/components/common/Divider";
+import HeroText from "@/components/sections/HeroText";
 
 export default function Current() {
   // Current projects data based on the Wix site with specific text formatting
@@ -103,18 +104,8 @@ export default function Current() {
   return (
     <div className="min-h-screen bg-[rgb(243,243,243)]">
       {/* Current Projects Section */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {/* Divider above Current Projects */}
-        <Divider className="mb-8" color="black" />
-
-        <div className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
-            Current Projects
-          </h1>
-          {/* Divider below title */}
-          <Divider className="mb-8" color="black" />
-        </div>
-
+      <section className="mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <HeroText text="Current Projects"></HeroText>
         {/* Projects Grid - Responsive layout */}
         <div className="bg-[rgb(243,243,243)]">
           {/* Mobile: Single column layout */}
@@ -338,7 +329,7 @@ export default function Current() {
       </section>
 
       {/* Hero Image Section */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mb-4">
+      <section className="mx-auto px-4 sm:px-6 lg:px-8 -mb-4">
         <HeroImage
           src="/images/involved-current-projects.webp"
           alt="University building with spire and green dome"
@@ -348,20 +339,11 @@ export default function Current() {
       </section>
 
       {/* Achievements Section */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-2">
-        {/* Divider above Achievements */}
-        <Divider className="mb-8" color="black" />
-
-        <div className="mb-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
-            Achievements in the Past Year
-          </h2>
-          {/* Divider below title */}
-          <Divider className="mb-1" color="black" />
-        </div>
+      <section className="mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+        <HeroText text="Achievements"></HeroText>
 
         {/* Simple bulleted list */}
-        <div className="max-w-4xl mx-auto">
+        <div className="mx-auto">
           <ul className="space-y-0.1">
             {achievements.map((achievement, index) => (
               <li key={index} className="text-xl text-black flex items-start">

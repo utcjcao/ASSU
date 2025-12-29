@@ -11,7 +11,7 @@ function Accordion({
     <AccordionPrimitive.Root
       data-slot="accordion"
       className={cn(
-        "w-full max-w-3xl mx-auto border-t border-[var(--color-line)] divide-y divide-[var(--color-line)]",
+        "w-full mx-auto border-t border-[var(--color-line)] divide-y divide-[var(--color-line)]",
         className
       )}
       {...props}

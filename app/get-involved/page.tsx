@@ -4,6 +4,7 @@ import React from "react";
 import Button from "@/components/common/Button";
 import ContentGrid, { ContentItem } from "@/components/layout/ContentGrid";
 import Divider from "@/components/common/Divider";
+import HeroText from "@/components/sections/HeroText";
 
 // Define data
 const items: ContentItem[] = [
@@ -57,19 +58,15 @@ const items: ContentItem[] = [
 
 export default function GetInvolved() {
   return (
-    <div className="min-h-screen bg-gray-lighter" aria-labelledby="page-title">
+    <div aria-labelledby="page-title">
       <main className="max-w-5xl mx-auto px-6 py-12">
-        <Divider />
-        {/* Page Title */}
-        <h1 className="text-4xl font-bold mb-8">Get Involved</h1>
-        <Divider />
+        <HeroText text="Get Involved"></HeroText>
 
-        {/* ContentGrid draws the thin separators between cells like the mock */}
         <ContentGrid
           items={items}
           columns={2}
           ariaLabel="Get Involved options"
-          className="mt-6"
+          className="mb-6"
         />
 
         <Divider />

@@ -4,6 +4,7 @@ import Accordion, {
   type AccordionItemData,
 } from "@/components/common/Accordion";
 import ContentGrid from "@/components/layout/ContentGrid";
+import Divider from "@/components/common/Divider";
 
 const faqItems: AccordionItemData[] = [
   {
@@ -35,6 +36,36 @@ const faqItems: AccordionItemData[] = [
     question: "Chemistry Peer Tutoring",
     answer:
       "Victoria College tutors help with labs, concepts, and past test questions. Tutoring is free and open to all enrolled Arts and Science chemistry students.",
+  },
+  {
+    value: "faq-6",
+    question: "Math Aid Centres",
+    answer:
+      "The Department of Mathematics provides free math assistance to all first-year Arts & Science students, with one-on-one tutoring available.",
+  },
+  {
+    value: "faq-7",
+    question: "Statistics Aid Centres",
+    answer:
+      "The Department of Statistics provides free statistical help to undergraduate students.",
+  },
+  {
+    value: "faq-8",
+    question: "Economics Study Centre",
+    answer:
+      "The Department of Economics provides free assistance to students enrolled in core undergraduate economics courses.",
+  },
+  {
+    value: "faq-9",
+    question: "Philosophy Essay Clinic",
+    answer:
+      "The Department of Philosophy provides free assistance to students enrolled in philosophy courses at the University.",
+  },
+  {
+    value: "faq-10",
+    question: "English Language Learning (ELL)",
+    answer:
+      "The English Language Learning Program supports all U of T undergraduates enrolled in the Faculty of Arts and Science whose first language is not English (ESL or multilingual students), as well as native speakers seeking to improve their English language skills.",
   },
 ];
 
@@ -143,18 +174,19 @@ const collegeResources = [
 
 export default function Resources() {
   return (
-    <div className="w-full max-w-screen-3xl mx-auto space-y-10 px-4">
-      <HeroText text="Frequently asked questions" />
+    <div>
+      <HeroText text="Frequently Asked Questions" />
       <Accordion items={faqItems} />
       <HeroText text="College Specific Resources" />
-
-      <div className="border-t border-gray-300 max-w-3xl mx-auto w-full">
-        <ContentGrid
-          ariaLabel="College specific resources"
-          columns={3}
-          mergeAdjacentOnMobile={false}
-          className="w-full max-w-3xl mx-auto md:[&_[role='gridcell']]:px-8 md:[&_[role='gridcell']]:py-8 [&_[role='gridcell']]:px-6 [&_[role='gridcell']]:py-6"
-          items={collegeResources.map((college) => ({
+      <Divider margin="0"></Divider>
+      <ContentGrid
+        ariaLabel="College specific resources"
+        columns={4}
+        mergeAdjacentOnMobile={false}
+        className="w-full mx-auto"
+        cellClassName="px-6 py-6 md:px-8 md:py-8"
+        items={[
+          ...collegeResources.map((college) => ({
             id: college.id,
             node: (
               <div className="flex h-full flex-col gap-3">
@@ -171,7 +203,7 @@ export default function Resources() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3 py-2 text-xs bg-gray-dark text-white rounded-none hover:bg-gray-800 transition min-h-[40px] text-left"
+                      className="px-3 py-2 text-xs bg-gray-dark text-white rounded-none hover:bg-gray-800 transition min-h-[40px]"
                     >
                       {link.label}
                     </a>
@@ -179,9 +211,35 @@ export default function Resources() {
                 </div>
               </div>
             ),
-          }))}
-        />
-      </div>
+          })),
+          {
+            id: "icons-only",
+            node: (
+              <div className="flex h-full items-center justify-center gap-6">
+                <svg className="w-14 h-14" viewBox="0 0 64 64" fill="none">
+                  <circle
+                    cx="32"
+                    cy="32"
+                    r="26"
+                    stroke="rgb(201,8,111)"
+                    strokeWidth="1"
+                  />
+                </svg>
+                <svg
+                  className="w-14 h-14"
+                  viewBox="0 0 64 64"
+                  fill="rgb(201,8,111)"
+                >
+                    <polygon
+                      points="22.89,10 41.11,10 54,22.89 54,41.11 41.11,54 22.89,54 10,41.11 10,22.89"
+                      fill="rgb(201,8,111)"
+                    />
+                </svg>
+              </div>
+            ),
+          },
+        ]}
+      />
     </div>
   );
 }

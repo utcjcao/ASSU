@@ -17,40 +17,18 @@ export default async function Upcoming() {
   // Fetch upcoming posts data at build time
   const allPosts = await fetchUpcomingPosts();
 
-  // Get current date (at start of day for comparison)
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  // Separate upcoming and past events
-  const upcomingPosts = allPosts.filter((post) => {
-    // Clone the date to avoid mutating the original
-    const postDate = new Date(post.dateObj.getTime());
-    postDate.setHours(0, 0, 0, 0);
-    return postDate >= today;
-  });
-
-  const pastPosts = allPosts.filter((post) => {
-    // Clone the date to avoid mutating the original
-    const postDate = new Date(post.dateObj.getTime());
-    postDate.setHours(0, 0, 0, 0);
-    return postDate < today;
-  });
-
-  // Sort upcoming posts by date (earliest first) and past posts by date (newest first)
-  upcomingPosts.sort((a, b) => a.dateObj.getTime() - b.dateObj.getTime());
-  pastPosts.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
-
-  console.log(
-    `Filtered posts: ${upcomingPosts.length} upcoming, ${pastPosts.length} past`
+  // Sort all events by date (newest first)
+  const sortedPosts = [...allPosts].sort(
+    (a, b) => b.dateObj.getTime() - a.dateObj.getTime()
   );
 
   return (
     <>
       <HeroText text="Events" />
-      {pastPosts.length > 0 && <BlogList posts={pastPosts} />}
-      {pastPosts.length === 0 && (
+      {sortedPosts.length > 0 && <BlogList posts={sortedPosts} />}
+      {sortedPosts.length === 0 && (
         <p className="text-center text-gray-dark py-8">
-          No past events to display.
+          No events to display.
         </p>
       )}
     </>
