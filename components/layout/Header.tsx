@@ -3,10 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import DropdownMenu from "../common/DropdownMenu";
 import MobileSidebar from "./MobileSidebar";
 import type { NavGroup } from "./nav";
+import { useSidebar } from "@/components/ui/sidebar";
 
 // --- small hooks -------------------------------------------------------------
 
@@ -33,23 +34,6 @@ function useBodyLock(locked: boolean) {
       window.scrollTo(0, scrollY);
     };
   }, [locked]);
-}
-
-function useClickOutside<T extends HTMLElement>(
-  enabled: boolean,
-  onOutside: () => void
-) {
-  const ref = useRef<T | null>(null);
-  useEffect(() => {
-    if (!enabled) return;
-    const handler = (e: MouseEvent) => {
-      const t = e.target as Node | null;
-      if (ref.current && t && !ref.current.contains(t)) onOutside();
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [enabled, onOutside]);
-  return ref;
 }
 
 // --- data --------------------------------------------------------------------
@@ -122,11 +106,12 @@ const NAV: NavGroup[] = [
 export default function Header() {
   const pathname = usePathname();
   const isScrolled = useScrolled(0);
-  const [open, setOpen] = useState(false);
-  useBodyLock(open);
+  const { setOpenMobile, openMobile } = useSidebar();
+  useBodyLock(openMobile);
 
-  const onClose = useCallback(() => setOpen(false), []);
-  const onToggle = useCallback(() => setOpen((v) => !v), []);
+  const onToggle = useCallback(() => {
+    setOpenMobile((prev) => !prev);
+  }, [setOpenMobile]);
 
   // unified active checker
   const isActive = useCallback(
@@ -138,9 +123,6 @@ export default function Header() {
         : pathname.startsWith(href),
     [pathname]
   );
-
-  // for click-outside on the icon + any wrapper you choose
-  const buttonWrapRef = useClickOutside<HTMLDivElement>(open, onClose);
 
   const navItemClasses = "hover:text-pink transition-colors duration-300";
   const activeNavItemClasses = "text-pink";
@@ -176,12 +158,12 @@ export default function Header() {
         </Link>
 
         {/* Mobile button */}
-        <div ref={buttonWrapRef} className="mobile-menu-button">
+        <div className="mobile-menu-button">
           <button
             onClick={onToggle}
             className="p-2 text-gray-darker hover:text-pink"
             aria-label="Toggle mobile navigation menu"
-            aria-expanded={open}
+            aria-expanded={openMobile}
             aria-controls="mobile-navigation"
             aria-haspopup="true"
           >
@@ -232,15 +214,11 @@ export default function Header() {
         </ul>
       </nav>
 
-      {open && (
-        <MobileSidebar
-          nav={nav}
-          isOpen={open}
-          onClose={onClose}
-          isRouteActive={(href: string) => isActive(href)}
-          isSubrouteActive={(href: string) => isActive(href, true)}
-        />
-      )}
+      <MobileSidebar
+        nav={nav}
+        isRouteActive={(href: string) => isActive(href)}
+        isSubrouteActive={(href: string) => isActive(href, true)}
+      />
     </header>
   );
 }
