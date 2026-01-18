@@ -175,7 +175,7 @@ const collegeResources = [
 export default function Resources() {
   return (
     <div>
-      <HeroText text="Frequently Asked Questions" />
+      <HeroText text="Free Academic Resources" />
       <Accordion items={faqItems} />
       <HeroText text="College Specific Resources" />
       <Divider margin="0"></Divider>
@@ -230,10 +230,10 @@ export default function Resources() {
                   viewBox="0 0 64 64"
                   fill="rgb(201,8,111)"
                 >
-                    <polygon
-                      points="22.89,10 41.11,10 54,22.89 54,41.11 41.11,54 22.89,54 10,41.11 10,22.89"
-                      fill="rgb(201,8,111)"
-                    />
+                  <polygon
+                    points="22.89,10 41.11,10 54,22.89 54,41.11 41.11,54 22.89,54 10,41.11 10,22.89"
+                    fill="rgb(201,8,111)"
+                  />
                 </svg>
               </div>
             ),
