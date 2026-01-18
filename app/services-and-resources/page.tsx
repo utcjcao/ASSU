@@ -1,6 +1,5 @@
 import Text from "@/components/common/Text";
 import HeroText from "@/components/sections/HeroText";
-import ContentGrid from "@/components/layout/ContentGrid";
 import Link from "next/link";
 import Divider from "@/components/common/Divider";
 import Button from "@/components/common/Button";
@@ -134,39 +133,48 @@ export default function ServicesAndResources() {
         ASSU has going on or to take a break between classes and chat with our
         friendly executive and staff!
       </Text>
-      <Divider margin="0" />
+      <Divider />
+
       {/* Services Grid*/}
-      <ContentGrid
-        ariaLabel="Services and resources"
-        columns={3}
-        mergeAdjacentOnMobile={false}
-        className="w-full mx-auto"
-        cellClassName="flex flex-col px-8 py-10 md:px-10 md:py-12 min-h-[380px] md:min-h-[450px]"
-        items={services.map((service) => ({
-          id: service.id,
-          node: (
-            <div className="flex w-full flex-1 flex-col items-center justify-between text-center">
-              <div className="flex flex-col items-center gap-6">
-                <div className="w-16 h-16 flex items-center justify-center">
-                  {service.icon}
-                </div>
-                <div className="space-y-4">
-                  <h3 className="text-xl font-bold text-black">
+      {[services.slice(0, 3), services.slice(3, 6)].map((row, rowIndex) => (
+        <div key={`service-row-${rowIndex}`} className="w-full">
+          <div
+            className="grid grid-cols-1 md:grid-cols-3"
+            role="list"
+            aria-label="Services and resources"
+          >
+            {row.map((service, index) => (
+              <div
+                key={service.id}
+                role="listitem"
+                className={`relative bg-[rgb(243,243,243)] px-8 py-10 md:px-10 md:py-12 min-h-[380px] md:min-h-[450px] ${
+                  index < row.length - 1
+                    ? "md:after:absolute md:after:top-8 md:after:bottom-8 md:after:right-0 md:after:w-px md:after:bg-gray-900 md:after:content-['']"
+                    : ""
+                }`}
+              >
+                <div className="grid h-full grid-rows-[auto_auto_1fr_auto] items-start text-center">
+                  <div className="flex h-16 items-center justify-center">
+                    {service.icon}
+                  </div>
+                  <h3 className="mt-6 text-xl font-bold text-black">
                     {service.title}
                   </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="mt-4 text-gray-700 leading-relaxed">
                     {service.description}
                   </p>
+                  <div className="mt-8 flex justify-center">
+                    <Button>
+                      <Link href={service.href}>EXPLORE →</Link>
+                    </Button>
+                  </div>
                 </div>
               </div>
-
-              <Button>
-                <Link href={service.href}>EXPLORE →</Link>
-              </Button>
-            </div>
-          ),
-        }))}
-      />
+            ))}
+          </div>
+          {rowIndex === 0 ? <Divider /> : null}
+        </div>
+      ))}
       <Divider />
     </div>
   );
