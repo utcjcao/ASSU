@@ -110,8 +110,8 @@ export default function Header() {
   useBodyLock(openMobile);
 
   const onToggle = useCallback(() => {
-    setOpenMobile((prev) => !prev);
-  }, [setOpenMobile]);
+    setOpenMobile(!openMobile);
+  }, [setOpenMobile, openMobile]);
 
   // unified active checker
   const isActive = useCallback(
