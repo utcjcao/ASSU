@@ -1,7 +1,6 @@
 import Divider from "@/components/common/Divider";
 import Text from "@/components/common/Text";
 import Link from "@/components/common/Link";
-import Image from "next/image";
 import HeroText from "@/components/sections/HeroText";
 
 export default function Handbook() {
