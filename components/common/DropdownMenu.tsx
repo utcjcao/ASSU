@@ -47,6 +47,8 @@ export default function DropdownMenu({
         mt-2 
         bg-[rgb(243,243,243)] 
         py-2 
+        pl-3 
+        -ml-3 
         min-w-[200px] 
         z-50 
         opacity-0 
@@ -68,11 +70,7 @@ export default function DropdownMenu({
                 hover:text-pink 
                 transition-colors 
                 duration-200
-                ${
-                  isSubrouteActive(item.href)
-                    ? "text-pink"
-                    : ""
-                }
+                ${isSubrouteActive(item.href) ? "text-pink" : ""}
               `}
             >
               {item.label}
