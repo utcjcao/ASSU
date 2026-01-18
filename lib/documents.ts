@@ -1,25 +1,14 @@
 // Import cheerio only on server side
 import * as cheerio from "cheerio";
+import { cleanText } from "@/lib/text";
+import { fetchWpPageBySlug, requireServerOnly } from "@/lib/wp";
+import { CONSTITUTION_DOCUMENTS, FALLBACK_DOCUMENTS } from "@/info/links";
 
 // Define the data shape for documents
 export interface Document {
   documentName: string;
   link: string;
   documentType: string;
-}
-
-// Define the WordPress API response structure
-interface WordPressPage {
-  id: number;
-  date: string;
-  slug: string;
-  status: string;
-  title: {
-    rendered: string;
-  };
-  content: {
-    rendered: string;
-  };
 }
 
 // Function to determine document type based on content or link
@@ -79,20 +68,6 @@ function determineDocumentType(documentName: string, link: string): string {
   return "Other Documents";
 }
 
-// Function to clean and normalize text
-function cleanText(text: string): string {
-  return text
-    .trim()
-    .replace(/\s+/g, " ") // Replace multiple spaces with single space
-    .replace(/\n+/g, " ") // Replace newlines with spaces
-    .replace(/&nbsp;/g, " ") // Replace HTML non-breaking spaces
-    .replace(/&amp;/g, "&") // Replace HTML entities
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#039;/g, "'");
-}
-
 // Function to clean and normalize URL
 function cleanUrl(url: string): string {
   if (!url) return "";
@@ -126,41 +101,21 @@ function cleanUrl(url: string): string {
 export async function fetchDocumentsData(): Promise<Document[]> {
   try {
     // Only run on server side
-    if (typeof window !== "undefined") {
-      console.warn("fetchDocumentsData should only be called on server side");
-      return getFallbackDocuments();
-    }
+    const serverFallback = requireServerOnly(
+      "fetchDocumentsData",
+      getFallbackDocuments
+    );
+    if (serverFallback !== undefined) return serverFallback;
 
     console.log("Fetching documents data from WordPress API...");
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const page = await fetchWpPageBySlug("documents");
+    console.log("WordPress API response received:", page ? 1 : 0, "pages found");
 
-    const response = await fetch(
-      "https://assu.ca/wp/wp-json/wp/v2/pages?slug=documents",
-      {
-        signal: controller.signal,
-        headers: {
-          "User-Agent": "ASSU-Website/1.0",
-        },
-      }
-    );
-
-    clearTimeout(timeoutId);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data: WordPressPage[] = await response.json();
-    console.log("WordPress API response received:", data.length, "pages found");
-
-    if (!data || data.length === 0) {
+    if (!page) {
       console.warn("No documents page found");
       return getFallbackDocuments();
     }
-
-    const page = data[0];
     const content = page.content.rendered;
 
     if (!content) {
@@ -214,21 +169,8 @@ export async function fetchDocumentsData(): Promise<Document[]> {
     );
 
     // Ensure constitution documents are always included
-    const constitutionDocuments = [
-      {
-        documentName: "ASSU Constitution and Bylaws 2024",
-        link: "https://assu.ca/wp/wp-content/uploads/2024/04/ASSU-Constitution-Bylaws-2024.pdf",
-        documentType: "ASSU Constitution",
-      },
-      {
-        documentName: "ASSU Bylaws 2016",
-        link: "https://assu.ca/wp/wp-content/uploads/2008/12/BYLAWS.2016.pdf",
-        documentType: "ASSU Constitution",
-      },
-    ];
-
     // Add constitution documents if they're not already present
-    constitutionDocuments.forEach((constitutionDoc) => {
+    CONSTITUTION_DOCUMENTS.forEach((constitutionDoc) => {
       const exists = uniqueDocuments.some(
         (doc) =>
           doc.link === constitutionDoc.link ||
@@ -254,28 +196,7 @@ export async function fetchDocumentsData(): Promise<Document[]> {
 
 // Helper function to get fallback documents
 function getFallbackDocuments(): Document[] {
-  return [
-    {
-      documentName: "Summer Budget 2025",
-      link: "https://assu.ca/wp/wp-content/uploads/2025/05/Summer-Budget-2025.pdf",
-      documentType: "Budgets and Financial Statements",
-    },
-    {
-      documentName: "Financial Statement April 30th 2025",
-      link: "https://assu.ca/wp/wp-content/uploads/2025/05/Financial-Statement-FINAL.pdf",
-      documentType: "Budgets and Financial Statements",
-    },
-    {
-      documentName: "ASSU Constitution and Bylaws 2024",
-      link: "https://assu.ca/wp/wp-content/uploads/2024/04/ASSU-Constitution-Bylaws-2024.pdf",
-      documentType: "ASSU Constitution",
-    },
-    {
-      documentName: "ASSU Bylaws 2016",
-      link: "https://assu.ca/wp/wp-content/uploads/2008/12/BYLAWS.2016.pdf",
-      documentType: "ASSU Constitution",
-    },
-  ];
+  return FALLBACK_DOCUMENTS;
 }
 
 // Function to group documents by type for display

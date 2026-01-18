@@ -1,38 +1,12 @@
 // Import cheerio only on server side
 import * as cheerio from "cheerio";
+import { cleanText } from "@/lib/text";
+import { fetchWpPageBySlug, requireServerOnly } from "@/lib/wp";
 
 // Define the data shape for test courses
 export interface TestCourse {
   key: string;
   values: string[];
-}
-
-// Define the WordPress API response structure
-interface WordPressPage {
-  id: number;
-  date: string;
-  slug: string;
-  status: string;
-  title: {
-    rendered: string;
-  };
-  content: {
-    rendered: string;
-  };
-}
-
-// Function to clean and normalize text
-function cleanText(text: string): string {
-  return text
-    .trim()
-    .replace(/\s+/g, " ") // Replace multiple spaces with single space
-    .replace(/\n+/g, " ") // Replace newlines with spaces
-    .replace(/&nbsp;/g, " ") // Replace HTML non-breaking spaces
-    .replace(/&amp;/g, "&") // Replace HTML entities
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#039;/g, "'");
 }
 
 // Function to parse course numbers from text
@@ -64,41 +38,21 @@ function parseCourseNumbers(text: string): string[] {
 export async function fetchTestsData(): Promise<TestCourse[]> {
   try {
     // Only run on server side
-    if (typeof window !== "undefined") {
-      console.warn("fetchTestsData should only be called on server side");
-      return getFallbackTests();
-    }
+    const serverFallback = requireServerOnly(
+      "fetchTestsData",
+      getFallbackTests
+    );
+    if (serverFallback !== undefined) return serverFallback;
 
     console.log("Fetching tests data from WordPress API...");
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const page = await fetchWpPageBySlug("past-test-library");
+    console.log("WordPress API response received:", page ? 1 : 0, "pages found");
 
-    const response = await fetch(
-      "https://assu.ca/wp/wp-json/wp/v2/pages?slug=past-test-library",
-      {
-        signal: controller.signal,
-        headers: {
-          "User-Agent": "ASSU-Website/1.0",
-        },
-      }
-    );
-
-    clearTimeout(timeoutId);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data: WordPressPage[] = await response.json();
-    console.log("WordPress API response received:", data.length, "pages found");
-
-    if (!data || data.length === 0) {
+    if (!page) {
       console.warn("No past test library page found");
       return getFallbackTests();
     }
-
-    const page = data[0];
     const content = page.content.rendered;
 
     if (!content) {
