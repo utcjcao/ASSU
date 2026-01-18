@@ -16,32 +16,13 @@ export default function Handbook() {
       <Text as="p" className="text-lg">
         You can find paper copies of the handbook in our office at Room 1068 in
         Sidney Smith. You can also download the .pdf of the handbook here:{" "}
-        <Link href="https://f69d17aa-c996-4c07-84e8-5658e41b3090.filesusr.com/ugd/82c36b_0fc2556ac71749e0976805440b15d9dd.pdf">
-          Academic Handbook
-        </Link>
+        <Link href="/assu_academic_handbook.pdf">Academic Handbook</Link>
       </Text>
-      <Divider />
-      <div className="flex flex-wrap justify-around gap-4 mb-6">
-        <Image
-          src="/images/handbook-1.avif"
-          alt="ASSU Academic Handbook"
-          width={200}
-          height={200}
-          className="flex-1"
-        />
-        <Image
-          src="/images/handbook-2.avif"
-          alt="ASSU Academic Handbook"
-          width={200}
-          height={200}
-          className="flex-1"
-        />
-        <Image
-          src="/images/handbook-3.avif"
-          alt="ASSU Academic Handbook"
-          width={200}
-          height={200}
-          className="flex-1"
+      <div className="mt-6 mb-6 w-full">
+        <iframe
+          src="/assu_academic_handbook.pdf"
+          title="ASSU Academic Handbook PDF"
+          className="h-[80vh] w-full rounded border border-gray-300 bg-white"
         />
       </div>
       <Divider />
