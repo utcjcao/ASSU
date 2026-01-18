@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import "leaflet/dist/leaflet.css";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 const questrial = Questrial({
   weight: "400",
@@ -34,13 +35,17 @@ export default function RootLayout({
       <body
         className={`${questrial.variable} ${bitter.variable} antialiased flex flex-col min-h-screen `}
       >
-        <Header />
+        <SidebarProvider className="flex-col">
+          <Header />
 
-        <main className="flex-1 flex justify-center px-4 bg-gray-lighter">
-          <div className="w-full max-w-6xl flex flex-col p-4">{children}</div>
-        </main>
+          <main className="flex-1 flex justify-center px-4 bg-gray-lighter">
+            <div className="w-full max-w-6xl flex flex-col p-4">
+              {children}
+            </div>
+          </main>
 
-        <Footer />
+          <Footer />
+        </SidebarProvider>
       </body>
     </html>
   );
