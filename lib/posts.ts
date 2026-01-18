@@ -1,5 +1,8 @@
 // Import cheerio only on server side
 import * as cheerio from "cheerio";
+import { cleanText, extractTextFromHtml } from "@/lib/text";
+import { fetchJsonWithTimeout, requireServerOnly } from "@/lib/wp";
+import { wpMediaUrl, wpPostsCategoryUrl } from "@/info/links";
 
 // Define the data shape for blog posts
 export interface BlogPost {
@@ -58,25 +61,6 @@ interface WordPressMedia {
   };
 }
 
-// Function to clean and normalize text
-function cleanText(text: string): string {
-  return text
-    .trim()
-    .replace(/\s+/g, " ") // Replace multiple spaces with single space
-    .replace(/\n+/g, "\n") // Preserve intentional newlines
-    .replace(/&nbsp;/g, " ") // Replace HTML non-breaking spaces
-    .replace(/&amp;/g, "&") // Replace HTML entities
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#039;/g, "'")
-    .replace(/&#8217;/g, "'") // Right single quotation mark
-    .replace(/&#8211;/g, "-") // En dash
-    .replace(/&#8212;/g, "--") // Em dash
-    .replace(/&apos;/g, "'")
-    .replace(/&#038;/g, "&");
-}
-
 // Function to format date from ISO string to readable format
 function formatDate(dateString: string): string {
   try {
@@ -91,20 +75,6 @@ function formatDate(dateString: string): string {
     console.error("Error formatting date:", error);
     return dateString;
   }
-}
-
-// Function to extract text from HTML
-function extractTextFromHtml(html: string): string {
-  const $ = cheerio.load(html);
-  // Remove script and style tags
-  $("script, style").remove();
-  // Get text content
-  let text = $("body").text() || $.text();
-  // Clean up the text
-  text = cleanText(text);
-  // Replace multiple newlines with double newline
-  text = text.replace(/\n\s*\n\s*\n/g, "\n\n");
-  return text.trim();
 }
 
 // Function to extract image from content HTML
@@ -145,45 +115,20 @@ async function fetchFeaturedMediaUrl(
 
     // If we have a direct link, use it
     if (mediaUrl && mediaUrl.includes("/wp/v2/media/")) {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000);
-
-      const response = await fetch(mediaUrl, {
-        signal: controller.signal,
-        headers: {
-          "User-Agent": "ASSU-Website/1.0",
-        },
+      const media = await fetchJsonWithTimeout<WordPressMedia>(mediaUrl, {
+        timeoutMs: 5000,
+        revalidateSeconds: 86400,
       });
-
-      clearTimeout(timeoutId);
-
-      if (response.ok) {
-        const media: WordPressMedia = await response.json();
-        return media.source_url;
-      }
+      return media.source_url;
     }
 
     // Fallback: try direct media endpoint
     if (mediaId > 0) {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000);
-
-      const response = await fetch(
-        `https://assu.ca/wp/wp-json/wp/v2/media/${mediaId}`,
-        {
-          signal: controller.signal,
-          headers: {
-            "User-Agent": "ASSU-Website/1.0",
-          },
-        }
+      const media = await fetchJsonWithTimeout<WordPressMedia>(
+        wpMediaUrl(mediaId),
+        { timeoutMs: 5000, revalidateSeconds: 86400 }
       );
-
-      clearTimeout(timeoutId);
-
-      if (response.ok) {
-        const media: WordPressMedia = await response.json();
-        return media.source_url;
-      }
+      return media.source_url;
     }
   } catch (error) {
     console.error("Error fetching featured media:", error);
@@ -196,33 +141,18 @@ async function fetchFeaturedMediaUrl(
 export async function fetchUpcomingPosts(): Promise<BlogPost[]> {
   try {
     // Only run on server side
-    if (typeof window !== "undefined") {
-      console.warn("fetchUpcomingPosts should only be called on server side");
-      return getFallbackPosts();
-    }
+    const serverFallback = requireServerOnly(
+      "fetchUpcomingPosts",
+      getFallbackPosts
+    );
+    if (serverFallback !== undefined) return serverFallback;
 
     console.log("Fetching upcoming posts from WordPress API...");
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
-
-    const response = await fetch(
-      "https://assu.ca/wp/wp-json/wp/v2/posts?categories=28",
-      {
-        signal: controller.signal,
-        headers: {
-          "User-Agent": "ASSU-Website/1.0",
-        },
-      }
+    const data = await fetchJsonWithTimeout<WordPressPost[]>(
+      wpPostsCategoryUrl(28),
+      { revalidateSeconds: 86400 }
     );
-
-    clearTimeout(timeoutId);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data: WordPressPost[] = await response.json();
     console.log("WordPress API response received:", data.length, "posts found");
 
     if (!data || data.length === 0) {
@@ -247,11 +177,17 @@ export async function fetchUpcomingPosts(): Promise<BlogPost[]> {
         const date = formatDate(post.date);
 
         // Extract description from excerpt
-        let description = extractTextFromHtml(post.excerpt.rendered);
+        let description = extractTextFromHtml(post.excerpt.rendered, {
+          preserveNewlines: true,
+          collapseBlankLines: true,
+        });
 
         // If excerpt is empty or too short, try content
         if (!description || description.length < 50) {
-          description = extractTextFromHtml(post.content.rendered);
+          description = extractTextFromHtml(post.content.rendered, {
+            preserveNewlines: true,
+            collapseBlankLines: true,
+          });
           // Limit description length
           if (description.length > 500) {
             description = description.substring(0, 500) + "...";
@@ -320,33 +256,17 @@ function getFallbackPosts(): BlogPost[] {
 export async function getEventBySlug(slug: string): Promise<EventPost> {
   try {
     // Only run on server side
-    if (typeof window !== "undefined") {
-      console.warn("getEventBySlug should only be called on server side");
+    const serverFallback = requireServerOnly("getEventBySlug", () => {
       throw new Error("getEventBySlug can only be called on server side");
-    }
+    });
+    if (serverFallback !== undefined) return serverFallback;
 
     console.log(`Fetching event with slug: ${slug} from WordPress API...`);
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
-
-    const response = await fetch(
-      "https://assu.ca/wp/wp-json/wp/v2/posts?categories=28",
-      {
-        signal: controller.signal,
-        headers: {
-          "User-Agent": "ASSU-Website/1.0",
-        },
-      }
+    const data = await fetchJsonWithTimeout<WordPressPost[]>(
+      wpPostsCategoryUrl(28),
+      { revalidateSeconds: 86400 }
     );
-
-    clearTimeout(timeoutId);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data: WordPressPost[] = await response.json();
 
     // Find the post with matching slug
     const post = data.find((p) => p.slug === slug);
@@ -362,11 +282,17 @@ export async function getEventBySlug(slug: string): Promise<EventPost> {
     const date = formatDate(post.date);
 
     // Extract description from excerpt
-    let description = extractTextFromHtml(post.excerpt.rendered);
+    let description = extractTextFromHtml(post.excerpt.rendered, {
+      preserveNewlines: true,
+      collapseBlankLines: true,
+    });
 
     // If excerpt is empty or too short, try content
     if (!description || description.length < 50) {
-      description = extractTextFromHtml(post.content.rendered);
+      description = extractTextFromHtml(post.content.rendered, {
+        preserveNewlines: true,
+        collapseBlankLines: true,
+      });
       // Limit description length
       if (description.length > 500) {
         description = description.substring(0, 500) + "...";
